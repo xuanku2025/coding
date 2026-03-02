@@ -4,6 +4,10 @@
 
 XUANKU 是一个个人资源库，主要用于存储和管理学习资料、字体文件等资源。
 
+### 项目设置历程
+
+- **2026-03-03 初始化**：克隆仓库 `https://github.com/xuanku2025/coding`，创建 CLAUDE.md 项目指南文件
+
 ### 项目结构
 
 ```
@@ -43,6 +47,12 @@ git push origin main
 python -m http.server 8000
 ```
 
+### 网络问题排查
+
+当 `git push` 失败时：
+- 检查网络连接：`ping github.com`
+- 确认远程仓库配置正确
+
 ## 代码规范
 
 ### HTML
@@ -69,6 +79,15 @@ python -m http.server 8000
 2. 添加新资源时，保持目录结构清晰
 3. 提交信息使用中文或英文，保持一致性
 4. 涉及字体文件的修改需特别谨慎
+
+---
+
+## 相关会话记录
+
+- Session: a6424d49-5d10-44ee-9a84-f8c0a2f38cef (CLAUDE.md 创建)
+- Session: 5658bb5f-bcf1-44ec-bd94-99018d975583 (Git 推送)
+- Session: 0bbe0474-425c-4fe2-b750-82d3a8838463 (Git 推送)
+- Session: a3b718e3-da35-478c-bff6-01d09c7e896e (MEMORY.md 创建)
 
 ---
 
