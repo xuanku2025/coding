@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FlashMind - AI/IaaS 英文闪卡</title>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --primary: #4F46E5;
+  --primary-light: #818CF8;
+  --primary-dark: #3730A3;
+  --accent: #22C55E;
+  --accent-light: #4ADE80;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --bg: #F0F2FF;
+  --bg-card: rgba(255,255,255,0.72);
+  --bg-card-solid: #FFFFFF;
+  --text: #1E1B4B;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --border: rgba(255,255,255,0.5);
+  --shadow: 0 8px 32px rgba(79,70,229,0.10);
+  --shadow-lg: 0 16px 48px rgba(79,70,229,0.15);
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-xs: 8px;
+  --transition: 200ms ease;
+  --font-cn: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-en: "SF Pro Display","Inter",sans-serif;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+html { font-size: 16px; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: var(--font-cn);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  max-width: 430px;
+  margin: 0 auto;
+  position: relative;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(129,140,248,0.20) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(34,197,94,0.12) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ===== Glass Utility ===== */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 0; height: 0; }
+
+/* ===== App Shell ===== */
+.app { padding-bottom: calc(72px + var(--safe-bottom)); }
+.page { display: none; padding: 20px 16px 24px; min-height: calc(100vh - 72px); animation: fadeIn .25s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== Tab Bar ===== */
+.tab-bar {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 430px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(79,70,229,0.08);
+  display: flex; justify-content: space-around; align-items: center;
+  padding: 6px 0 calc(6px + var(--safe-bottom));
+  z-index: 100;
+}
+.tab-item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 12px; border: none; background: none;
+  color: var(--text-muted); font-size: 10px; cursor: pointer;
+  transition: color var(--transition);
+  font-family: var(--font-cn);
+  position: relative;
+}
+.tab-item svg { width: 24px; height: 24px; transition: transform var(--transition); }
+.tab-item.active { color: var(--primary); }
+.tab-item.active svg { transform: scale(1.1); }
+.tab-item .badge {
+  position: absolute; top: 0; right: 4px;
+  background: var(--danger); color: #fff;
+  font-size: 10px; line-height: 1;
+  padding: 2px 5px; border-radius: 10px;
+  font-weight: 600;
+}
+
+/* ===== Home Page ===== */
+.home-header { margin-bottom: 20px; }
+.home-header .greeting { font-size: 14px; color: var(--text-secondary); }
+.home-header .title { font-size: 26px; font-weight: 700; margin-top: 2px; }
+.home-header .title span { color: var(--primary); }
+
+.stats-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.stat-card {
+  flex: 1; padding: 16px 12px; text-align: center;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card); backdrop-filter: blur(12px);
+  border: 1px solid var(--border); cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.stat-card .num { font-size: 28px; font-weight: 700; font-family: var(--font-en); }
+.stat-card .num.primary { color: var(--primary); }
+.stat-card .num.accent { color: var(--accent); }
+.stat-card .num.warning { color: var(--warning); }
+.stat-card .label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+.action-btn {
+  width: 100%; padding: 16px; border: none; border-radius: var(--radius-sm);
+  font-size: 16px; font-weight: 600; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: transform var(--transition), box-shadow var(--transition);
+  font-family: var(--font-cn);
+}
+.action-btn:active { transform: scale(0.97); }
+.action-btn.primary-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff; box-shadow: 0 4px 16px rgba(79,70,229,0.3);
+}
+.action-btn.primary-btn:hover { box-shadow: 0 6px 24px rgba(79,70,229,0.4); }
+.action-btn.secondary-btn {
+  background: var(--bg-card-solid); color: var(--primary);
+  border: 2px solid rgba(79,70,229,0.2);
+  margin-top: 10px;
+}
+.action-btn svg { width: 20px; height: 20px; }
+
+.section-title {
+  font-size: 18px; font-weight: 700; margin: 24px 0 12px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.section-title .more { font-size: 13px; color: var(--primary); font-weight: 500; cursor: pointer; }
+
+.recommend-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; margin: 0 -16px; padding: 0 16px 8px; }
+.recommend-card {
+  min-width: 160px; padding: 16px; border-radius: var(--radius-sm);
+  background: var(--bg-card); backdrop-filter: blur(12px);
+  border: 1px solid var(--border); cursor: pointer;
+  transition: transform var(--transition);
+}
+.recommend-card:hover { transform: translateY(-2px); }
+.recommend-card .rc-icon { font-size: 28px; margin-bottom: 8px; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.recommend-card .rc-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.recommend-card .rc-sub { font-size: 12px; color: var(--text-muted); }
+
+.progress-overview {
+  padding: 20px; border-radius: var(--radius); margin-top: 8px;
+  background: var(--bg-card); backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+.progress-bar-wrap { background: #E2E8F0; border-radius: 40px; height: 10px; margin-top: 12px; overflow: hidden; }
+.progress-bar-fill { height: 100%; border-radius: 40px; transition: width 0.6s ease; }
+.progress-labels { display: flex; justify-content: space-between; margin-top: 8px; }
+.progress-labels span { font-size: 12px; color: var(--text-muted); }
+.legend { display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-secondary); }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ===== Library Page ===== */
+.category-tabs {
+  display: flex; gap: 8px; margin-bottom: 16px;
+  background: rgba(255,255,255,0.5); border-radius: var(--radius-sm);
+  padding: 4px;
+}
+.category-tab {
+  flex: 1; padding: 10px; border: none; border-radius: var(--radius-xs);
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  background: transparent; color: var(--text-muted);
+  transition: all var(--transition); font-family: var(--font-cn);
+}
+.category-tab.active { background: #fff; color: var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+
+.search-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px; border-radius: var(--radius-sm);
+  background: var(--bg-card); border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.search-bar svg { width: 18px; height: 18px; color: var(--text-muted); flex-shrink: 0; }
+.search-bar input {
+  flex: 1; border: none; background: none; outline: none;
+  font-size: 14px; color: var(--text); font-family: var(--font-cn);
+}
+.search-bar input::placeholder { color: #94A3B8; }
+
+.deck-list { display: flex; flex-direction: column; gap: 12px; }
+.deck-card {
+  padding: 18px; border-radius: var(--radius);
+  background: var(--bg-card); backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  cursor: pointer; transition: transform var(--transition), box-shadow var(--transition);
+}
+.deck-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.deck-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.deck-title { font-size: 16px; font-weight: 700; }
+.deck-badge {
+  font-size: 11px; font-weight: 600; padding: 3px 8px;
+  border-radius: 20px; white-space: nowrap;
+}
+.deck-badge.ai { background: rgba(79,70,229,0.10); color: var(--primary); }
+.deck-badge.iaas { background: rgba(34,197,94,0.10); color: #16A34A; }
+.deck-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5; }
+.deck-meta { display: flex; justify-content: space-between; align-items: center; }
+.deck-count { font-size: 12px; color: var(--text-muted); }
+.deck-progress { width: 100px; height: 6px; background: #E2E8F0; border-radius: 10px; overflow: hidden; }
+.deck-progress-fill { height: 100%; border-radius: 10px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+/* ===== Session Page ===== */
+.session-overlay {
+  display: none; position: fixed; inset: 0;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 30% 20%, rgba(129,140,248,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(34,197,94,0.10) 0%, transparent 60%);
+  z-index: 200; max-width: 430px; margin: 0 auto;
+  flex-direction: column; padding: 16px;
+  animation: fadeIn .3s ease;
+}
+.session-overlay.active { display: flex; }
+
+.session-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px;
+}
+.session-close {
+  width: 36px; height: 36px; border: none; border-radius: 50%;
+  background: var(--bg-card); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.session-close svg { width: 18px; height: 18px; color: var(--text-secondary); }
+.session-progress-text { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+.session-progress-bar { height: 4px; background: #E2E8F0; border-radius: 4px; overflow: hidden; }
+.session-progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; transition: width 0.4s ease; }
+
+.flash-card-container {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  perspective: 1200px; padding: 20px 0;
+}
+.flash-card {
+  width: 100%; max-width: 340px; min-height: 380px;
+  position: relative; cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.flash-card.flipped { transform: rotateY(180deg); }
+.flash-card-face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  display: flex; flex-direction: column;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+}
+.flash-card-back { transform: rotateY(180deg); }
+
+.card-difficulty {
+  align-self: flex-start;
+  font-size: 11px; font-weight: 600; padding: 4px 10px;
+  border-radius: 20px;
+}
+.card-difficulty.easy { background: rgba(34,197,94,0.10); color: #16A34A; }
+.card-difficulty.medium { background: rgba(245,158,11,0.10); color: #D97706; }
+.card-difficulty.hard { background: rgba(239,68,68,0.10); color: #DC2626; }
+
+.card-term {
+  font-family: var(--font-en); font-size: 28px; font-weight: 700;
+  color: var(--text); margin-top: 24px; line-height: 1.3;
+}
+.card-def-en {
+  font-family: var(--font-en); font-size: 15px;
+  color: var(--text-secondary); margin-top: 12px;
+  line-height: 1.6; flex: 1;
+}
+.card-tap-hint {
+  font-size: 13px; color: var(--text-muted);
+  text-align: center; margin-top: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.card-tap-hint svg { width: 16px; height: 16px; }
+
+.card-back-term { font-size: 20px; font-weight: 700; color: var(--primary); }
+.card-back-zh { font-size: 22px; font-weight: 600; margin-top: 8px; }
+.card-back-def { font-size: 14px; color: var(--text-secondary); margin-top: 12px; line-height: 1.7; }
+.card-back-scenario {
+  margin-top: 12px; padding: 12px; border-radius: var(--radius-xs);
+  background: rgba(79,70,229,0.04); border-left: 3px solid var(--primary-light);
+}
+.card-back-scenario-label { font-size: 11px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+.card-back-scenario-text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.card-back-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.card-back-tag {
+  font-size: 11px; padding: 3px 8px; border-radius: 20px;
+  background: rgba(79,70,229,0.06); color: var(--primary-dark);
+}
+
+.rating-bar {
+  display: flex; gap: 10px; padding: 0 4px;
+  margin-bottom: 16px;
+}
+.rating-btn {
+  flex: 1; padding: 14px 8px; border: 2px solid transparent;
+  border-radius: var(--radius-sm); font-size: 13px; font-weight: 600;
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; transition: all var(--transition);
+  font-family: var(--font-cn);
+}
+.rating-btn:active { transform: scale(0.95); }
+.rating-btn.know { background: rgba(34,197,94,0.08); color: #16A34A; border-color: rgba(34,197,94,0.2); }
+.rating-btn.know:hover { background: rgba(34,197,94,0.15); border-color: #22C55E; }
+.rating-btn.blur-r { background: rgba(245,158,11,0.08); color: #D97706; border-color: rgba(245,158,11,0.2); }
+.rating-btn.blur-r:hover { background: rgba(245,158,11,0.15); border-color: #F59E0B; }
+.rating-btn.dont-know { background: rgba(239,68,68,0.08); color: #DC2626; border-color: rgba(239,68,68,0.2); }
+.rating-btn.dont-know:hover { background: rgba(239,68,68,0.15); border-color: #EF4444; }
+.rating-btn svg { width: 22px; height: 22px; }
+.rating-btn span { font-size: 11px; color: var(--text-muted); }
+
+/* ===== Session Result ===== */
+.session-result {
+  display: none; position: fixed; inset: 0;
+  background: var(--bg);
+  background-image: radial-gradient(ellipse at 50% 30%, rgba(34,197,94,0.12) 0%, transparent 60%);
+  z-index: 210; max-width: 430px; margin: 0 auto;
+  flex-direction: column; align-items: center; justify-content: center;
+  padding: 32px 24px; text-align: center;
+}
+.session-result.active { display: flex; }
+.result-icon { width: 80px; height: 80px; margin-bottom: 20px; }
+.result-title { font-size: 24px; font-weight: 700; }
+.result-sub { font-size: 14px; color: var(--text-secondary); margin-top: 8px; }
+.result-stats {
+  display: flex; gap: 20px; margin: 28px 0;
+  padding: 20px 24px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border);
+}
+.result-stat { text-align: center; }
+.result-stat .rs-num { font-size: 24px; font-weight: 700; font-family: var(--font-en); }
+.result-stat .rs-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.result-actions { width: 100%; max-width: 300px; }
+
+/* ===== Review Page ===== */
+.review-empty {
+  text-align: center; padding: 60px 20px;
+}
+.review-empty svg { width: 80px; height: 80px; color: var(--accent); margin-bottom: 16px; }
+.review-empty .re-title { font-size: 20px; font-weight: 700; }
+.review-empty .re-sub { font-size: 14px; color: var(--text-secondary); margin-top: 8px; }
+
+.review-queue { display: flex; flex-direction: column; gap: 10px; }
+.review-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; border-radius: var(--radius-sm);
+  background: var(--bg-card); border: 1px solid var(--border);
+  cursor: pointer; transition: transform var(--transition);
+}
+.review-item:hover { transform: translateX(4px); }
+.review-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.review-dot.high { background: var(--danger); }
+.review-dot.mid { background: var(--warning); }
+.review-dot.low { background: var(--accent); }
+.review-info { flex: 1; }
+.review-term { font-family: var(--font-en); font-size: 15px; font-weight: 600; }
+.review-zh { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.review-priority {
+  font-size: 11px; font-weight: 600; padding: 3px 8px;
+  border-radius: 20px;
+}
+.review-priority.high { background: rgba(239,68,68,0.10); color: #DC2626; }
+.review-priority.mid { background: rgba(245,158,11,0.10); color: #D97706; }
+.review-priority.low { background: rgba(34,197,94,0.10); color: #16A34A; }
+
+/* ===== Profile Page ===== */
+.profile-card {
+  padding: 24px; text-align: center; margin-bottom: 20px;
+}
+.avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 28px; font-weight: 700; font-family: var(--font-en);
+}
+.profile-name { font-size: 20px; font-weight: 700; }
+.profile-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+.profile-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  margin-bottom: 20px;
+}
+.ps-item {
+  text-align: center; padding: 16px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card); border: 1px solid var(--border);
+}
+.ps-item .ps-num { font-size: 22px; font-weight: 700; font-family: var(--font-en); color: var(--primary); }
+.ps-item .ps-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.profile-section { margin-bottom: 16px; }
+.profile-section-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+
+.topic-progress-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.topic-progress-item:last-child { border-bottom: none; }
+.tp-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: #fff;
+}
+.tp-icon.ai-bg { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+.tp-icon.iaas-bg { background: linear-gradient(135deg, #16A34A, var(--accent-light)); }
+.tp-info { flex: 1; }
+.tp-name { font-size: 14px; font-weight: 600; }
+.tp-detail { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.tp-bar { width: 60px; height: 6px; background: #E2E8F0; border-radius: 10px; overflow: hidden; }
+.tp-bar-fill { height: 100%; border-radius: 10px; }
+
+.menu-list { border-radius: var(--radius); overflow: hidden; }
+.menu-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; background: var(--bg-card);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  cursor: pointer; transition: background var(--transition);
+}
+.menu-item:last-child { border-bottom: none; }
+.menu-item:hover { background: rgba(255,255,255,0.9); }
+.menu-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.menu-icon svg { width: 18px; height: 18px; }
+.menu-label { flex: 1; font-size: 14px; font-weight: 500; }
+.menu-arrow { color: var(--text-muted); }
+.menu-arrow svg { width: 16px; height: 16px; }
+
+/* ===== Card Detail Modal ===== */
+.card-detail-modal {
+  display: none; position: fixed; inset: 0;
+  background: var(--bg);
+  z-index: 300; max-width: 430px; margin: 0 auto;
+  overflow-y: auto; padding: 16px;
+  animation: fadeIn .25s ease;
+}
+.card-detail-modal.active { display: block; }
+.detail-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+.detail-back {
+  width: 36px; height: 36px; border: none; border-radius: 50%;
+  background: var(--bg-card); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.detail-back svg { width: 18px; height: 18px; color: var(--text-secondary); }
+.detail-fav {
+  width: 36px; height: 36px; border: none; border-radius: 50%;
+  background: var(--bg-card); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.detail-fav svg { width: 18px; height: 18px; color: var(--text-muted); transition: color var(--transition); }
+.detail-fav.faved svg { color: #EF4444; fill: #EF4444; }
+
+.detail-card { padding: 24px; margin-bottom: 16px; }
+.detail-term { font-family: var(--font-en); font-size: 26px; font-weight: 700; }
+.detail-term-zh { font-size: 18px; color: var(--text-secondary); margin-top: 4px; }
+.detail-badges { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+.detail-section { margin-top: 20px; }
+.detail-label { font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.detail-text { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+.detail-status-bar {
+  display: flex; gap: 8px; margin-top: 20px;
+  padding: 16px; border-radius: var(--radius-sm);
+  background: rgba(79,70,229,0.04);
+}
+.ds-item { flex: 1; text-align: center; }
+.ds-item .ds-val { font-size: 16px; font-weight: 700; color: var(--primary); font-family: var(--font-en); }
+.ds-item .ds-lab { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed; top: 60px; left: 50%; transform: translateX(-50%) translateY(-20px);
+  background: var(--text); color: #fff; padding: 10px 20px;
+  border-radius: var(--radius-sm); font-size: 14px;
+  opacity: 0; transition: all 0.3s ease; z-index: 999;
+  pointer-events: none; max-width: 300px; text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== Animations ===== */
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-60px) rotate(360deg); opacity: 0; }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .flash-card { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ===== Toast ===== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===== HOME PAGE ===== -->
+  <div class="page active" id="page-home">
+    <div class="home-header">
+      <div class="greeting">周二 · 3月3日</div>
+      <div class="title">今日<span>学习</span></div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card" onclick="switchTab('library')">
+        <div class="num primary" id="home-new">12</div>
+        <div class="label">待学新词</div>
+      </div>
+      <div class="stat-card" onclick="switchTab('review')">
+        <div class="num warning" id="home-review">5</div>
+        <div class="label">待复习</div>
+      </div>
+      <div class="stat-card">
+        <div class="num accent" id="home-mastered">8</div>
+        <div class="label">已掌握</div>
+      </div>
+    </div>
+
+    <button class="action-btn primary-btn" onclick="startSession('learn')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      开始今日学习
+    </button>
+    <button class="action-btn secondary-btn" onclick="startSession('review')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+      开始今日复习
+    </button>
+
+    <div class="section-title">
+      推荐主题
+      <span class="more" onclick="switchTab('library')">查看全部</span>
+    </div>
+    <div class="recommend-scroll" id="recommend-list"></div>
+
+    <div class="section-title">今日进度</div>
+    <div class="progress-overview">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-size:14px;font-weight:600;">总体掌握度</span>
+        <span style="font-size:20px;font-weight:700;color:var(--primary);font-family:var(--font-en);" id="home-percent">32%</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="home-progress-bar" style="width:32%;background:linear-gradient(90deg,var(--primary),var(--accent));"></div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent);"></div>已掌握 8</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--primary);"></div>学习中 7</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#E2E8F0;"></div>未学习 10</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LIBRARY PAGE ===== -->
+  <div class="page" id="page-library">
+    <h1 style="font-size:26px;font-weight:700;margin-bottom:16px;">主题卡库</h1>
+    <div class="category-tabs">
+      <button class="category-tab active" onclick="filterCategory('all',this)">全部</button>
+      <button class="category-tab" onclick="filterCategory('AI',this)">AI 人工智能</button>
+      <button class="category-tab" onclick="filterCategory('IAAS',this)">IaaS 基础设施</button>
+    </div>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" placeholder="搜索术语..." oninput="searchDecks(this.value)">
+    </div>
+    <div class="deck-list" id="deck-list"></div>
+  </div>
+
+  <!-- ===== REVIEW PAGE ===== -->
+  <div class="page" id="page-review">
+    <h1 style="font-size:26px;font-weight:700;margin-bottom:4px;">复习</h1>
+    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">根据遗忘曲线智能推荐</p>
+    <div id="review-content"></div>
+  </div>
+
+  <!-- ===== PROFILE PAGE ===== -->
+  <div class="page" id="page-profile">
+    <div class="profile-card glass">
+      <div class="avatar">F</div>
+      <div class="profile-name">FlashMind 用户</div>
+      <div class="profile-sub">已学习 7 天</div>
+    </div>
+
+    <div class="profile-stats">
+      <div class="ps-item">
+        <div class="ps-num">25</div>
+        <div class="ps-label">已学卡片</div>
+      </div>
+      <div class="ps-item">
+        <div class="ps-num">8</div>
+        <div class="ps-label">已掌握</div>
+      </div>
+      <div class="ps-item">
+        <div class="ps-num">7</div>
+        <div class="ps-label">连续天数</div>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-section-title">主题进度</div>
+      <div id="topic-progress"></div>
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-section-title">设置</div>
+      <div class="menu-list glass">
+        <div class="menu-item" onclick="showToast('每日目标：10 张卡片')">
+          <div class="menu-icon" style="background:rgba(79,70,229,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div class="menu-label">每日学习目标</div>
+          <div class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+        </div>
+        <div class="menu-item" onclick="switchTab('library')">
+          <div class="menu-icon" style="background:rgba(245,158,11,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></div>
+          <div class="menu-label">我的收藏</div>
+          <div class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+        </div>
+        <div class="menu-item" onclick="showToast('薄弱项：5 个术语需加强')">
+          <div class="menu-icon" style="background:rgba(239,68,68,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
+          <div class="menu-label">薄弱项</div>
+          <div class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+        </div>
+        <div class="menu-item" onclick="resetDemo()">
+          <div class="menu-icon" style="background:rgba(34,197,94,0.1);"><svg viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg></div>
+          <div class="menu-label">重置演示数据</div>
+          <div class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB BAR ===== -->
+  <nav class="tab-bar">
+    <button class="tab-item active" onclick="switchTab('home')" data-tab="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      今日
+    </button>
+    <button class="tab-item" onclick="switchTab('library')" data-tab="library">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      主题
+    </button>
+    <button class="tab-item" onclick="switchTab('review')" data-tab="review">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+      复习
+      <span class="badge" id="review-badge">5</span>
+    </button>
+    <button class="tab-item" onclick="switchTab('profile')" data-tab="profile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      我的
+    </button>
+  </nav>
+</div>
+
+<!-- ===== SESSION OVERLAY ===== -->
+<div class="session-overlay" id="session-overlay">
+  <div class="session-top">
+    <button class="session-close" onclick="closeSession()" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <span class="session-progress-text" id="session-counter">1 / 5</span>
+  </div>
+  <div class="session-progress-bar">
+    <div class="session-progress-fill" id="session-bar" style="width:20%"></div>
+  </div>
+
+  <div class="flash-card-container">
+    <div class="flash-card" id="flash-card" onclick="flipCard()">
+      <div class="flash-card-face flash-card-front" id="card-front">
+        <span class="card-difficulty easy" id="fc-difficulty">Easy</span>
+        <div class="card-term" id="fc-term">Large Language Model</div>
+        <div class="card-def-en" id="fc-def-en">A type of AI model trained on vast amounts of text data, capable of understanding and generating human-like text.</div>
+        <div class="card-tap-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"></path></svg>
+          点击翻转查看解释
+        </div>
+      </div>
+      <div class="flash-card-face flash-card-back" id="card-back">
+        <div class="card-back-term" id="fc-back-term">Large Language Model</div>
+        <div class="card-back-zh" id="fc-back-zh">大语言模型</div>
+        <div class="card-back-def" id="fc-back-def">一种在海量文本数据上训练的 AI 模型，能够理解和生成类人文本。GPT、Claude 均属此类。</div>
+        <div class="card-back-scenario" id="fc-back-scenario">
+          <div class="card-back-scenario-label">使用场景</div>
+          <div class="card-back-scenario-text" id="fc-scenario-text">阅读 AI 产品文档时，常见 "Our LLM powers..." 等表述。</div>
+        </div>
+        <div class="card-back-tags" id="fc-back-tags"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rating-bar" id="rating-bar" style="visibility:hidden;">
+    <button class="rating-btn dont-know" onclick="rateCard('dont_know')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      不会
+      <span>1天后复习</span>
+    </button>
+    <button class="rating-btn blur-r" onclick="rateCard('blur')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      模糊
+      <span>2天后复习</span>
+    </button>
+    <button class="rating-btn know" onclick="rateCard('know')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      认识
+      <span>4天后复习</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== SESSION RESULT ===== -->
+<div class="session-result" id="session-result">
+  <svg class="result-icon" viewBox="0 0 80 80" fill="none">
+    <circle cx="40" cy="40" r="38" fill="url(#rg)" stroke="#22C55E" stroke-width="3"/>
+    <polyline points="24,42 35,53 56,30" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <defs><radialGradient id="rg"><stop offset="0%" stop-color="#4ADE80"/><stop offset="100%" stop-color="#22C55E"/></radialGradient></defs>
+  </svg>
+  <div class="result-title">学习完成！</div>
+  <div class="result-sub" id="result-sub">今日学习进度 +5</div>
+  <div class="result-stats">
+    <div class="result-stat">
+      <div class="rs-num" id="rs-know" style="color:var(--accent);">0</div>
+      <div class="rs-label">认识</div>
+    </div>
+    <div class="result-stat">
+      <div class="rs-num" id="rs-blur" style="color:var(--warning);">0</div>
+      <div class="rs-label">模糊</div>
+    </div>
+    <div class="result-stat">
+      <div class="rs-num" id="rs-dont" style="color:var(--danger);">0</div>
+      <div class="rs-label">不会</div>
+    </div>
+  </div>
+  <div class="result-actions">
+    <button class="action-btn primary-btn" onclick="closeResult()">返回首页</button>
+    <button class="action-btn secondary-btn" onclick="closeResult(); startSession('learn')">继续学习</button>
+  </div>
+</div>
+
+<!-- ===== CARD DETAIL MODAL ===== -->
+<div class="card-detail-modal" id="card-detail-modal">
+  <div class="detail-header">
+    <button class="detail-back" onclick="closeDetail()" aria-label="返回">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="detail-fav" id="detail-fav-btn" onclick="toggleFav()" aria-label="收藏">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+    </button>
+  </div>
+  <div class="detail-card glass" id="detail-content"></div>
+</div>
+
+<script>
+// ===== DATA =====
+const DECKS = [
+  { id: "d1", category: "AI", title: "AI 基础概念", description: "人工智能核心术语：模型、训练、推理等基本概念", card_count: 5, sort_order: 1 },
+  { id: "d2", category: "AI", title: "AI 产品与应用", description: "Prompt、Agent、RAG 等应用层常见术语", card_count: 5, sort_order: 2 },
+  { id: "d3", category: "IAAS", title: "云计算基础", description: "IaaS / PaaS / SaaS、虚拟机、容器等核心概念", card_count: 5, sort_order: 3 },
+  { id: "d4", category: "IAAS", title: "云服务与架构", description: "负载均衡、CDN、微服务等进阶基础设施术语", card_count: 5, sort_order: 4 },
+  { id: "d5", category: "AI", title: "机器学习进阶", description: "Fine-tuning、Transfer Learning、Embedding 等进阶概念", card_count: 5, sort_order: 5 },
+];
+
+const CARDS = [
+  // Deck 1 - AI 基础
+  { id:"c1", deck_id:"d1", category:"AI", term_en:"Large Language Model", term_zh:"大语言模型", definition_en_short:"An AI model trained on vast text data to understand and generate human-like text.", definition_zh:"在海量文本上训练的 AI 模型，能理解和生成类人文本。GPT、Claude 均属此类。", usage_scenario:"阅读 AI 产品文档时，常见 'Our LLM powers...' 等表述。", difficulty:"easy", tags:["NLP","模型","核心概念"] },
+  { id:"c2", deck_id:"d1", category:"AI", term_en:"Neural Network", term_zh:"神经网络", definition_en_short:"A computing system inspired by biological neural networks, composed of layers of interconnected nodes.", definition_zh:"受生物神经网络启发的计算系统，由多层相互连接的节点组成，是深度学习的基础。", usage_scenario:"技术白皮书中 'deep neural network architecture...' 描述模型结构。", difficulty:"medium", tags:["深度学习","架构","基础"] },
+  { id:"c3", deck_id:"d1", category:"AI", term_en:"Training Data", term_zh:"训练数据", definition_en_short:"The dataset used to teach a machine learning model to recognize patterns and make predictions.", definition_zh:"用于教会机器学习模型识别模式和做出预测的数据集。数据质量直接影响模型效果。", usage_scenario:"讨论 AI 模型性能时，'trained on high-quality data...' 强调数据质量。", difficulty:"easy", tags:["数据","训练","基础"] },
+  { id:"c4", deck_id:"d1", category:"AI", term_en:"Inference", term_zh:"推理", definition_en_short:"The process of using a trained model to make predictions on new, unseen data.", definition_zh:"使用已训练好的模型对新数据进行预测的过程。推理速度和成本是部署的关键考量。", usage_scenario:"产品定价页 'inference costs are billed per token...' 描述使用成本。", difficulty:"medium", tags:["部署","性能","核心概念"] },
+  { id:"c5", deck_id:"d1", category:"AI", term_en:"Token", term_zh:"Token（词元）", definition_en_short:"The basic unit of text processed by language models, typically a word or part of a word.", definition_zh:"语言模型处理文本的基本单位，通常是一个词或词的一部分，约 3/4 个英文单词。", usage_scenario:"API 文档中 'maximum context length is 128K tokens' 描述模型容量。", difficulty:"easy", tags:["NLP","API","计费"] },
+
+  // Deck 2 - AI 产品应用
+  { id:"c6", deck_id:"d2", category:"AI", term_en:"Prompt Engineering", term_zh:"提示工程", definition_en_short:"The practice of crafting effective instructions to guide AI models toward desired outputs.", definition_zh:"设计和优化输入指令（Prompt）以引导 AI 模型产出预期结果的方法论。", usage_scenario:"招聘 JD 中 'Experience in prompt engineering and LLM integration...'。", difficulty:"easy", tags:["应用","技能","热门"] },
+  { id:"c7", deck_id:"d2", category:"AI", term_en:"RAG", term_zh:"检索增强生成", definition_en_short:"Retrieval-Augmented Generation: combining search with AI generation for more accurate outputs.", definition_zh:"检索增强生成，将外部知识检索与 AI 文本生成相结合，提高回答准确性和时效性。", usage_scenario:"技术方案中 'implementing RAG pipeline to reduce hallucination...'。", difficulty:"medium", tags:["架构","应用","热门"] },
+  { id:"c8", deck_id:"d2", category:"AI", term_en:"AI Agent", term_zh:"AI 智能体", definition_en_short:"An autonomous AI system that can perceive, reason, plan and take actions to achieve goals.", definition_zh:"能自主感知环境、推理规划并采取行动来完成目标的 AI 系统。可使用工具和调用 API。", usage_scenario:"产品发布会 'Our AI agents can autonomously handle complex workflows...'。", difficulty:"medium", tags:["应用","前沿","热门"] },
+  { id:"c9", deck_id:"d2", category:"AI", term_en:"Hallucination", term_zh:"幻觉", definition_en_short:"When an AI model generates plausible-sounding but factually incorrect or fabricated information.", definition_zh:"AI 模型生成看似合理但实际不正确或编造的信息的现象。是 AI 应用的核心挑战之一。", usage_scenario:"产品评测中 'The model still suffers from occasional hallucinations...'。", difficulty:"easy", tags:["问题","评估","核心概念"] },
+  { id:"c10", deck_id:"d2", category:"AI", term_en:"Fine-tuning", term_zh:"微调", definition_en_short:"Adapting a pre-trained model to a specific task by training it further on task-specific data.", definition_zh:"在预训练模型基础上，使用特定领域数据进行进一步训练，使模型适应特定任务。", usage_scenario:"方案文档 'Fine-tune the base model on our customer support data...'。", difficulty:"medium", tags:["训练","定制","进阶"] },
+
+  // Deck 3 - 云计算基础
+  { id:"c11", deck_id:"d3", category:"IAAS", term_en:"IaaS", term_zh:"基础设施即服务", definition_en_short:"Infrastructure as a Service: cloud computing model providing virtualized computing resources.", definition_zh:"基础设施即服务，提供虚拟化的计算、存储和网络资源。用户自行管理操作系统和应用。", usage_scenario:"厂商介绍 'Our IaaS platform offers scalable compute and storage...'。", difficulty:"easy", tags:["云服务","模型","基础"] },
+  { id:"c12", deck_id:"d3", category:"IAAS", term_en:"Virtual Machine", term_zh:"虚拟机", definition_en_short:"A software emulation of a physical computer, running its own operating system and applications.", definition_zh:"物理计算机的软件模拟，运行独立的操作系统与应用。是 IaaS 最基本的计算单元。", usage_scenario:"控制台文档 'Launch a new VM instance in the us-east region...'。", difficulty:"easy", tags:["计算","基础","核心概念"] },
+  { id:"c13", deck_id:"d3", category:"IAAS", term_en:"Container", term_zh:"容器", definition_en_short:"A lightweight, standalone package that includes everything needed to run a piece of software.", definition_zh:"轻量级独立软件封装，包含运行所需的一切。比虚拟机更轻量，启动更快。Docker 是代表技术。", usage_scenario:"架构文档 'Deploy microservices in Docker containers on Kubernetes...'。", difficulty:"medium", tags:["计算","部署","热门"] },
+  { id:"c14", deck_id:"d3", category:"IAAS", term_en:"Auto Scaling", term_zh:"自动扩缩容", definition_en_short:"Automatically adjusting computing resources based on current demand to maintain performance.", definition_zh:"根据当前负载自动调整计算资源数量，确保性能的同时控制成本。", usage_scenario:"运维手册 'Configure auto scaling to handle traffic spikes during promotions...'。", difficulty:"medium", tags:["运维","弹性","核心概念"] },
+  { id:"c15", deck_id:"d3", category:"IAAS", term_en:"Object Storage", term_zh:"对象存储", definition_en_short:"A storage architecture for managing data as objects, ideal for unstructured data like files and media.", definition_zh:"以对象为单位管理数据的存储架构，适合图片、视频等非结构化数据。AWS S3 是典型代表。", usage_scenario:"技术选型 'Store user uploads in object storage with CDN acceleration...'。", difficulty:"easy", tags:["存储","基础","核心概念"] },
+
+  // Deck 4 - 云服务架构
+  { id:"c16", deck_id:"d4", category:"IAAS", term_en:"Load Balancer", term_zh:"负载均衡器", definition_en_short:"A system that distributes incoming network traffic across multiple servers to ensure reliability.", definition_zh:"将网络请求分发到多台服务器的系统，确保高可用性和可靠性，防止单点过载。", usage_scenario:"架构图说明 'Traffic enters through the load balancer before reaching app servers...'。", difficulty:"medium", tags:["网络","架构","核心概念"] },
+  { id:"c17", deck_id:"d4", category:"IAAS", term_en:"CDN", term_zh:"内容分发网络", definition_en_short:"Content Delivery Network: a distributed network of servers that delivers content to users from nearby locations.", definition_zh:"内容分发网络，通过分布式节点将内容缓存到离用户最近的位置，加速访问。", usage_scenario:"性能优化 'Enable CDN for static assets to reduce page load time globally...'。", difficulty:"easy", tags:["网络","性能","基础"] },
+  { id:"c18", deck_id:"d4", category:"IAAS", term_en:"Microservices", term_zh:"微服务", definition_en_short:"An architectural approach where an application is built as a collection of small, independent services.", definition_zh:"将应用拆分为多个小型独立服务的架构方式，每个服务可独立部署、扩展和维护。", usage_scenario:"技术博客 'We migrated from monolith to microservices architecture...'。", difficulty:"medium", tags:["架构","设计","进阶"] },
+  { id:"c19", deck_id:"d4", category:"IAAS", term_en:"API Gateway", term_zh:"API 网关", definition_en_short:"A server that acts as an entry point for API calls, handling routing, authentication, and rate limiting.", definition_zh:"作为 API 调用统一入口的服务，处理路由、认证、限流等功能。是微服务架构的关键组件。", usage_scenario:"接入文档 'All API requests must go through the API gateway for authentication...'。", difficulty:"medium", tags:["API","架构","核心概念"] },
+  { id:"c20", deck_id:"d4", category:"IAAS", term_en:"Serverless", term_zh:"无服务器计算", definition_en_short:"A cloud execution model where the provider manages server infrastructure and scales automatically.", definition_zh:"无需管理服务器的云计算模式，按实际使用量计费，自动扩缩。AWS Lambda 是典型代表。", usage_scenario:"方案对比 'Going serverless eliminates the need to manage infrastructure...'。", difficulty:"easy", tags:["计算","架构","热门"] },
+
+  // Deck 5 - ML 进阶
+  { id:"c21", deck_id:"d5", category:"AI", term_en:"Transfer Learning", term_zh:"迁移学习", definition_en_short:"Applying knowledge gained from one task to a different but related task to improve learning efficiency.", definition_zh:"将一个任务上学到的知识应用到另一个相关任务上，显著减少所需训练数据和时间。", usage_scenario:"论文摘要 'We leverage transfer learning from ImageNet pre-trained models...'。", difficulty:"medium", tags:["训练","方法","进阶"] },
+  { id:"c22", deck_id:"d5", category:"AI", term_en:"Embedding", term_zh:"嵌入/向量表示", definition_en_short:"A numerical representation of data (text, images) in a continuous vector space for machine processing.", definition_zh:"将文本、图像等数据转换为连续向量空间中的数值表示，便于机器处理和比较相似性。", usage_scenario:"技术方案 'Generate embeddings for all documents and store them in a vector database...'。", difficulty:"medium", tags:["表示","搜索","核心概念"] },
+  { id:"c23", deck_id:"d5", category:"AI", term_en:"Transformer", term_zh:"Transformer 架构", definition_en_short:"A neural network architecture based on self-attention mechanism, powering modern language models.", definition_zh:"基于自注意力机制的神经网络架构，是 GPT、BERT 等现代语言模型的基础架构。", usage_scenario:"技术文章 'The Transformer architecture revolutionized NLP with its attention mechanism...'。", difficulty:"medium", tags:["架构","基础","核心概念"] },
+  { id:"c24", deck_id:"d5", category:"AI", term_en:"Multimodal", term_zh:"多模态", definition_en_short:"AI systems that can process and understand multiple types of data: text, images, audio, video.", definition_zh:"能处理和理解多种数据类型（文本、图像、音频、视频）的 AI 系统。GPT-4V 是代表。", usage_scenario:"产品发布 'Our multimodal model can analyze both text and images in a single query...'。", difficulty:"easy", tags:["能力","应用","热门"] },
+  { id:"c25", deck_id:"d5", category:"AI", term_en:"Benchmark", term_zh:"基准测试", definition_en_short:"Standardized tests used to evaluate and compare the performance of AI models against each other.", definition_zh:"用于评估和比较 AI 模型性能的标准化测试集，如 MMLU、HumanEval 等。", usage_scenario:"模型发布 'Our model achieves state-of-the-art results on major benchmarks...'。", difficulty:"easy", tags:["评估","比较","基础"] },
+];
+
+// ===== STATE =====
+let state = {
+  progress: {},
+  favorites: new Set(),
+  sessionCards: [],
+  sessionIndex: 0,
+  sessionResults: { know: 0, blur: 0, dont_know: 0 },
+  sessionType: 'learn',
+  currentDetailCard: null,
+};
+
+function initState() {
+  const saved = localStorage.getItem('flashmind_state');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      state.progress = parsed.progress || {};
+      state.favorites = new Set(parsed.favorites || []);
+    } catch(e) { /* ignore */ }
+  }
+  // Init progress for new cards
+  CARDS.forEach(c => {
+    if (!state.progress[c.id]) {
+      state.progress[c.id] = {
+        card_id: c.id, status: 'new', correct_streak: 0,
+        fail_count: 0, blur_count: 0
+      };
+    }
+  });
+  saveState();
+}
+
+function saveState() {
+  localStorage.setItem('flashmind_state', JSON.stringify({
+    progress: state.progress,
+    favorites: Array.from(state.favorites)
+  }));
+}
+
+function resetDemo() {
+  localStorage.removeItem('flashmind_state');
+  state.progress = {};
+  state.favorites = new Set();
+  initState();
+  renderAll();
+  showToast('演示数据已重置');
+}
+
+// ===== STATS HELPERS =====
+function getStats() {
+  let ne = 0, learning = 0, review = 0, mastered = 0;
+  Object.values(state.progress).forEach(p => {
+    if (p.status === 'new') ne++;
+    else if (p.status === 'learning') learning++;
+    else if (p.status === 'review') review++;
+    else if (p.status === 'mastered') mastered++;
+  });
+  return { new: ne, learning, review, mastered, total: CARDS.length };
+}
+
+function getReviewCards() {
+  const now = Date.now();
+  return CARDS.filter(c => {
+    const p = state.progress[c.id];
+    if (!p) return false;
+    if (p.status === 'mastered') return false;
+    if (p.status === 'review' && p.next_review_at && p.next_review_at <= now) return true;
+    if (p.status === 'learning') return true;
+    return false;
+  }).sort((a, b) => {
+    const pa = state.progress[a.id], pb = state.progress[b.id];
+    const prioA = pa.last_rating === 'dont_know' ? 0 : pa.last_rating === 'blur' ? 1 : 2;
+    const prioB = pb.last_rating === 'dont_know' ? 0 : pb.last_rating === 'blur' ? 1 : 2;
+    return prioA - prioB;
+  });
+}
+
+function getDeckProgress(deckId) {
+  const deckCards = CARDS.filter(c => c.deck_id === deckId);
+  const mastered = deckCards.filter(c => state.progress[c.id]?.status === 'mastered').length;
+  const studied = deckCards.filter(c => state.progress[c.id]?.status !== 'new').length;
+  return { total: deckCards.length, mastered, studied, percent: Math.round((studied / deckCards.length) * 100) };
+}
+
+// ===== TAB SWITCHING =====
+function switchTab(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name)?.classList.add('active');
+  document.querySelector(`[data-tab="${name}"]`)?.classList.add('active');
+  if (name === 'review') renderReview();
+  if (name === 'library') renderDecks();
+}
+
+// ===== RENDER =====
+function renderAll() {
+  renderHome();
+  renderDecks();
+  renderReview();
+  renderRecommend();
+  renderTopicProgress();
+}
+
+function renderHome() {
+  const stats = getStats();
+  const reviewCards = getReviewCards();
+  document.getElementById('home-new').textContent = stats.new;
+  document.getElementById('home-review').textContent = reviewCards.length;
+  document.getElementById('home-mastered').textContent = stats.mastered;
+  document.getElementById('review-badge').textContent = reviewCards.length;
+  if (reviewCards.length === 0) document.getElementById('review-badge').style.display = 'none';
+  else document.getElementById('review-badge').style.display = '';
+
+  const percent = Math.round(((stats.mastered + stats.learning * 0.3 + stats.review * 0.6) / stats.total) * 100);
+  document.getElementById('home-percent').textContent = percent + '%';
+  document.getElementById('home-progress-bar').style.width = percent + '%';
+}
+
+function renderRecommend() {
+  const html = DECKS.slice(0, 4).map(d => {
+    const prog = getDeckProgress(d.id);
+    const bgColor = d.category === 'AI' ? 'rgba(79,70,229,0.10)' : 'rgba(34,197,94,0.10)';
+    const iconColor = d.category === 'AI' ? '#4F46E5' : '#16A34A';
+    return `<div class="recommend-card" onclick="switchTab('library')">
+      <div class="rc-icon" style="background:${bgColor};">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${iconColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          ${d.category === 'AI' ? '<path d="M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M6 12h12"/><path d="M8 20h8"/><path d="M12 12v8"/>' : '<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1"/><circle cx="6" cy="18" r="1"/>'}
+        </svg>
+      </div>
+      <div class="rc-title">${d.title}</div>
+      <div class="rc-sub">${prog.studied}/${prog.total} 已学习</div>
+    </div>`;
+  }).join('');
+  document.getElementById('recommend-list').innerHTML = html;
+}
+
+function renderDecks(filter = 'all', search = '') {
+  let decks = DECKS;
+  if (filter !== 'all') decks = decks.filter(d => d.category === filter);
+  if (search) {
+    const q = search.toLowerCase();
+    decks = decks.filter(d =>
+      d.title.toLowerCase().includes(q) ||
+      d.description.toLowerCase().includes(q) ||
+      CARDS.some(c => c.deck_id === d.id && (
+        c.term_en.toLowerCase().includes(q) ||
+        c.term_zh.includes(q)
+      ))
+    );
+  }
+  const html = decks.map(d => {
+    const prog = getDeckProgress(d.id);
+    const badgeClass = d.category === 'AI' ? 'ai' : 'iaas';
+    return `<div class="deck-card" onclick="startDeckSession('${d.id}')">
+      <div class="deck-head">
+        <div class="deck-title">${d.title}</div>
+        <span class="deck-badge ${badgeClass}">${d.category}</span>
+      </div>
+      <div class="deck-desc">${d.description}</div>
+      <div class="deck-meta">
+        <span class="deck-count">${prog.studied} / ${prog.total} 已学习</span>
+        <div class="deck-progress"><div class="deck-progress-fill" style="width:${prog.percent}%"></div></div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('deck-list').innerHTML = html;
+}
+
+let currentFilter = 'all';
+function filterCategory(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderDecks(cat, document.querySelector('.search-bar input')?.value || '');
+}
+function searchDecks(val) { renderDecks(currentFilter, val); }
+
+function renderReview() {
+  const reviewCards = getReviewCards();
+  if (reviewCards.length === 0) {
+    document.getElementById('review-content').innerHTML = `
+      <div class="review-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <div class="re-title">暂无待复习内容</div>
+        <div class="re-sub">开始学习新卡片后，系统会自动安排复习</div>
+      </div>`;
+    return;
+  }
+  const html = '<div class="review-queue">' + reviewCards.map(c => {
+    const p = state.progress[c.id];
+    const priority = p.last_rating === 'dont_know' ? 'high' : p.last_rating === 'blur' ? 'mid' : 'low';
+    const prioLabel = p.last_rating === 'dont_know' ? '高优先级' : p.last_rating === 'blur' ? '中优先级' : '低优先级';
+    return `<div class="review-item" onclick="openDetail('${c.id}')">
+      <div class="review-dot ${priority}"></div>
+      <div class="review-info">
+        <div class="review-term">${c.term_en}</div>
+        <div class="review-zh">${c.term_zh}</div>
+      </div>
+      <span class="review-priority ${priority}">${prioLabel}</span>
+    </div>`;
+  }).join('') + '</div>';
+  document.getElementById('review-content').innerHTML =
+    `<button class="action-btn primary-btn" style="margin-bottom:16px;" onclick="startSession('review')">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+      开始复习 (${reviewCards.length} 张)
+    </button>` + html;
+}
+
+function renderTopicProgress() {
+  const categories = [
+    { name: 'AI 人工智能', cat: 'AI', cls: 'ai-bg' },
+    { name: 'IaaS 基础设施', cat: 'IAAS', cls: 'iaas-bg' }
+  ];
+  const html = categories.map(c => {
+    const cards = CARDS.filter(card => card.category === c.cat);
+    const studied = cards.filter(card => state.progress[card.id]?.status !== 'new').length;
+    const mastered = cards.filter(card => state.progress[card.id]?.status === 'mastered').length;
+    const pct = Math.round((studied / cards.length) * 100);
+    const color = c.cat === 'AI' ? 'var(--primary)' : 'var(--accent)';
+    return `<div class="topic-progress-item">
+      <div class="tp-icon ${c.cls}">${c.cat === 'AI' ? 'AI' : 'Ia'}</div>
+      <div class="tp-info">
+        <div class="tp-name">${c.name}</div>
+        <div class="tp-detail">已学 ${studied} / ${cards.length}　掌握 ${mastered}</div>
+      </div>
+      <div class="tp-bar"><div class="tp-bar-fill" style="width:${pct}%;background:${color};"></div></div>
+    </div>`;
+  }).join('');
+  document.getElementById('topic-progress').innerHTML = html;
+}
+
+// ===== SESSION =====
+function startSession(type) {
+  state.sessionType = type;
+  let cards;
+  if (type === 'review') {
+    cards = getReviewCards().slice(0, 5);
+    if (cards.length === 0) { showToast('暂无待复习卡片'); return; }
+  } else {
+    const newCards = CARDS.filter(c => state.progress[c.id]?.status === 'new');
+    const learningCards = CARDS.filter(c => state.progress[c.id]?.status === 'learning');
+    cards = [...newCards.slice(0, 3), ...learningCards.slice(0, 2)];
+    if (cards.length === 0) {
+      cards = CARDS.slice(0, 5);
+    }
+  }
+  state.sessionCards = cards;
+  state.sessionIndex = 0;
+  state.sessionResults = { know: 0, blur: 0, dont_know: 0 };
+  showCard(0);
+  document.getElementById('session-overlay').classList.add('active');
+}
+
+function startDeckSession(deckId) {
+  const cards = CARDS.filter(c => c.deck_id === deckId);
+  state.sessionType = 'learn';
+  state.sessionCards = cards;
+  state.sessionIndex = 0;
+  state.sessionResults = { know: 0, blur: 0, dont_know: 0 };
+  showCard(0);
+  document.getElementById('session-overlay').classList.add('active');
+}
+
+function showCard(idx) {
+  const card = state.sessionCards[idx];
+  if (!card) return;
+  const total = state.sessionCards.length;
+  document.getElementById('session-counter').textContent = `${idx + 1} / ${total}`;
+  document.getElementById('session-bar').style.width = `${((idx + 1) / total) * 100}%`;
+
+  // Front
+  document.getElementById('fc-difficulty').textContent = card.difficulty === 'easy' ? 'Easy' : 'Medium';
+  document.getElementById('fc-difficulty').className = 'card-difficulty ' + card.difficulty;
+  document.getElementById('fc-term').textContent = card.term_en;
+  document.getElementById('fc-def-en').textContent = card.definition_en_short;
+
+  // Back
+  document.getElementById('fc-back-term').textContent = card.term_en;
+  document.getElementById('fc-back-zh').textContent = card.term_zh;
+  document.getElementById('fc-back-def').textContent = card.definition_zh;
+  document.getElementById('fc-scenario-text').textContent = card.usage_scenario;
+  document.getElementById('fc-back-tags').innerHTML = card.tags.map(t =>
+    `<span class="card-back-tag">${t}</span>`
+  ).join('');
+
+  // Reset flip
+  document.getElementById('flash-card').classList.remove('flipped');
+  document.getElementById('rating-bar').style.visibility = 'hidden';
+}
+
+function flipCard() {
+  const fc = document.getElementById('flash-card');
+  fc.classList.toggle('flipped');
+  if (fc.classList.contains('flipped')) {
+    document.getElementById('rating-bar').style.visibility = 'visible';
+  }
+}
+
+function rateCard(rating) {
+  const card = state.sessionCards[state.sessionIndex];
+  const p = state.progress[card.id];
+  p.last_rating = rating;
+  p.last_studied_at = Date.now();
+  state.sessionResults[rating]++;
+
+  if (p.status === 'new') p.status = 'learning';
+
+  if (rating === 'know') {
+    p.correct_streak++;
+    p.next_review_at = Date.now() + 4 * 86400000;
+    if (p.correct_streak >= 3) {
+      p.status = 'mastered';
+    } else {
+      p.status = 'review';
+    }
+  } else if (rating === 'blur') {
+    p.blur_count++;
+    p.correct_streak = 0;
+    p.next_review_at = Date.now() + 2 * 86400000;
+    p.status = 'review';
+  } else {
+    p.fail_count++;
+    p.correct_streak = 0;
+    p.next_review_at = Date.now() + 1 * 86400000;
+    p.status = 'learning';
+  }
+  saveState();
+
+  // Next card or finish
+  if (state.sessionIndex < state.sessionCards.length - 1) {
+    state.sessionIndex++;
+    showCard(state.sessionIndex);
+  } else {
+    finishSession();
+  }
+}
+
+function finishSession() {
+  document.getElementById('session-overlay').classList.remove('active');
+  const r = state.sessionResults;
+  document.getElementById('rs-know').textContent = r.know;
+  document.getElementById('rs-blur').textContent = r.blur;
+  document.getElementById('rs-dont').textContent = r.dont_know;
+  document.getElementById('result-sub').textContent =
+    `本轮学习 ${state.sessionCards.length} 张卡片`;
+  document.getElementById('session-result').classList.add('active');
+  renderAll();
+}
+
+function closeSession() {
+  document.getElementById('session-overlay').classList.remove('active');
+  renderAll();
+}
+
+function closeResult() {
+  document.getElementById('session-result').classList.remove('active');
+  switchTab('home');
+}
+
+// ===== CARD DETAIL =====
+function openDetail(cardId) {
+  const card = CARDS.find(c => c.id === cardId);
+  if (!card) return;
+  state.currentDetailCard = card;
+  const p = state.progress[card.id];
+  const statusMap = { new: '未学习', learning: '学习中', review: '待复习', mastered: '已掌握' };
+  const statusColor = { new: '#94A3B8', learning: '#4F46E5', review: '#F59E0B', mastered: '#22C55E' };
+
+  document.getElementById('detail-content').innerHTML = `
+    <div class="detail-term">${card.term_en}</div>
+    <div class="detail-term-zh">${card.term_zh}</div>
+    <div class="detail-badges">
+      <span class="deck-badge ${card.category === 'AI' ? 'ai' : 'iaas'}">${card.category}</span>
+      <span class="card-difficulty ${card.difficulty}">${card.difficulty === 'easy' ? 'Easy' : 'Medium'}</span>
+      ${card.tags.map(t => `<span class="card-back-tag">${t}</span>`).join('')}
+    </div>
+    <div class="detail-section">
+      <div class="detail-label">English Definition</div>
+      <div class="detail-text" style="font-family:var(--font-en);">${card.definition_en_short}</div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-label">中文解释</div>
+      <div class="detail-text">${card.definition_zh}</div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-label">使用场景</div>
+      <div class="detail-text">${card.usage_scenario}</div>
+    </div>
+    <div class="detail-status-bar">
+      <div class="ds-item">
+        <div class="ds-val" style="color:${statusColor[p.status]}">${statusMap[p.status]}</div>
+        <div class="ds-lab">掌握状态</div>
+      </div>
+      <div class="ds-item">
+        <div class="ds-val">${p.correct_streak}</div>
+        <div class="ds-lab">连续正确</div>
+      </div>
+      <div class="ds-item">
+        <div class="ds-val">${p.fail_count + p.blur_count}</div>
+        <div class="ds-lab">复习次数</div>
+      </div>
+    </div>
+  `;
+
+  const favBtn = document.getElementById('detail-fav-btn');
+  favBtn.classList.toggle('faved', state.favorites.has(card.id));
+  document.getElementById('card-detail-modal').classList.add('active');
+}
+
+function closeDetail() {
+  document.getElementById('card-detail-modal').classList.remove('active');
+}
+
+function toggleFav() {
+  if (!state.currentDetailCard) return;
+  const id = state.currentDetailCard.id;
+  if (state.favorites.has(id)) {
+    state.favorites.delete(id);
+    showToast('已取消收藏');
+  } else {
+    state.favorites.add(id);
+    showToast('已收藏');
+  }
+  document.getElementById('detail-fav-btn').classList.toggle('faved', state.favorites.has(id));
+  saveState();
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ===== INIT =====
+initState();
+renderAll();
+</script>
+</body>
+</html>
