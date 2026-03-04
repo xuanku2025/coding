@@ -1,0 +1,41 @@
+<view class="container">
+  <!-- Top Bar -->
+  <view class="top-bar">
+    <navigator open-type="navigateBack" delta="1" class="back-btn">返回</navigator>
+    <view class="title">运动总结</view>
+    <navigator url="/pages/index/index" open-type="reLaunch" class="done-btn">完成</navigator>
+  </view>
+
+  <!-- Hero Card -->
+  <view class="hero-card" id="share-card">
+    <map class="card-bg" latitude="{{latitude}}" longitude="{{longitude}}" show-location></map>
+    <view class="card-overlay"></view>
+    <view class="card-content">
+      <view class="date">2026年3月4日 傍晚跑</view>
+      <view class="main-stats">
+        <text class="dist">{{distance}}</text>
+        <text class="unit">公里</text>
+      </view>
+      <view class="sub-stats">
+        <view class="stat-item">
+          <text class="val">{{timeStr}}</text>
+          <text class="lbl">时长</text>
+        </view>
+        <view class="stat-item">
+          <text class="val">{{pace}}</text>
+          <text class="lbl">配速</text>
+        </view>
+        <view class="stat-item">
+          <text class="val">320</text>
+          <text class="lbl">千卡</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Share Actions -->
+  <view class="share-actions">
+    <button class="share-btn wx" open-type="share">分享给好友</button>
+    <button class="share-btn poster" bindtap="generatePoster">生成长图海报</button>
+  </view>
+</view>

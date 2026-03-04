@@ -1,0 +1,48 @@
+<view class="container">
+  <!-- User Info -->
+  <view class="user-header">
+    <image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaC2sHXevcdicA9zGicN3C2hEwF2bMwJz7A/132"></image>
+    <view class="nickname">极简跑者_001</view>
+    <view class="days-active">累计坚持 12 天</view>
+  </view>
+
+  <!-- Total Stats -->
+  <view class="total-stats">
+    <view class="stat-box run">
+      <view class="val">42.5</view>
+      <view class="lbl">跑步 (km)</view>
+    </view>
+    <view class="stat-box ride">
+      <view class="val">120.0</view>
+      <view class="lbl">骑行 (km)</view>
+    </view>
+  </view>
+
+  <!-- History List -->
+  <view class="history-list">
+    <view class="month-title">2026年3月</view>
+    
+    <view class="history-item" bindtap="viewDetail">
+      <view class="icon run-icon">跑</view>
+      <view class="info">
+        <view class="title">3月4日 傍晚跑</view>
+        <view class="desc">30:15 | 6'01"/km</view>
+      </view>
+      <view class="dist">5.02 <text class="unit">km</text></view>
+    </view>
+
+    <view class="history-item" bindtap="viewDetail">
+      <view class="icon ride-icon">骑</view>
+      <view class="info">
+        <view class="title">3月2日 周末骑行</view>
+        <view class="desc">1:10:00 | 18km/h</view>
+      </view>
+      <view class="dist">20.5 <text class="unit">km</text></view>
+    </view>
+  </view>
+
+  <!-- Settings -->
+  <view class="settings">
+    <view class="setting-item">屏幕常亮 <switch checked color="#007aff"/></view>
+  </view>
+</view>

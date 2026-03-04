@@ -1,0 +1,21 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/workout/workout",
+    "pages/summary/summary",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "极简运动",
+    "navigationBarTextStyle": "black"
+  },
+  "requiredBackgroundLocation": "为了在由于息屏或切后台时能继续记录运动轨迹，请授权后台位置信息",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于记录运动轨迹"
+    }
+  },
+  "style": "v2"
+}
