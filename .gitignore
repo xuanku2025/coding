@@ -1,2 +1,13 @@
 .claude/
 .DS_Store
+.vscode/
+.idea/
+
+# 部署包敏感配置（不要入库）
+**/.env
+**/notify.env
+**/bootstrap.env
+
+# 部署运行产物（每次会变）
+**/MCP_URL.txt
+**/PUBLIC_URL.txt

@@ -1,0 +1,59 @@
+<!--pages/profile/profile.wxml-->
+<view class="container profile-page">
+  
+  <!-- User Info Area -->
+  <view class="user-header">
+    <image class="avatar shadow" src="{{userInfo.avatarUrl || '/assets/default-avatar.png'}}" mode="aspectFill"></image>
+    <view class="user-name">{{userInfo.nickName || '未授权用户'}}</view>
+    <button class="auth-btn" wx:if="{{!hasUserInfo}}" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">授权头像</button>
+  </view>
+
+  <!-- Dashboard -->
+  <view class="dashboard shadow">
+    <view class="stat-item">
+      <text class="stat-val">{{stats.days}}</text>
+      <text class="stat-label">累计天数</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-val text-run">{{stats.runKm}}</text>
+      <text class="stat-label">跑步 (km)</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-val text-ride">{{stats.rideKm}}</text>
+      <text class="stat-label">骑行 (km)</text>
+    </view>
+  </view>
+
+  <!-- History List -->
+  <view class="history-section">
+    <view class="section-title">2026年3月</view>
+    
+    <block wx:for="{{historyList}}" wx:key="id">
+      <view class="history-card shadow" bindtap="goToSummary" data-id="{{item.id}}">
+        <view class="card-icon {{item.type}}">
+          {{item.type === 'run' ? '🏃' : '🚴'}}
+        </view>
+        <view class="card-content">
+          <view class="card-title">{{item.date}} {{item.title}}</view>
+          <view class="card-desc">
+            {{item.distance}}km - {{item.duration}} - {{item.pace}}
+          </view>
+        </view>
+        <view class="card-arrow">></view>
+      </view>
+    </block>
+  </view>
+
+  <!-- Settings -->
+  <view class="settings-list shadow">
+    <view class="setting-item">
+      <text>常亮屏幕</text>
+      <switch checked="{{keepScreenOn}}" bindchange="toggleScreenOn" color="#000000" />
+    </view>
+    <view class="setting-item" bindtap="clearCache">
+      <text>清除本地缓存</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+</view>

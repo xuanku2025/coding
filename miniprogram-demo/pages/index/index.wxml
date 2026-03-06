@@ -1,0 +1,46 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  
+  <!-- Map Background -->
+  <map 
+    id="mainMap" 
+    class="bg-map" 
+    longitude="{{longitude}}" 
+    latitude="{{latitude}}" 
+    scale="16" 
+    show-location="true"
+    enable-zoom="true"
+    enable-scroll="true"
+  ></map>
+
+  <!-- Top Status -->
+  <view class="top-bar">
+    <view class="gps-status {{gpsStrength}}">
+      <text class="icon">📍</text>
+      <text>GPS {{gpsText}}</text>
+    </view>
+  </view>
+
+  <!-- Mode Switcher -->
+  <view class="mode-switcher shadow">
+    <view class="mode-btn {{activityType === 'run' ? 'active-run' : ''}}" bindtap="switchMode" data-mode="run">
+      <text>🏃 跑步</text>
+    </view>
+    <view class="mode-btn {{activityType === 'ride' ? 'active-ride' : ''}}" bindtap="switchMode" data-mode="ride">
+      <text>🚴 骑行</text>
+    </view>
+  </view>
+
+  <!-- Footer Action -->
+  <view class="bottom-action">
+    <view class="start-btn shadow-lg {{activityType}}" bindtap="onStartTap">
+      <text class="start-text">START</text>
+    </view>
+  </view>
+
+  <!-- Countdown Overlay -->
+  <view class="countdown-overlay" wx:if="{{showCountdown}}">
+    <text class="countdown-num">{{countdownText}}</text>
+  </view>
+
+</view>

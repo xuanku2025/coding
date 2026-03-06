@@ -1,0 +1,53 @@
+<!--pages/workout/workout.wxml-->
+<view class="container workout-page">
+
+  <!-- Full Screen Map Background -->
+  <map 
+    id="trackMap" 
+    class="bg-map" 
+    longitude="{{longitude}}" 
+    latitude="{{latitude}}" 
+    scale="17" 
+    show-location="true"
+    polyline="{{polyline}}"
+  ></map>
+
+  <!-- Top Dashboard Area -->
+  <view class="dashboard top-panel {{panelVisible ? '' : 'hidden'}}">
+    <view class="main-data">
+      <view class="time-label">总时长</view>
+      <view class="time-value">{{formattedTime}}</view>
+    </view>
+    
+    <view class="sub-data">
+      <view class="sub-item">
+        <view class="sub-val">{{distance}}</view>
+        <view class="sub-label">公里</view>
+      </view>
+      <view class="sub-item">
+        <view class="sub-val">{{pace}}</view>
+        <view class="sub-label">{{type === 'run' ? '配速' : '速度'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Controls -->
+  <view class="controls bottom-panel {{panelVisible ? '' : 'hidden'}}">
+    <!-- Pause/Resume Button -->
+    <view class="btn pause-btn" bindtap="togglePause">
+      <text>{{isPaused ? '▶ 继续' : '⏸ 暂停'}}</text>
+    </view>
+
+    <!-- End Button (Long press) -->
+    <view class="btn end-btn" bindlongpress="onEndLongPress" bindtap="onEndTap">
+      <text>⏹ 结束</text>
+      <text class="hint">(长按结束)</text>
+    </view>
+  </view>
+
+  <!-- Toggle Panel Visibility Button -->
+  <view class="toggle-view-btn shadow" bindtap="togglePanel">
+    <text>🗺️</text>
+  </view>
+
+</view>

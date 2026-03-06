@@ -1,0 +1,5 @@
+.env
+notify.env
+bootstrap.env
+MCP_URL.txt
+PUBLIC_URL.txt

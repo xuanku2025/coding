@@ -1,0 +1,73 @@
+<!-- pages/profile/profile.wxml -->
+<view class="container profile-container">
+  <!-- 头像和基础信息 -->
+  <view class="user-header">
+    <view class="user-info">
+      <view class="avatar">
+        <!-- 默认头像占位 -->
+        <image src="/images/tab_profile.png" class="avatar-img"></image>
+      </view>
+      <view class="name-box">
+        <text class="nickname">运动健将</text>
+        <text class="join-date">已坚持记录 128 天</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 累计数据全景 -->
+  <view class="lifetime-stats">
+    <view class="stat-card running-card">
+      <text class="card-title">跑步总计</text>
+      <text class="card-value">124.5</text>
+      <text class="card-unit">公里</text>
+    </view>
+    <view class="stat-card cycling-card">
+      <text class="card-title">骑行总计</text>
+      <text class="card-value">360.2</text>
+      <text class="card-unit">公里</text>
+    </view>
+  </view>
+
+  <!-- 历史记录日历/列表 -->
+  <view class="history-section">
+    <view class="section-header">
+      <text class="sh-title">最近记录</text>
+      <text class="sh-more">按月查看 ></text>
+    </view>
+
+    <view class="history-list">
+      <view class="history-item">
+        <view class="hi-icon type-running"></view>
+        <view class="hi-info">
+          <text class="hi-date">昨天 18:30</text>
+          <text class="hi-desc">夜跑 • 5.02公里</text>
+        </view>
+        <view class="hi-pace">5'30"</view>
+      </view>
+
+      <view class="history-item">
+        <view class="hi-icon type-cycling"></view>
+        <view class="hi-info">
+          <text class="hi-date">3月2日 07:15</text>
+          <text class="hi-desc">晨骑 • 15.6公里</text>
+        </view>
+        <view class="hi-pace">22km/h</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 设置项 -->
+  <view class="settings-list">
+    <view class="setting-item">
+      <text class="si-label">健康数据同步</text>
+      <switch color="#07c160" checked></switch>
+    </view>
+    <view class="setting-item">
+      <text class="si-label">语音播报设置</text>
+      <text class="si-arrow">></text>
+    </view>
+    <view class="setting-item">
+      <text class="si-label">清除缓存数据</text>
+    </view>
+  </view>
+</view>
