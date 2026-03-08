@@ -248,6 +248,12 @@ start_mcp_container() {
   local host_port="$1"
   log_info "启动/重建 mcp-atlassian 容器（host:${host_port} -> container:${MCP_CONTAINER_PORT}）..."
 
+  # 除非使用了本地 tar 包避免网络问题，否则尝试拉取最新镜像以防一直使用陈旧本地缓存
+  if [[ ! -f "${DEPLOY_DIR}/mcp-atlassian_latest.tar" && ! -f "${DEPLOY_DIR}/mcp-atlassian_latest.tar.gz" ]]; then
+    log_info "尝试拉取最新 ghcr.io/sooperset/mcp-atlassian:latest 镜像..."
+    docker pull ghcr.io/sooperset/mcp-atlassian:latest >/dev/null 2>&1 || log_warn "拉取最新镜像失败，将尝试使用本地缓存镜像运行"
+  fi
+
   docker rm -f mcp-atlassian >/dev/null 2>&1 || true
   docker run -d \
     --name mcp-atlassian \
@@ -374,6 +380,14 @@ main() {
     fi
   fi
 
+  # 1.5) 预检钉钉加签依赖（如果你填了 DINGTALK_SECRET）
+  if [[ -n "${DINGTALK_SECRET:-}" ]]; then
+    if ! command -v python3 >/dev/null 2>&1 && ! command -v openssl >/dev/null 2>&1; then
+      log_warn "你配置了 DINGTALK_SECRET，但系统未安装 python3 或 openssl，可能导致发出通知时无法加签而被钉钉拒绝！"
+      sleep 2
+    fi
+  fi
+
   # 2) 写配置文件（不入库）
   log_info "写入 .env（已在 .gitignore 忽略）"
   {
@@ -390,6 +404,7 @@ main() {
       echo "JIRA_SSL_VERIFY=${JIRA_SSL_VERIFY}"
     fi
   } > "${DEPLOY_DIR}/.env"
+  chmod 600 "${DEPLOY_DIR}/.env"
 
   if [[ -n "$DINGTALK_WEBHOOK" ]]; then
     log_info "写入 notify.env（已在 .gitignore 忽略）"
@@ -399,6 +414,7 @@ main() {
         echo "DINGTALK_SECRET=\"${DINGTALK_SECRET}\""
       fi
     } > "${DEPLOY_DIR}/notify.env"
+    chmod 600 "${DEPLOY_DIR}/notify.env"
   else
     log_warn "未配置钉钉 Webhook，将跳过自动通知"
   fi
