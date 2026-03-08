@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep '\"\"project\"\":\"\"E:\\\\\\\\\\\\\\\\coding\"\"')",
+      "Bash(python3:*)",
+      "Bash(grep:*)"
+    ]
+  }
+}

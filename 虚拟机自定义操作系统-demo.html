@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>虚拟机自定义操作系统 - ZSphere Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ant-design-icons@5.2.6/dist/index.min.css" />
+  <style>
+    /* ZSphere Design Tokens - from skill */
+    :root {
+      --primary-color: #1890ff;
+      --success-color: #52c41a;
+      --warning-color: #faad14;
+      --error-color: #ff4d4f;
+      --heading-color: rgba(0, 0, 0, 0.85);
+      --text-color: rgba(0, 0, 0, 0.65);
+      --text-color-secondary: rgba(0, 0, 0, 0.45);
+      --disabled-color: rgba(0, 0, 0, 0.25);
+      --border-radius-base: 2px;
+      --border-color-base: #d9d9d9;
+      --box-shadow-base: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+      --font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+      --layout-bg: #f0f2f5;
+      --surface: #ffffff;
+      --header-bg: #001529;
+      --table-header-bg: #fafafa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      font-size: 14px;
+      line-height: 1.5715;
+      color: var(--text-color);
+      background: var(--layout-bg);
+    }
+
+    /* 顶栏 */
+    .header {
+      height: 48px;
+      background: var(--header-bg);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      font-size: 16px;
+    }
+    .header .logo { font-weight: 600; }
+
+    /* 主体布局 */
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 48px);
+    }
+    .sidebar {
+      width: 200px;
+      background: var(--surface);
+      border-right: 1px solid var(--border-color-base);
+      padding: 16px 0;
+    }
+    .sidebar-item {
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: var(--border-radius-base);
+      margin: 0 8px;
+    }
+    .sidebar-item:hover { background: #f5f5f5; }
+    .sidebar-item.active {
+      background: rgba(24, 144, 255, 0.1);
+      color: var(--primary-color);
+    }
+    .main {
+      flex: 1;
+      padding: 24px;
+      overflow: auto;
+    }
+
+    /* 面包屑 */
+    .breadcrumb {
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: var(--text-color-secondary);
+    }
+    .breadcrumb span:not(:last-child)::after { content: ' / '; color: var(--text-color-secondary); }
+    .breadcrumb .current { color: var(--heading-color); font-weight: 500; }
+
+    /* 卡片 */
+    .card {
+      background: var(--surface);
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      box-shadow: var(--box-shadow-base);
+      margin-bottom: 24px;
+    }
+    .card-title {
+      padding: 16px 24px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--heading-color);
+    }
+    .card-body { padding: 24px; }
+
+    /* 操作栏 */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      height: 32px;
+      padding: 4px 15px;
+      border-radius: var(--border-radius-base);
+      border: 1px solid var(--border-color-base);
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .btn:hover { color: var(--primary-color); border-color: var(--primary-color); }
+    .btn-primary {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-danger { color: var(--error-color); border-color: var(--error-color); }
+    .btn-danger:hover { background: #fff2f0; }
+
+    /* 表格 */
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    th {
+      background: var(--table-header-bg);
+      font-weight: 600;
+      color: var(--heading-color);
+    }
+    tr:hover td { background: #fafafa; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+    .dot.success { background: var(--success-color); }
+    .dot.error { background: var(--error-color); }
+    .link { color: var(--primary-color); cursor: pointer; }
+    .link:hover { text-decoration: underline; }
+
+    /* 弹窗 */
+    .modal-mask {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-mask.show { display: flex; }
+    .modal {
+      background: var(--surface);
+      border-radius: 4px;
+      box-shadow: 0 9px 28px 8px rgba(0,0,0,0.15);
+      width: 90%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-title {
+      padding: 16px 24px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-footer {
+      padding: 10px 24px;
+      border-top: 1px solid #f0f0f0;
+      text-align: right;
+      gap: 8px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* 表单 - 左 25% 右 75% */
+    .form-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .form-item label {
+      width: 25%;
+      min-width: 120px;
+      padding-top: 6px;
+      color: var(--heading-color);
+    }
+    .form-item label .required { color: var(--error-color); margin-right: 4px; }
+    .form-item .control { flex: 1; max-width: 75%; }
+    .form-item input[type="text"],
+    .form-item input[type="password"],
+    .form-item select {
+      width: 100%;
+      height: 32px;
+      padding: 4px 11px;
+      border: 1px solid var(--border-color-base);
+      border-radius: var(--border-radius-base);
+      font-size: 14px;
+    }
+    .form-item input:focus, .form-item select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
+    .form-item .hint { font-size: 12px; color: var(--text-color-secondary); margin-top: 4px; }
+    .form-item .tip-warning {
+      font-size: 12px; color: var(--warning-color);
+      margin-top: 4px;
+      background: #fffbe6;
+      padding: 6px 8px;
+      border-radius: var(--border-radius-base);
+    }
+    .radio-group { display: flex; gap: 16px; align-items: center; }
+    .radio-group label { width: auto; min-width: auto; }
+    .checkbox-item { display: flex; align-items: center; gap: 8px; }
+    .checkbox-item input { width: 16px; height: 16px; }
+
+    /* 分区标题 */
+    .form-section {
+      margin-bottom: 24px;
+    }
+    .form-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .form-section.windows-only,
+    .form-section.linux-only { display: none; }
+    .form-section.windows-only.show,
+    .form-section.linux-only.show { display: block; }
+
+    /* 模板新建虚拟机 - 操作系统属性 */
+    .demo-section { margin-top: 32px; }
+    .demo-section h3 { font-size: 16px; margin-bottom: 16px; color: var(--heading-color); }
+    .radio-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .radio-card {
+      border: 1px solid var(--border-color-base);
+      border-radius: 4px;
+      padding: 16px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .radio-card:hover { border-color: var(--primary-color); }
+    .radio-card.selected { border-color: var(--primary-color); background: rgba(24, 144, 255, 0.04); }
+    .radio-card.disabled { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
+    .radio-card .title { font-weight: 500; margin-bottom: 4px; }
+    .radio-card .desc { font-size: 12px; color: var(--text-color-secondary); }
+    .spec-select-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: #fafafa;
+      border-radius: var(--border-radius-base);
+    }
+    .spec-select-row .link { margin-left: auto; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <span class="logo">ZStack ZSphere - 虚拟机自定义操作系统 Demo</span>
+  </header>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-item active" data-page="spec">自定义规范</div>
+      <div class="sidebar-item" data-page="vm">模板新建虚拟机</div>
+    </aside>
+    <main class="main">
+      <!-- 页面1: 自定义规范 -->
+      <div id="page-spec" class="page">
+        <div class="breadcrumb">
+          <span>根节点</span>
+          <span class="current">自定义规范</span>
+        </div>
+        <div class="card">
+          <div class="card-title">自定义规范列表</div>
+          <div class="card-body">
+            <div class="toolbar">
+              <button type="button" class="btn btn-primary" id="btn-new-spec">新建自定义规范</button>
+              <button type="button" class="btn btn-danger" id="btn-batch-delete">批量删除</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" id="check-all" /></th>
+                    <th>名称</th>
+                    <th>目标虚拟机操作系统</th>
+                    <th>简介</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody id="spec-tbody">
+                  <tr>
+                    <td><input type="checkbox" class="row-check" /></td>
+                    <td>Windows 加域规范</td>
+                    <td>Windows</td>
+                    <td>用于加入域环境的虚拟机</td>
+                    <td>2025-05-08 10:00</td>
+                    <td>
+                      <span class="link" onclick="editSpec(0)">编辑名称简介</span>
+                      <span style="color: #d9d9d9;"> | </span>
+                      <span class="link">更多</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="row-check" /></td>
+                    <td>Linux 主机名规范</td>
+                    <td>Linux</td>
+                    <td>主机名使用虚拟机名称</td>
+                    <td>2025-05-07 14:30</td>
+                    <td>
+                      <span class="link" onclick="editSpec(1)">编辑名称简介</span>
+                      <span style="color: #d9d9d9;"> | </span>
+                      <span class="link">更多</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="toolbar" style="margin-top: 16px; justify-content: flex-end;">
+              <span style="color: var(--text-color-secondary);">共 2 条</span>
+              <button type="button" class="btn">上一页</button>
+              <button type="button" class="btn">下一页</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 页面2: 模板新建虚拟机 - 操作系统属性 -->
+      <div id="page-vm" class="page" style="display: none;">
+        <div class="breadcrumb">
+          <span>资源清单</span>
+          <span>模板</span>
+          <span class="current">新建虚拟机</span>
+        </div>
+        <div class="card">
+          <div class="card-title">操作系统属性配置</div>
+          <div class="card-body">
+            <div class="form-section">
+              <div class="form-section-title">配置方式</div>
+              <div class="radio-cards" id="os-config-cards">
+                <div class="radio-card selected" data-mode="none">
+                  <div class="title">不使用新规范</div>
+                  <div class="desc">继承模板的主机名、管理员密码、工作组或加域配置</div>
+                </div>
+                <div class="radio-card" data-mode="existing">
+                  <div class="title">使用已有规范</div>
+                  <div class="desc">选择已有的自定义规范，根据当前虚拟机操作系统自动过滤可选规范</div>
+                  <div class="spec-select-row" id="spec-select-row" style="display: none;">
+                    <span id="selected-spec-name">—</span>
+                    <span class="link" id="link-change-spec">修改</span>
+                    <span class="link" id="link-remove-spec">删除</span>
+                  </div>
+                </div>
+                <div class="radio-card" data-mode="manual">
+                  <div class="title">手动配置规范</div>
+                  <div class="desc">根据虚拟机操作系统展示对应配置项（Linux 仅支持主机名、管理员密码）</div>
+                  <div class="manual-config-panel" id="manual-config-panel" style="display: none; margin-top: 16px; padding: 16px; background: #fafafa; border-radius: 4px;">
+                    <div class="form-item">
+                      <label>主机名配置</label>
+                      <div class="control">
+                        <div class="radio-group">
+                          <label><input type="radio" name="manual-hostname" value="vmname" checked /> 使用虚拟机名称</label>
+                          <label><input type="radio" name="manual-hostname" value="manual" /> 手动指定</label>
+                        </div>
+                        <div class="tip-warning">Linux：主机名若为中文可能不生效</div>
+                      </div>
+                    </div>
+                    <div class="form-item">
+                      <label>管理员密码</label>
+                      <div class="control"><input type="password" placeholder="选填" /></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-section" id="tip-linux" style="display: none;">
+              <div class="tip-warning">
+                当前为 Linux 系统：主机名若使用中文可能不生效，建议使用英文或虚拟机名称。
+              </div>
+            </div>
+            <div class="form-section" id="tip-vmtools" style="display: none;">
+              <div class="tip-warning" style="background: #fff2f0; color: var(--error-color);">
+                未安装或未运行最新 VMTools 时，主机名与加域等配置依赖 VMTools 下发，“使用已有规范”和“手动配置规范”不可用。
+              </div>
+            </div>
+            <p style="font-size: 12px; color: var(--text-color-secondary);">
+              提示：虚拟机规格仅在新建虚拟机初次启动时将参数加载至虚拟机内部，后续需在虚拟机内部调整；虚拟机详情不展示相关参数。
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 新建/编辑 自定义规范 弹窗 -->
+  <div class="modal-mask" id="modal-spec">
+    <div class="modal">
+      <div class="modal-title" id="modal-spec-title">新建自定义规范</div>
+      <div class="modal-body">
+        <div class="form-section">
+          <div class="form-section-title">基本信息</div>
+          <div class="form-item">
+            <label><span class="required">*</span>名称</label>
+            <div class="control"><input type="text" id="spec-name" placeholder="请输入名称" /></div>
+          </div>
+          <div class="form-item">
+            <label>简介</label>
+            <div class="control"><input type="text" id="spec-desc" placeholder="选填" /></div>
+          </div>
+          <div class="form-item">
+            <label><span class="required">*</span>目标虚拟机操作系统</label>
+            <div class="control">
+              <select id="spec-os">
+                <option value="Windows">Windows</option>
+                <option value="Linux">Linux</option>
+              </select>
+              <div class="hint">新建后不可修改</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-section windows-only" id="section-windows">
+          <div class="form-section-title">配置信息（Windows）</div>
+          <div class="form-item">
+            <label>工作组或域</label>
+            <div class="control">
+              <div class="radio-group">
+                <label><input type="radio" name="domain-mode" value="workgroup" checked /> 工作组</label>
+                <label><input type="radio" name="domain-mode" value="domain" /> 域</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-item workgroup-fields">
+            <label><span class="required">*</span>工作组名称</label>
+            <div class="control"><input type="text" placeholder="例如：WORKGROUP" /></div>
+          </div>
+          <div class="form-item workgroup-fields">
+            <label></label>
+            <div class="control checkbox-item">
+              <input type="checkbox" id="gen-sid-work" />
+              <label for="gen-sid-work">生成新的 SID</label>
+            </div>
+          </div>
+          <div class="form-item domain-fields" style="display: none;">
+            <label><span class="required">*</span>域名</label>
+            <div class="control"><input type="text" placeholder="例如：corp.example.com" /></div>
+          </div>
+          <div class="form-item domain-fields" style="display: none;">
+            <label><span class="required">*</span>域用户名</label>
+            <div class="control"><input type="text" /></div>
+          </div>
+          <div class="form-item domain-fields" style="display: none;">
+            <label>域密码</label>
+            <div class="control"><input type="password" placeholder="选填" /></div>
+          </div>
+          <div class="form-item domain-fields" style="display: none;">
+            <label>组织单位</label>
+            <div class="control"><input type="text" placeholder="选填，hover 有示例" /></div>
+          </div>
+          <div class="form-item domain-fields" style="display: none;">
+            <label></label>
+            <div class="control checkbox-item">
+              <input type="checkbox" id="gen-sid-domain" checked disabled />
+              <label for="gen-sid-domain">生成 SID（域模式下强制启用）</label>
+            </div>
+          </div>
+          <div class="form-item">
+            <label>主机名配置</label>
+            <div class="control">
+              <div class="radio-group">
+                <label><input type="radio" name="hostname-mode" value="vmname" checked /> 使用虚拟机名称</label>
+                <label><input type="radio" name="hostname-mode" value="manual" /> 手动指定</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-item hostname-manual" style="display: none;">
+            <label><span class="required">*</span>主机名</label>
+            <div class="control"><input type="text" placeholder="根据各操作系统限制校验" /></div>
+          </div>
+          <div class="form-item">
+            <label>管理员密码</label>
+            <div class="control">
+              <input type="password" id="admin-pwd" placeholder="启用生成新 SID 时必填" />
+              <div class="hint">启用“生成新的 SID”时必填</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-section linux-only" id="section-linux" style="display: none;">
+          <div class="form-section-title">配置信息（Linux）</div>
+          <div class="form-item">
+            <label>主机名配置</label>
+            <div class="control">
+              <div class="radio-group">
+                <label><input type="radio" name="hostname-mode-linux" value="vmname" checked /> 使用虚拟机名称</label>
+                <label><input type="radio" name="hostname-mode-linux" value="manual" /> 手动指定</label>
+              </div>
+              <div class="tip-warning">主机名若使用中文可能不生效</div>
+            </div>
+          </div>
+          <div class="form-item">
+            <label>管理员密码</label>
+            <div class="control"><input type="password" placeholder="选填" /></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" id="btn-modal-cancel">取消</button>
+        <button type="button" class="btn btn-primary" id="btn-modal-ok">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var pageSpec = document.getElementById('page-spec');
+      var pageVm = document.getElementById('page-vm');
+      var sidebarItems = document.querySelectorAll('.sidebar-item');
+
+      sidebarItems.forEach(function (el) {
+        el.addEventListener('click', function () {
+          var page = el.getAttribute('data-page');
+          sidebarItems.forEach(function (i) { i.classList.remove('active'); });
+          el.classList.add('active');
+          pageSpec.style.display = page === 'spec' ? 'block' : 'none';
+          pageVm.style.display = page === 'vm' ? 'block' : 'none';
+        });
+      });
+
+      var modal = document.getElementById('modal-spec');
+      var btnNew = document.getElementById('btn-new-spec');
+      var btnCancel = document.getElementById('btn-modal-cancel');
+      var btnOk = document.getElementById('btn-modal-ok');
+      var specOs = document.getElementById('spec-os');
+      var sectionWin = document.getElementById('section-windows');
+      var sectionLin = document.getElementById('section-linux');
+
+      function showModal(isEdit) {
+        document.getElementById('modal-spec-title').textContent = isEdit ? '编辑自定义规范' : '新建自定义规范';
+        specOs.disabled = !!isEdit;
+        toggleOsSections(specOs.value);
+        modal.classList.add('show');
+      }
+      function hideModal() { modal.classList.remove('show'); }
+
+      function toggleOsSections(os) {
+        sectionWin.classList.toggle('show', os === 'Windows');
+        sectionLin.classList.toggle('show', os === 'Linux');
+        var domainMode = document.querySelector('input[name="domain-mode"]:checked').value;
+        var hostMode = document.querySelector('input[name="hostname-mode"]:checked') || document.querySelector('input[name="hostname-mode-linux"]:checked');
+        document.querySelectorAll('.workgroup-fields').forEach(function (e) { e.style.display = domainMode === 'workgroup' ? '' : 'none'; });
+        document.querySelectorAll('.domain-fields').forEach(function (e) { e.style.display = domainMode === 'domain' ? '' : 'none'; });
+        var manual = document.querySelector('.hostname-manual');
+        if (manual) manual.style.display = (hostMode && hostMode.value === 'manual') ? '' : 'none';
+      }
+
+      specOs.addEventListener('change', function () { toggleOsSections(this.value); });
+      document.querySelectorAll('input[name="domain-mode"]').forEach(function (r) {
+        r.addEventListener('change', function () { toggleOsSections(specOs.value); });
+      });
+      document.querySelectorAll('input[name="hostname-mode"], input[name="hostname-mode-linux"]').forEach(function (r) {
+        r.addEventListener('change', function () { toggleOsSections(specOs.value); });
+      });
+
+      btnNew.addEventListener('click', function () { showModal(false); });
+      btnCancel.addEventListener('click', hideModal);
+      btnOk.addEventListener('click', function () { hideModal(); });
+      modal.addEventListener('click', function (e) { if (e.target === modal) hideModal(); });
+
+      window.editSpec = function (idx) { showModal(true); };
+
+      // 模板新建虚拟机 - 配置方式选择
+      var cards = document.getElementById('os-config-cards');
+      var specSelectRow = document.getElementById('spec-select-row');
+      var tipLinux = document.getElementById('tip-linux');
+      var tipVmtools = document.getElementById('tip-vmtools');
+      var manualPanel = document.getElementById('manual-config-panel');
+      cards.querySelectorAll('.radio-card').forEach(function (card) {
+        card.addEventListener('click', function () {
+          if (card.classList.contains('disabled')) return;
+          cards.querySelectorAll('.radio-card').forEach(function (c) { c.classList.remove('selected'); });
+          card.classList.add('selected');
+          var mode = card.getAttribute('data-mode');
+          specSelectRow.style.display = mode === 'existing' ? 'flex' : 'none';
+          if (manualPanel) manualPanel.style.display = mode === 'manual' ? 'block' : 'none';
+          tipLinux.style.display = 'block'; // demo 中模拟 Linux 提示
+          tipVmtools.style.display = 'none';  // 可改为 block 模拟 VMTools 未安装
+        });
+      });
+      document.getElementById('link-change-spec').addEventListener('click', function () { showModal(true); });
+      document.getElementById('link-remove-spec').addEventListener('click', function () {
+        cards.querySelectorAll('.radio-card').forEach(function (c) { c.classList.remove('selected'); });
+        document.querySelector('.radio-card[data-mode="none"]').classList.add('selected');
+        specSelectRow.style.display = 'none';
+      });
+    })();
+  </script>
+</body>
+</html>
