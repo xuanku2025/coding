@@ -154,6 +154,14 @@ install_cloudflared_if_needed() {
     return 0
   fi
 
+  # 优先使用随包携带的二进制，避免 VM 无法访问 GitHub
+  local bundled="${DEPLOY_DIR}/cloudflared-linux-amd64"
+  if [[ -f "$bundled" ]]; then
+    log_info "检测到随包 cloudflared：$bundled，安装到 /usr/local/bin/cloudflared"
+    $SUDO install -m 0755 "$bundled" /usr/local/bin/cloudflared
+    return 0
+  fi
+
   need_cmd curl
   local arch
   arch="$(uname -m)"
@@ -240,6 +248,12 @@ start_mcp_container() {
   local host_port="$1"
   log_info "启动/重建 mcp-atlassian 容器（host:${host_port} -> container:${MCP_CONTAINER_PORT}）..."
 
+  # 除非使用了本地 tar 包避免网络问题，否则尝试拉取最新镜像以防一直使用陈旧本地缓存
+  if [[ ! -f "${DEPLOY_DIR}/mcp-atlassian_latest.tar" && ! -f "${DEPLOY_DIR}/mcp-atlassian_latest.tar.gz" ]]; then
+    log_info "尝试拉取最新 ghcr.io/sooperset/mcp-atlassian:latest 镜像..."
+    docker pull ghcr.io/sooperset/mcp-atlassian:latest >/dev/null 2>&1 || log_warn "拉取最新镜像失败，将尝试使用本地缓存镜像运行"
+  fi
+
   docker rm -f mcp-atlassian >/dev/null 2>&1 || true
   docker run -d \
     --name mcp-atlassian \
@@ -251,13 +265,35 @@ start_mcp_container() {
     --transport streamable-http --port "${MCP_CONTAINER_PORT}" >/dev/null
 }
 
+maybe_load_image_from_tar() {
+  # 允许把镜像文件打包进分发目录，避免 ghcr.io 拉取慢
+  local tar_gz="${DEPLOY_DIR}/mcp-atlassian_latest.tar.gz"
+  local tar="${DEPLOY_DIR}/mcp-atlassian_latest.tar"
+
+  if docker image inspect ghcr.io/sooperset/mcp-atlassian:latest >/dev/null 2>&1; then
+    return 0
+  fi
+
+  if [[ -f "$tar_gz" ]]; then
+    log_info "检测到本地镜像包：$tar_gz，正在导入（docker load）..."
+    need_cmd gunzip
+    gunzip -c "$tar_gz" | docker load >/dev/null
+    return 0
+  fi
+
+  if [[ -f "$tar" ]]; then
+    log_info "检测到本地镜像包：$tar，正在导入（docker load）..."
+    docker load -i "$tar" >/dev/null
+    return 0
+  fi
+}
+
 wait_mcp_ready() {
   local host_port="$1"
-  # /mcp 是 JSON-RPC 端点，直接 GET 可能返回 400；用 /healthz 判断启动完成更稳
+  # /mcp 端点是 JSON-RPC，直接 GET 可能返回 400；使用 /healthz 判断启动完成
   log_info "等待 MCP 就绪：http://localhost:${host_port}${HEALTH_PATH}"
   for i in {1..30}; do
-    code="$(curl -s -o /dev/null -w "%{http_code}" \
-      "http://localhost:${host_port}${HEALTH_PATH}" 2>/dev/null || true)"
+    code="$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:${host_port}${HEALTH_PATH}" 2>/dev/null || true)"
     if [[ "$code" == "200" ]]; then
       log_info "MCP 已就绪（healthz=200）"
       return 0
@@ -344,6 +380,14 @@ main() {
     fi
   fi
 
+  # 1.5) 预检钉钉加签依赖（如果你填了 DINGTALK_SECRET）
+  if [[ -n "${DINGTALK_SECRET:-}" ]]; then
+    if ! command -v python3 >/dev/null 2>&1 && ! command -v openssl >/dev/null 2>&1; then
+      log_warn "你配置了 DINGTALK_SECRET，但系统未安装 python3 或 openssl，可能导致发出通知时无法加签而被钉钉拒绝！"
+      sleep 2
+    fi
+  fi
+
   # 2) 写配置文件（不入库）
   log_info "写入 .env（已在 .gitignore 忽略）"
   {
@@ -360,6 +404,7 @@ main() {
       echo "JIRA_SSL_VERIFY=${JIRA_SSL_VERIFY}"
     fi
   } > "${DEPLOY_DIR}/.env"
+  chmod 600 "${DEPLOY_DIR}/.env"
 
   if [[ -n "$DINGTALK_WEBHOOK" ]]; then
     log_info "写入 notify.env（已在 .gitignore 忽略）"
@@ -369,11 +414,15 @@ main() {
         echo "DINGTALK_SECRET=\"${DINGTALK_SECRET}\""
       fi
     } > "${DEPLOY_DIR}/notify.env"
+    chmod 600 "${DEPLOY_DIR}/notify.env"
   else
     log_warn "未配置钉钉 Webhook，将跳过自动通知"
   fi
 
   chmod +x "${DEPLOY_DIR}/start-and-get-url.sh" "${DEPLOY_DIR}/install-autostart-systemd.sh" "${DEPLOY_DIR}/notify-dingtalk.sh" 2>/dev/null || true
+
+  # 可选：优先从本地 tar 包导入镜像，避免拉取慢
+  maybe_load_image_from_tar || true
 
   # 3) 起容器 + 本机验证
   start_mcp_container "$MCP_HOST_PORT"

@@ -26,6 +26,7 @@ LOG_FILE="/tmp/confluence-mcp-tunnel.log"
 PUBLIC_URL_FILE="${DEPLOY_DIR}/PUBLIC_URL.txt"
 MCP_URL_FILE="${DEPLOY_DIR}/MCP_URL.txt"
 NOTIFY_SCRIPT="${DEPLOY_DIR}/notify-dingtalk.sh"
+WRAPPER_SCRIPT="${DEPLOY_DIR}/run-cloudflared-tunnel.sh"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -54,6 +55,15 @@ if [[ ! -f "$DEPLOY_DIR/.env" ]]; then
   log_warn "未找到 $DEPLOY_DIR/.env（不影响 tunnel service 安装，但容器侧认证需自行配置）"
 fi
 
+# 优先使用随包携带的 cloudflared（避免 VM 无法访问 GitHub）
+if ! command -v cloudflared >/dev/null 2>&1; then
+  BUNDLED="${DEPLOY_DIR}/cloudflared-linux-amd64"
+  if [[ -f "$BUNDLED" ]]; then
+    log_info "检测到随包 cloudflared，安装到 /usr/local/bin/cloudflared"
+    install -m 0755 "$BUNDLED" /usr/local/bin/cloudflared
+  fi
+fi
+
 if ! command -v cloudflared >/dev/null 2>&1; then
   log_error "未找到 cloudflared，请先安装到 PATH（建议 /usr/local/bin/cloudflared）"
   exit 1
@@ -64,8 +74,14 @@ if ! command -v systemctl >/dev/null 2>&1; then
   exit 1
 fi
 
+if [[ ! -f "$WRAPPER_SCRIPT" ]]; then
+  log_error "未找到 $WRAPPER_SCRIPT，请确保 run-cloudflared-tunnel.sh 在部署目录中"
+  exit 1
+fi
+chmod +x "$WRAPPER_SCRIPT"
+
 log_info "写入 systemd service：$SERVICE_FILE"
-cat > "$SERVICE_FILE" <<EOF
+cat > "$SERVICE_FILE" << EOF
 [Unit]
 Description=Cloudflare Quick Tunnel for MCP Atlassian
 After=network.target docker.service
@@ -74,26 +90,12 @@ Wants=network.target docker.service
 [Service]
 Type=simple
 Environment=LOG_FILE=${LOG_FILE}
-Environment=DEPLOY_DIR=${DEPLOY_DIR}
 Environment=PUBLIC_URL_FILE=${PUBLIC_URL_FILE}
 Environment=MCP_URL_FILE=${MCP_URL_FILE}
 Environment=MCP_PATH=${MCP_PATH}
+Environment=MCP_HOST_PORT=${MCP_HOST_PORT}
 Environment=NOTIFY_SCRIPT=${NOTIFY_SCRIPT}
-ExecStart=/bin/bash -lc '\
-  : > "\${LOG_FILE}"; \
-  cloudflared tunnel --url "http://localhost:${MCP_HOST_PORT}" >> "\${LOG_FILE}" 2>&1 & \
-  CF_PID=\$!; \
-  for i in {1..30}; do \
-    URL=\$(grep -oE "https://[a-zA-Z0-9][a-zA-Z0-9.-]*\\.trycloudflare\\.com" "\${LOG_FILE}" 2>/dev/null | head -1); \
-    if [[ -n "\${URL}" ]]; then \
-      echo "\${URL}" > "\${PUBLIC_URL_FILE}"; \
-      echo "\${URL}\${MCP_PATH}" > "\${MCP_URL_FILE}"; \
-      if [[ -x "\${NOTIFY_SCRIPT}" ]]; then "\${NOTIFY_SCRIPT}" || true; fi; \
-      break; \
-    fi; \
-    sleep 2; \
-  done; \
-  wait "\${CF_PID}"'
+ExecStart=${WRAPPER_SCRIPT}
 Restart=always
 RestartSec=10
 
@@ -116,3 +118,4 @@ echo ""
 echo -e "${YELLOW}查看 tunnel 日志：${NC}"
 echo "  tail -n 80 \"$LOG_FILE\""
 echo ""
+

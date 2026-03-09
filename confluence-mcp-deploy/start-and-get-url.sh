@@ -10,7 +10,8 @@
 set -e
 
 # ============ 配置区（按需修改） ============
-DEPLOY_DIR="${DEPLOY_DIR:-$HOME/confluence-mcp-deploy}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DEPLOY_DIR="${DEPLOY_DIR:-$SCRIPT_DIR}"
 MCP_HOST_PORT="${MCP_HOST_PORT:-9092}"   # 宿主机映射端口，若 9090 被占用可改为 9092
 TUNNEL_TYPE="${TUNNEL_TYPE:-cloudflared}" # cloudflared 或 ngrok
 # MCP 端点路径：默认使用 streamable-http 的 /mcp；如需 SSE 改为 /sse
@@ -220,3 +221,4 @@ if [[ -x "${DEPLOY_DIR}/notify-dingtalk.sh" ]]; then
   log_info "尝试发送钉钉通知（如不需要可忽略）..."
   "${DEPLOY_DIR}/notify-dingtalk.sh" || log_warn "钉钉通知发送失败（不影响服务运行）"
 fi
+
