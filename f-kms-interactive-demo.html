@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZSphere - KMS 密钥管理系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .sidebar-gradient { background: linear-gradient(180deg, #2563eb 0%, #1e3a8a 100%); }
+        .page { display: none; }
+        .page.active { display: block; }
+        .modal { display: none; }
+        .modal.active { display: flex; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .step { display: none; }
+        .step.active { display: block; }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+        .animate-slide-in { animation: slideIn 0.3s ease-out; }
+        .status-dot { animation: pulse 2s infinite; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { border-left: 4px solid #22c55e; }
+        .toast.error { border-left: 4px solid #ef4444; }
+        .toast.info { border-left: 4px solid #3b82f6; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Sidebar -->
+    <aside class="fixed left-0 top-0 h-screen w-64 sidebar-gradient text-white z-50">
+        <div class="flex items-center gap-3 px-6 py-5 border-b border-white/20">
+            <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+            </div>
+            <span class="font-semibold text-lg">ZSphere</span>
+        </div>
+        <nav class="p-4 space-y-1">
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                <span>虚拟机</span>
+            </a>
+            <a href="#" onclick="showPage('kms-list')" id="nav-kms" class="flex items-center gap-3 px-3 py-2.5 bg-white/20 text-white rounded-lg">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                <span>密钥管理服务</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="ml-64 min-h-screen">
+
+        <!-- ==================== KMS LIST PAGE ==================== -->
+        <div id="page-kms-list" class="page active">
+            <header class="bg-white border-b border-slate-200 px-8 py-4 sticky top-0 z-40">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900">密钥管理服务</h1>
+                        <p class="text-sm text-slate-500 mt-1">管理 KMS 连接和密钥提供程序</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="showModal('add-kms-modal')" class="flex items-center gap-2 px-4 py-2 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg font-medium transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            添加外部 KMS
+                        </button>
+                        <button onclick="showModal('add-nkp-modal')" class="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            添加 NKP
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-8 space-y-6">
+                <!-- Info Banner -->
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-start gap-3">
+                    <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                        <h3 class="font-medium text-blue-900">关于 Key Provider</h3>
+                        <p class="text-sm text-blue-700 mt-1">Key Provider 用于存储和管理加密密钥。支持原生密钥提供程序 (NKP) 和外部 KMS 服务器。系统使用 KMIP 协议与外部 KMS 通信。</p>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500">Key Provider 总数</p>
+                                <p class="text-2xl font-bold text-slate-900 mt-1">3</p>
+                            </div>
+                            <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500">已连接</p>
+                                <p class="text-2xl font-bold text-green-600 mt-1">2</p>
+                            </div>
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500">已加密 VM</p>
+                                <p class="text-2xl font-bold text-slate-900 mt-1">12</p>
+                            </div>
+                            <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500">vTPM 实例</p>
+                                <p class="text-2xl font-bold text-slate-900 mt-1">8</p>
+                            </div>
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Provider List -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                        <h2 class="text-lg font-semibold text-slate-900">Key Provider 列表</h2>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="search-input" onkeyup="searchProviders()" placeholder="搜索 Key Provider..." class="px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                    </div>
+
+                    <table class="w-full" id="provider-table">
+                        <thead class="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">名称</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">类型</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">状态</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">服务器地址</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">密钥数量</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">默认</th>
+                                <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="hover:bg-slate-50 transition-colors cursor-pointer" onclick="showPage('kms-detail')">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-slate-900">Default-NKP</p>
+                                            <p class="text-xs text-slate-500">原生密钥提供程序</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">NKP</span></td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full status-dot"></span>
+                                        <span class="text-sm text-green-700 font-medium">正常</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="text-sm text-slate-500">-</span></td>
+                                <td class="px-6 py-4"><span class="text-sm text-slate-900">15</span></td>
+                                <td class="px-6 py-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                        默认
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600 p-1" onclick="event.stopPropagation(); showToast('info', '更多操作菜单')">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors cursor-pointer" onclick="showPage('kms-detail')">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-slate-900">Thales-CipherTrust</p>
+                                            <p class="text-xs text-slate-500">KMIP 外部 KMS</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">KMS</span></td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2 h-2 bg-green-500 rounded-full status-dot"></span>
+                                        <span class="text-sm text-green-700 font-medium">已连接</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="text-sm text-slate-900">kms01.zsphere.local:5696</span></td>
+                                <td class="px-6 py-4"><span class="text-sm text-slate-900">42</span></td>
+                                <td class="px-6 py-4"><span class="text-sm text-slate-400">-</span></td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600 p-1" onclick="event.stopPropagation(); showToast('info', '更多操作菜单')">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-slate-900">HashiCorp-Vault</p>
+                                            <p class="text-xs text-slate-500">KMIP 外部 KMS</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">KMS</span></td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+                                        <span class="text-sm text-red-700 font-medium">连接失败</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="text-sm text-slate-900">vault.internal:5696</span></td>
+                                <td class="px-6 py-4"><span class="text-sm text-slate-400">-</span></td>
+                                <td class="px-6 py-4"><span class="text-sm text-slate-400">-</span></td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600 p-1" onclick="showToast('info', '更多操作菜单')">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Trust Status Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">信任关系状态</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-slate-900">MN → KMS 信任</p>
+                                        <p class="text-sm text-slate-500">管理节点已信任 KMS 服务器</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium text-green-600">已建立</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-amber-50 rounded-lg border border-amber-200">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-slate-900">KMS → MN 信任</p>
+                                        <p class="text-sm text-slate-500">需要在 KMS 系统中配置</p>
+                                    </div>
+                                </div>
+                                <button onclick="showModal('cert-modal')" class="text-sm font-medium text-amber-600 hover:text-amber-700 underline">查看指南</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">证书信息</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-slate-700">客户端证书</span>
+                                    <span class="text-xs text-green-600 font-medium">有效</span>
+                                </div>
+                                <p class="text-xs text-slate-500">颁发给: zsphere-mn.zstack.io</p>
+                                <p class="text-xs text-slate-500">过期时间: 2027-03-10</p>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-slate-700">CA 证书</span>
+                                    <span class="text-xs text-green-600 font-medium">已上传</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Thales CipherTrust CA</p>
+                                <p class="text-xs text-slate-500">指纹: A1:B2:C3:D4...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== KMS DETAIL PAGE ==================== -->
+        <div id="page-kms-detail" class="page">
+            <header class="bg-white border-b border-slate-200 px-8 py-4 sticky top-0 z-40">
+                <div class="flex items-center gap-4">
+                    <button onclick="showPage('kms-list')" class="text-slate-400 hover:text-slate-600 p-1 hover:bg-slate-100 rounded-lg transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="text-2xl font-bold text-slate-900">Thales-CipherTrust</h1>
+                            <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full font-medium">已连接</span>
+                        </div>
+                        <p class="text-sm text-slate-500 mt-1">外部 KMS | KMIP v1.4</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-8 space-y-6">
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                        <p class="text-sm font-medium text-slate-500">服务器地址</p>
+                        <p class="text-lg font-semibold text-slate-900 mt-1">kms01.zsphere.local</p>
+                        <p class="text-sm text-slate-400 mt-1">端口: 5696</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                        <p class="text-sm font-medium text-slate-500">连接状态</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="w-2 h-2 bg-green-500 rounded-full status-dot"></span>
+                            <p class="text-lg font-semibold text-green-600">正常</p>
+                        </div>
+                        <p class="text-sm text-slate-400 mt-1">最后检查: 2分钟前</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                        <p class="text-sm font-medium text-slate-500">管理密钥数</p>
+                        <p class="text-lg font-semibold text-slate-900 mt-1">42</p>
+                        <p class="text-sm text-slate-400 mt-1">KEK: 15 | DEK: 27</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                        <p class="text-sm font-medium text-slate-500">加密虚拟机</p>
+                        <p class="text-lg font-semibold text-slate-900 mt-1">12</p>
+                        <p class="text-sm text-slate-400 mt-1">vTPM: 5</p>
+                    </div>
+                </div>
+
+                <!-- Tabs Container -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+                    <!-- Tab Navigation -->
+                    <div class="border-b border-slate-200 px-6">
+                        <nav class="flex gap-6">
+                            <button onclick="switchTab('keys')" id="tab-btn-keys" class="px-1 py-4 text-sm font-medium text-indigo-600 border-b-2 border-indigo-600">密钥列表</button>
+                            <button onclick="switchTab('config')" id="tab-btn-config" class="px-1 py-4 text-sm font-medium text-slate-500 hover:text-slate-700">配置信息</button>
+                            <button onclick="switchTab('logs')" id="tab-btn-logs" class="px-1 py-4 text-sm font-medium text-slate-500 hover:text-slate-700">连接日志</button>
+                            <button onclick="switchTab('certs')" id="tab-btn-certs" class="px-1 py-4 text-sm font-medium text-slate-500 hover:text-slate-700">证书管理</button>
+                        </nav>
+                    </div>
+
+                    <!-- Tab Content: Keys -->
+                    <div id="tab-content-keys" class="tab-content active p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-slate-900">管理的密钥</h3>
+                            <input type="text" placeholder="搜索密钥 ID..." class="px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 w-48">
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-slate-50 border-b border-slate-200">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase">密钥 ID</th>
+                                        <th class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase">类型</th>
+                                        <th class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase">算法</th>
+                                        <th class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase">用途</th>
+                                        <th class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase">创建时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-4 py-3 font-mono text-sm text-slate-700">key-7a3f9b2d...</td>
+                                        <td class="px-4 py-3"><span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">KEK</span></td>
+                                        <td class="px-4 py-3 text-sm text-slate-600">AES-256</td>
+                                        <td class="px-4 py-3 text-sm text-slate-600">WebServer-Prod-01</td>
+                                        <td class="px-4 py-3 text-sm text-slate-500">2025-03-08 14:32</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-4 py-3 font-mono text-sm text-slate-700">key-e8c2a1f5...</td>
+                                        <td class="px-4 py-3"><span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">DEK</span></td>
+                                        <td class="px-4 py-3 text-sm text-slate-600">AES-256-XTS</td>
+                                        <td class="px-4 py-3 text-sm text-slate-600">WebServer-Prod-01.vmdk</td>
+                                        <td class="px-4 py-3 text-sm text-slate-500">2025-03-08 14:32</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="px-4 py-3 font-mono text-sm text-slate-700">key-9d5e3b8a...</td>
+                                        <td class="px-4 py-3"><span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">KEK</span></td>
+                                        <td class="px-4 py-3 text-sm text-slate-600">AES-256</td>
+                                        <td class="px-4 py-3 text-sm text-slate-600">DB-Server-01</td>
+                                        <td class="px-4 py-3 text-sm text-slate-500">2025-03-07 09:15</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Config -->
+                    <div id="tab-content-config" class="tab-content p-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-medium text-slate-700 mb-4">基本配置</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">名称</span>
+                                        <span class="text-sm font-medium text-slate-900">Thales-CipherTrust</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">KMS 类型</span>
+                                        <span class="text-sm font-medium text-slate-900">Thales CipherTrust Manager</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">服务器地址</span>
+                                        <span class="text-sm font-medium text-slate-900">kms01.zsphere.local</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">KMIP 端口</span>
+                                        <span class="text-sm font-medium text-slate-900">5696</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">KMIP 版本</span>
+                                        <span class="text-sm font-medium text-slate-900">v1.4</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-slate-700 mb-4">连接配置</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">连接超时</span>
+                                        <span class="text-sm font-medium text-slate-900">30 秒</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">重试次数</span>
+                                        <span class="text-sm font-medium text-slate-900">3 次</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">TLS 版本</span>
+                                        <span class="text-sm font-medium text-slate-900">1.3</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-slate-100">
+                                        <span class="text-sm text-slate-500">证书验证</span>
+                                        <span class="text-sm font-medium text-green-600">已启用</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Logs -->
+                    <div id="tab-content-logs" class="tab-content p-6">
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                                <span class="w-2 h-2 bg-green-500 rounded-full mt-2"></span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-slate-900">连接成功</p>
+                                    <p class="text-xs text-slate-500">2025-03-10 14:32:15 | KMS 响应时间: 45ms</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                                <span class="w-2 h-2 bg-blue-500 rounded-full mt-2"></span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-slate-900">密钥创建</p>
+                                    <p class="text-xs text-slate-500">2025-03-10 12:15:33 | 新 KEK 创建成功: key-7a3f9b2d</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                                <span class="w-2 h-2 bg-green-500 rounded-full mt-2"></span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-slate-900">连接成功</p>
+                                    <p class="text-xs text-slate-500">2025-03-10 10:05:22 | 定时健康检查通过</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
+                                <span class="w-2 h-2 bg-amber-500 rounded-full mt-2"></span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-amber-900">连接警告</p>
+                                    <p class="text-xs text-amber-700">2025-03-09 23:45:10 | 响应时间超过阈值: 2.5s</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Certs -->
+                    <div id="tab-content-certs" class="tab-content p-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-medium text-slate-900">客户端证书</span>
+                                    <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">有效</span>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between"><span class="text-slate-500">主题:</span> <span class="text-slate-900">CN=zsphere-mn.zstack.io</span></div>
+                                    <div class="flex justify-between"><span class="text-slate-500">颁发者:</span> <span class="text-slate-900">Thales CipherTrust CA</span></div>
+                                    <div class="flex justify-between"><span class="text-slate-500">有效期:</span> <span class="text-slate-900">2025-03-10 至 2027-03-10</span></div>
+                                    <div class="flex justify-between"><span class="text-slate-500">算法:</span> <span class="text-slate-900">RSA-2048 / SHA-256</span></div>
+                                </div>
+                                <button onclick="showModal('cert-modal')" class="mt-4 text-sm text-indigo-600 hover:text-indigo-700 font-medium">管理证书 →</button>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-medium text-slate-900">CA 证书</span>
+                                    <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">已上传</span>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between"><span class="text-slate-500">名称:</span> <span class="text-slate-900">Thales CipherTrust Root CA</span></div>
+                                    <div class="flex justify-between"><span class="text-slate-500">指纹 (SHA-256):</span> <span class="text-slate-900 font-mono text-xs">A1:B2:C3:D4...</span></div>
+                                    <div class="flex justify-between"><span class="text-slate-500">有效期:</span> <span class="text-slate-900">2024-01-01 至 2034-01-01</span></div>
+                                </div>
+                                <button onclick="showModal('cert-modal')" class="mt-4 text-sm text-indigo-600 hover:text-indigo-700 font-medium">更新 CA 证书 →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-3">
+                    <button onclick="testConnection()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">测试连接</button>
+                    <button onclick="showToast('info', '进入编辑模式')" class="px-4 py-2 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg font-medium transition-colors">编辑配置</button>
+                    <button onclick="showToast('info', '已设为默认 Key Provider')" class="px-4 py-2 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg font-medium transition-colors">设为默认</button>
+                    <button onclick="showModal('rekey-modal')" class="px-4 py-2 border border-indigo-300 hover:bg-indigo-50 text-indigo-600 rounded-lg font-medium transition-colors">ReKey 加密 VM</button>
+                    <button onclick="confirmDelete()" class="px-4 py-2 border border-red-300 hover:bg-red-50 text-red-600 rounded-lg font-medium transition-colors ml-auto">删除</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Add NKP Modal -->
+    <div id="add-nkp-modal" class="modal fixed inset-0 bg-black/50 z-50 items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto animate-fade-in">
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900">添加原生密钥提供程序</h3>
+                        <p class="text-sm text-slate-500">Native Key Provider (NKP)</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('add-nkp-modal')" class="text-slate-400 hover:text-slate-600 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- Step Indicator -->
+                <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2">
+                        <span id="nkp-step-1" class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-sm font-medium">1</span>
+                        <span class="text-sm font-medium text-indigo-600">基本配置</span>
+                    </div>
+                    <div class="w-12 h-0.5 bg-slate-300"></div>
+                    <div class="flex items-center gap-2">
+                        <span id="nkp-step-2" class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-sm font-medium">2</span>
+                        <span class="text-sm text-slate-500">高可用设置</span>
+                    </div>
+                    <div class="w-12 h-0.5 bg-slate-300"></div>
+                    <div class="flex items-center gap-2">
+                        <span id="nkp-step-3" class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-sm font-medium">3</span>
+                        <span class="text-sm text-slate-500">确认</span>
+                    </div>
+                </div>
+
+                <!-- Step 1 Content -->
+                <div id="nkp-content-1" class="step active space-y-4">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+                        <svg class="w-5 h-5 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p class="text-sm text-blue-800">NKP 使用 Key Derivation Key (KDK) 为每个虚拟机生成唯一的 KEK。KDK 存储在主机的 TPM 或加密配置中。</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1.5">名称 <span class="text-red-500">*</span></label>
+                        <input type="text" id="nkp-name" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="例如: Production-NKP">
+                        <p class="text-xs text-slate-500 mt-1.5">名称在全局唯一标识此 Key Provider</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1.5">描述</label>
+                        <textarea rows="2" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="可选：描述此 NKP 的用途..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 2 Content -->
+                <div id="nkp-content-2" class="step space-y-4">
+                    <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                        <div class="flex items-center justify-between mb-3">
+                            <label class="text-sm font-medium text-slate-700">允许无 TPM 的主机</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-slate-200 peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                            </label>
+                        </div>
+                        <p class="text-xs text-slate-500">启用后，没有 TPM 的物理主机也可以参与 NKP。KDK 将存储在主机的加密配置中。</p>
+                    </div>
+                    <div class="p-4 border border-slate-200 rounded-lg">
+                        <div class="flex items-center gap-3 mb-3">
+                            <input type="checkbox" id="ha-enable" class="w-4 h-4 text-indigo-600 rounded border-slate-300" checked>
+                            <label for="ha-enable" class="text-sm font-medium text-slate-700">启用高可用</label>
+                        </div>
+                        <p class="text-xs text-slate-500">确保 KDK 在多个主机上备份，防止单点故障</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 Content -->
+                <div id="nkp-content-3" class="step space-y-4">
+                    <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                        <h4 class="font-medium text-slate-900 mb-3">配置摘要</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-slate-500">名称:</span> <span id="nkp-summary-name" class="text-slate-900 font-medium">-</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">类型:</span> <span class="text-slate-900">原生密钥提供程序 (NKP)</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">允许无 TPM 主机:</span> <span class="text-green-600">是</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">高可用:</span> <span class="text-green-600">已启用</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-between sticky bottom-0 bg-white">
+                <button onclick="closeModal('add-nkp-modal')" class="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium">取消</button>
+                <div class="flex gap-3">
+                    <button id="nkp-btn-prev" onclick="nkpPrevStep()" class="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium" disabled>上一步</button>
+                    <button id="nkp-btn-next" onclick="nkpNextStep()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium">下一步</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add KMS Modal -->
+    <div id="add-kms-modal" class="modal fixed inset-0 bg-black/50 z-50 items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto animate-fade-in">
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white">
+                <h3 class="text-lg font-semibold text-slate-900">添加外部 KMS</h3>
+                <button onclick="closeModal('add-kms-modal')" class="text-slate-400 hover:text-slate-600 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">名称</label>
+                        <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="例如: Thales-KMS">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">KMS 类型</label>
+                        <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option>Thales CipherTrust</option>
+                            <option>HashiCorp Vault</option>
+                            <option>Entrust KeyControl</option>
+                            <option>IBM SKLM</option>
+                            <option>通用 KMIP</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">服务器地址</label>
+                        <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="kms.example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">端口</label>
+                        <input type="number" value="5696" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">信任建立方式</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="trust" class="text-indigo-600" checked>
+                            <div>
+                                <p class="font-medium text-slate-900">CSR 签名 (推荐)</p>
+                                <p class="text-sm text-slate-500">生成 CSR 并由 KMS CA 签名</p>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="trust" class="text-indigo-600">
+                            <div>
+                                <p class="font-medium text-slate-900">上传证书</p>
+                                <p class="text-sm text-slate-500">上传已有的客户端证书和私钥</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3 sticky bottom-0 bg-white">
+                <button onclick="closeModal('add-kms-modal')" class="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium">取消</button>
+                <button onclick="closeModal('add-kms-modal'); showToast('success', 'KMS 添加成功')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium">添加</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ReKey Modal -->
+    <div id="rekey-modal" class="modal fixed inset-0 bg-black/50 z-50 items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-3xl mx-4 max-h-[90vh] overflow-y-auto animate-fade-in">
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900">重新加密虚拟机</h3>
+                        <p class="text-sm text-slate-500">使用此 Key Provider 重新加密关联的 VM</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('rekey-modal')" class="text-slate-400 hover:text-slate-600 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- ReKey Type Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-3">选择重新加密类型</label>
+                    <div class="space-y-3">
+                        <label class="block p-4 border-2 border-indigo-500 bg-indigo-50 rounded-lg cursor-pointer hover:shadow-md transition-shadow">
+                            <div class="flex items-start gap-3">
+                                <input type="radio" name="rekey-type" class="mt-1 text-indigo-600 w-4 h-4" checked>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="font-medium text-slate-900">浅层重新加密</span>
+                                        <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full font-medium">在线操作</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600">仅重新包装 KEK，不重新加密 VM 数据。VM 可保持开机状态，操作快速完成。</p>
+                                    <div class="mt-2 flex items-center gap-4 text-xs text-slate-500">
+                                        <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>预计时间: &lt; 1 分钟</span>
+                                        <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>无需关机</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="block p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 hover:shadow-md transition-all">
+                            <div class="flex items-start gap-3">
+                                <input type="radio" name="rekey-type" class="mt-1 text-indigo-600 w-4 h-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="font-medium text-slate-900">深层重新加密</span>
+                                        <span class="px-2 py-0.5 bg-amber-100 text-amber-700 text-xs rounded-full font-medium">需要关机</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600">生成新的 KEK 和 DEK，重新加密所有 VM 数据。提供最高安全性，但操作耗时。</p>
+                                    <div class="mt-2 flex items-center gap-4 text-xs text-slate-500">
+                                        <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>预计时间: 30-60 分钟</span>
+                                        <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>需要关机</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Target VMs -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-3">选择要重新加密的虚拟机</label>
+                    <div class="border border-slate-200 rounded-lg overflow-hidden">
+                        <div class="bg-slate-50 px-4 py-2 border-b border-slate-200 flex items-center gap-2">
+                            <input type="checkbox" class="w-4 h-4 text-indigo-600 rounded border-slate-300" checked>
+                            <span class="text-sm font-medium text-slate-700">全选 (3 个 VM)</span>
+                        </div>
+                        <div class="max-h-48 overflow-y-auto">
+                            <label class="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 border-b border-slate-100 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 text-indigo-600 rounded border-slate-300" checked>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-slate-900">WebServer-Prod-01</p>
+                                    <p class="text-xs text-slate-500">当前 Key Provider: Default-NKP</p>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 border-b border-slate-100 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 text-indigo-600 rounded border-slate-300" checked>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-slate-900">DB-Server-01</p>
+                                    <p class="text-xs text-slate-500">当前 Key Provider: Default-NKP</p>
+                                </div>
+                            </label>
+                            <label class="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 text-indigo-600 rounded border-slate-300">
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-slate-900">App-Server-02</p>
+                                    <p class="text-xs text-slate-500">当前 Key Provider: Thales-CipherTrust</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Warning -->
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+                    <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-medium text-amber-900">注意事项</p>
+                        <ul class="text-sm text-amber-800 mt-1 space-y-1 list-disc list-inside">
+                            <li>建议在业务低峰期执行此操作</li>
+                            <li>确保目标 Key Provider 处于正常连接状态</li>
+                            <li>操作过程中请勿中断网络连接</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3 sticky bottom-0 bg-white">
+                <button onclick="closeModal('rekey-modal')" class="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium">取消</button>
+                <button onclick="startRekey()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium">开始重新加密</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div id="cert-modal" class="modal fixed inset-0 bg-black/50 z-50 items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto animate-fade-in">
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900">证书与信任管理</h3>
+                        <p class="text-sm text-slate-500">Thales-CipherTrust</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('cert-modal')" class="text-slate-400 hover:text-slate-600 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- Trust Status -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 border border-green-200 bg-green-50 rounded-lg">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                            <span class="font-medium text-green-900">MN → KMS 信任</span>
+                        </div>
+                        <p class="text-sm text-green-800">管理节点已验证 KMS 服务器证书</p>
+                        <p class="text-xs text-green-700 mt-1">证书有效期至: 2027-06-15</p>
+                    </div>
+                    <div class="p-4 border border-amber-200 bg-amber-50 rounded-lg">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                            <span class="font-medium text-amber-900">KMS → MN 信任</span>
+                        </div>
+                        <p class="text-sm text-amber-800">需要在 KMS 系统中上传 MN 客户端证书</p>
+                        <button class="text-xs text-amber-700 underline mt-1">查看配置指南</button>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="border-b border-slate-200">
+                    <nav class="flex gap-6">
+                        <button onclick="switchCertTab('client')" id="cert-tab-btn-client" class="px-1 py-3 text-sm font-medium text-indigo-600 border-b-2 border-indigo-600">客户端证书</button>
+                        <button onclick="switchCertTab('ca')" id="cert-tab-btn-ca" class="px-1 py-3 text-sm font-medium text-slate-500 hover:text-slate-700">CA 证书</button>
+                        <button onclick="switchCertTab('guide')" id="cert-tab-btn-guide" class="px-1 py-3 text-sm font-medium text-slate-500 hover:text-slate-700">配置指南</button>
+                    </nav>
+                </div>
+
+                <!-- Client Cert Tab -->
+                <div id="cert-tab-client" class="cert-tab-content space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-sm font-medium text-slate-700">当前客户端证书</h4>
+                        <div class="flex gap-2">
+                            <button onclick="showToast('info', '下载 CSR 文件')" class="px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-100 rounded-lg border border-slate-300">下载 CSR</button>
+                            <button onclick="showToast('info', '打开证书上传对话框')" class="px-3 py-1.5 text-sm text-indigo-600 hover:bg-indigo-50 rounded-lg border border-indigo-300">上传签名证书</button>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div><p class="text-xs text-slate-500 mb-1">证书主题</p><p class="text-sm font-medium text-slate-900">CN=zsphere-mn.zstack.io</p></div>
+                            <div><p class="text-xs text-slate-500 mb-1">颁发者</p><p class="text-sm font-medium text-slate-900">Thales CipherTrust CA</p></div>
+                            <div><p class="text-xs text-slate-500 mb-1">有效期</p><p class="text-sm font-medium text-slate-900">2025-03-10 至 2027-03-10</p></div>
+                            <div><p class="text-xs text-slate-500 mb-1">序列号</p><p class="text-sm font-medium text-slate-900 font-mono">2a:3f:b7:c9:8d...</p></div>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-slate-200">
+                            <div class="flex-1">
+                                <p class="text-xs text-slate-500 mb-1">SHA-256 指纹</p>
+                                <p class="text-sm font-mono text-slate-700">A1:B2:C3:D4:E5:F6:12:34:56:78:9A:BC:DE:F0:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CA Cert Tab -->
+                <div id="cert-tab-ca" class="cert-tab-content hidden space-y-4">
+                    <div class="p-4 border border-slate-200 rounded-lg">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-medium text-slate-900">Thales CipherTrust Root CA</span>
+                            <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">已验证</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-slate-500">有效期:</span> <span class="text-slate-900">2024-01-01 至 2034-01-01</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">算法:</span> <span class="text-slate-900">RSA-4096 / SHA-384</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">指纹:</span> <span class="text-slate-900 font-mono">CC:DD:EE:FF:00:11:22:33...</span></div>
+                        </div>
+                    </div>
+                    <button onclick="showToast('info', '打开 CA 证书上传对话框')" class="px-4 py-2 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg font-medium">上传新 CA 证书</button>
+                </div>
+
+                <!-- Guide Tab -->
+                <div id="cert-tab-guide" class="cert-tab-content hidden">
+                    <h4 class="font-medium text-slate-900 mb-4">服务器端密钥生成流程 (Thales CipherTrust)</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                            <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-medium shrink-0">1</span>
+                            <div>
+                                <p class="font-medium text-slate-900">在 KMS 控制台注册 ZSphere 客户端</p>
+                                <p class="text-sm text-slate-500">登录 CipherTrust Manager，进入 Clients 页面，点击 "Register New Client"</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                            <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-medium shrink-0">2</span>
+                            <div>
+                                <p class="font-medium text-slate-900">下载生成的客户端证书和私钥</p>
+                                <p class="text-sm text-slate-500">选择 PKCS#12 (.pfx) 格式，设置密码保护</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-slate-50 rounded-lg">
+                            <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-medium shrink-0">3</span>
+                            <div>
+                                <p class="font-medium text-slate-900">上传证书文件完成配置</p>
+                                <p class="text-sm text-slate-500">回到此页面，点击 "上传 PKCS#12 文件" 完成配置</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="showToast('info', '打开 PKCS#12 上传对话框')" class="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium">上传 PKCS#12 文件</button>
+                </div>
+            </div>
+
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-end sticky bottom-0 bg-white">
+                <button onclick="closeModal('cert-modal')" class="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VM Encrypt Modal -->
+    <div id="vm-encrypt-modal" class="modal fixed inset-0 bg-black/50 z-50 items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto animate-fade-in">
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900">配置虚拟机加密</h3>
+                        <p class="text-sm text-slate-500">选择 Key Provider 和加密选项</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('vm-encrypt-modal')" class="text-slate-400 hover:text-slate-600 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- VM Info -->
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                        </div>
+                        <div>
+                            <p class="font-medium text-slate-900">WebServer-Prod-01</p>
+                            <p class="text-sm text-slate-500">Windows Server 2022 | 4 vCPU | 8GB 内存</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Provider Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-3">选择 Key Provider</label>
+                    <div class="space-y-2">
+                        <label class="block p-4 border-2 border-indigo-500 bg-indigo-50 rounded-lg cursor-pointer hover:shadow-md transition-shadow">
+                            <div class="flex items-start gap-3">
+                                <input type="radio" name="key-provider" class="mt-1 text-indigo-600 w-4 h-4" checked>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-medium text-slate-900">Thales-CipherTrust</span>
+                                        <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full font-medium">默认</span>
+                                        <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full font-medium">已连接</span>
+                                    </div>
+                                    <p class="text-sm text-slate-500 mt-1">外部 KMS | kms01.zsphere.local:5696</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="block p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 hover:shadow-md transition-all">
+                            <div class="flex items-start gap-3">
+                                <input type="radio" name="key-provider" class="mt-1 text-indigo-600 w-4 h-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-medium text-slate-900">Default-NKP</span>
+                                        <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full font-medium">NKP</span>
+                                    </div>
+                                    <p class="text-sm text-slate-500 mt-1">原生密钥提供程序 | 高可用已启用</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Encryption Options -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-3">加密选项</label>
+                    <div class="space-y-3">
+                        <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                            <input type="checkbox" class="mt-0.5 w-4 h-4 text-indigo-600 rounded border-slate-300" checked>
+                            <div>
+                                <p class="font-medium text-slate-900">加密虚拟机文件</p>
+                                <p class="text-sm text-slate-500">加密 VM 配置文件、NVRAM 文件和虚拟磁盘</p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                            <input type="checkbox" class="mt-0.5 w-4 h-4 text-indigo-600 rounded border-slate-300">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                    <p class="font-medium text-slate-900">启用 vTPM</p>
+                                    <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full font-medium">推荐</span>
+                                </div>
+                                <p class="text-sm text-slate-500">添加虚拟可信平台模块，用于 Windows 11 和高级安全功能</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Warning -->
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+                    <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-medium text-amber-900">重要提示</p>
+                        <p class="text-sm text-amber-800 mt-1">加密后，虚拟机只能在能够访问所选 Key Provider 的环境中运行。如果 Key Provider 不可用，虚拟机将无法启动。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3 sticky bottom-0 bg-white">
+                <button onclick="closeModal('vm-encrypt-modal')" class="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium">取消</button>
+                <button onclick="encryptVM()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium">加密虚拟机</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-kms-' + pageName).classList.add('active');
+
+            // Update sidebar active state
+            if (pageName === 'list') {
+                document.getElementById('nav-kms').classList.add('bg-white/20', 'text-white');
+                document.getElementById('nav-kms').classList.remove('text-slate-300');
+            }
+        }
+
+        // Modal Control
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on backdrop click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal(modal.id);
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-content-' + tabName).classList.add('active');
+
+            // Update tab buttons
+            document.querySelectorAll('[id^="tab-btn-"]').forEach(btn => {
+                btn.classList.remove('text-indigo-600', 'border-b-2', 'border-indigo-600');
+                btn.classList.add('text-slate-500');
+            });
+            document.getElementById('tab-btn-' + tabName).classList.add('text-indigo-600', 'border-b-2', 'border-indigo-600');
+            document.getElementById('tab-btn-' + tabName).classList.remove('text-slate-500');
+        }
+
+        // Cert Tab Switching
+        function switchCertTab(tabName) {
+            document.querySelectorAll('.cert-tab-content').forEach(t => t.classList.add('hidden'));
+            document.getElementById('cert-tab-' + tabName).classList.remove('hidden');
+
+            document.querySelectorAll('[id^="cert-tab-btn-"]').forEach(btn => {
+                btn.classList.remove('text-indigo-600', 'border-b-2', 'border-indigo-600');
+                btn.classList.add('text-slate-500');
+            });
+            document.getElementById('cert-tab-btn-' + tabName).classList.add('text-indigo-600', 'border-b-2', 'border-indigo-600');
+            document.getElementById('cert-tab-btn-' + tabName).classList.remove('text-slate-500');
+        }
+
+        // NKP Wizard Steps
+        let nkpCurrentStep = 1;
+        const nkpTotalSteps = 3;
+
+        function nkpNextStep() {
+            if (nkpCurrentStep === 1) {
+                const name = document.getElementById('nkp-name').value;
+                if (!name) {
+                    showToast('error', '请输入 NKP 名称');
+                    return;
+                }
+                document.getElementById('nkp-summary-name').textContent = name;
+            }
+
+            if (nkpCurrentStep < nkpTotalSteps) {
+                document.getElementById('nkp-content-' + nkpCurrentStep).classList.remove('active');
+                document.getElementById('nkp-step-' + nkpCurrentStep).classList.remove('bg-indigo-600', 'text-white');
+                document.getElementById('nkp-step-' + nkpCurrentStep).classList.add('bg-slate-200', 'text-slate-500');
+
+                nkpCurrentStep++;
+
+                document.getElementById('nkp-content-' + nkpCurrentStep).classList.add('active');
+                document.getElementById('nkp-step-' + nkpCurrentStep).classList.remove('bg-slate-200', 'text-slate-500');
+                document.getElementById('nkp-step-' + nkpCurrentStep).classList.add('bg-indigo-600', 'text-white');
+
+                document.getElementById('nkp-btn-prev').disabled = false;
+
+                if (nkpCurrentStep === nkpTotalSteps) {
+                    document.getElementById('nkp-btn-next').textContent = '完成';
+                    document.getElementById('nkp-btn-next').onclick = finishNkpWizard;
+                }
+            }
+        }
+
+        function nkpPrevStep() {
+            if (nkpCurrentStep > 1) {
+                document.getElementById('nkp-content-' + nkpCurrentStep).classList.remove('active');
+                document.getElementById('nkp-step-' + nkpCurrentStep).classList.remove('bg-indigo-600', 'text-white');
+                document.getElementById('nkp-step-' + nkpCurrentStep).classList.add('bg-slate-200', 'text-slate-500');
+
+                nkpCurrentStep--;
+
+                document.getElementById('nkp-content-' + nkpCurrentStep).classList.add('active');
+                document.getElementById('nkp-step-' + nkpCurrentStep).classList.remove('bg-slate-200', 'text-slate-500');
+                document.getElementById('nkp-step-' + nkpCurrentStep).classList.add('bg-indigo-600', 'text-white');
+
+                if (nkpCurrentStep === 1) {
+                    document.getElementById('nkp-btn-prev').disabled = true;
+                }
+
+                document.getElementById('nkp-btn-next').textContent = '下一步';
+                document.getElementById('nkp-btn-next').onclick = nkpNextStep;
+            }
+        }
+
+        function finishNkpWizard() {
+            closeModal('add-nkp-modal');
+            showToast('success', '原生密钥提供程序添加成功');
+            // Reset wizard
+            nkpCurrentStep = 1;
+            document.getElementById('nkp-content-2').classList.remove('active');
+            document.getElementById('nkp-content-3').classList.remove('active');
+            document.getElementById('nkp-content-1').classList.add('active');
+            document.getElementById('nkp-step-2').classList.remove('bg-indigo-600', 'text-white');
+            document.getElementById('nkp-step-2').classList.add('bg-slate-200', 'text-slate-500');
+            document.getElementById('nkp-step-3').classList.remove('bg-indigo-600', 'text-white');
+            document.getElementById('nkp-step-3').classList.add('bg-slate-200', 'text-slate-500');
+            document.getElementById('nkp-btn-prev').disabled = true;
+            document.getElementById('nkp-btn-next').textContent = '下一步';
+            document.getElementById('nkp-btn-next').onclick = nkpNextStep;
+        }
+
+        // Toast Notification
+        function showToast(type, message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            let icon = '';
+            if (type === 'success') icon = '<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+            else if (type === 'error') icon = '<svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+            else icon = '<svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+
+            toast.innerHTML = `${icon}<span class="text-sm font-medium text-slate-700">${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Search Functionality
+        function searchProviders() {
+            const input = document.getElementById('search-input');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('provider-table');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td');
+                let found = false;
+                for (let j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        const txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = found ? '' : 'none';
+            }
+        }
+
+        // Actions
+        function testConnection() {
+            showToast('info', '正在测试连接...');
+            setTimeout(() => showToast('success', '连接测试成功！响应时间: 45ms'), 1500);
+        }
+
+        function confirmDelete() {
+            if (confirm('确定要删除此 Key Provider 吗？相关的加密虚拟机将无法启动。')) {
+                showToast('success', 'Key Provider 已删除');
+                setTimeout(() => showPage('list'), 500);
+            }
+        }
+
+        function startRekey() {
+            closeModal('rekey-modal');
+            showToast('info', '重新加密任务已启动');
+        }
+
+        function encryptVM() {
+            closeModal('vm-encrypt-modal');
+            showToast('success', '虚拟机加密配置已保存');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(m => closeModal(m.id));
+            }
+        });
+    </script>
+</body>
+</html>

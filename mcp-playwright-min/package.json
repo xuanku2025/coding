@@ -1,0 +1,11 @@
+{
+  "name": "mcp-playwright-min",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.5.0",
+    "dotenv": "^16.4.5",
+    "playwright": "^1.43.0"
+  }
+}

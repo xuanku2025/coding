@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZSphere · F-KMS 集成</title>
+  <style>
+    :root {
+      --primary: #1890ff;
+      --success: #52c41a;
+      --warning: #faad14;
+      --error: #ff4d4f;
+      --text: rgba(0,0,0,0.85);
+      --text-secondary: rgba(0,0,0,0.65);
+      --text-tertiary: rgba(0,0,0,0.45);
+      --border: #d9d9d9;
+      --bg: #f0f2f5;
+      --surface: #ffffff;
+      --radius: 2px;
+      --radius-card: 4px;
+      --shadow: 0 3px 6px -4px rgba(0,0,0,0.12), 0 6px 16px 0 rgba(0,0,0,0.08), 0 9px 28px 8px rgba(0,0,0,0.05);
+      --gap: 16px;
+      --font: "PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+    }
+    .app {
+      display: grid;
+      grid-template-columns: 64px 240px 1fr;
+      min-height: 100vh;
+    }
+    .sidebar {
+      background: #001529;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 0;
+      gap: 18px;
+    }
+    .sidebar .dot { width: 28px; height: 28px; border-radius: 6px; background: #0b2a52; border: 1px solid rgba(255,255,255,0.1); }
+    .subnav {
+      background: #fff;
+      border-right: 1px solid var(--border);
+      padding: 16px;
+    }
+    .subnav h3 { margin: 0 0 12px; font-size: 16px; }
+    .subnav .item { padding: 8px 10px; border-radius: 4px; color: var(--text-secondary); cursor: pointer; }
+    .subnav .item.active { background: rgba(24,144,255,0.1); color: var(--primary); font-weight: 600; }
+
+    .content {
+      display: grid;
+      grid-template-rows: 56px 1fr;
+    }
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .topbar .title { font-weight: 600; }
+    .topbar .actions { display: flex; gap: 8px; }
+    .btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn.danger { background: var(--error); color: #fff; border-color: var(--error); }
+
+    .main {
+      padding: 20px;
+      display: grid;
+      gap: var(--gap);
+    }
+
+    .crumbs {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+    .crumbs span::after { content: ">"; margin-left: 8px; color: #bbb; }
+    .crumbs span:last-child::after { content: ""; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--gap);
+    }
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .card h4 { margin: 0 0 8px; font-size: 14px; color: var(--text-secondary); }
+    .card .big { font-size: 26px; font-weight: 600; }
+
+    .panel {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .panel h3 { margin: 0 0 12px; font-size: 16px; }
+
+    .tabs { display: flex; gap: 16px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+    .tab { padding: 8px 0; color: var(--text-secondary); cursor: pointer; }
+    .tab.active { color: var(--primary); border-bottom: 2px solid var(--primary); font-weight: 600; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #f0f0f0; }
+    th { background: #fafafa; font-weight: 600; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot.ok { background: var(--success); }
+    .dot.warn { background: var(--warning); }
+    .dot.err { background: var(--error); }
+
+    .form {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      row-gap: 12px;
+      column-gap: 12px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .form label { color: var(--text-secondary); }
+    .input, select, textarea {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 8px;
+      font-size: 14px;
+      width: 100%;
+    }
+    textarea { min-height: 64px; resize: vertical; }
+    .help { color: rgba(0,0,0,0.45); font-size: 12px; grid-column: 2 / 3; }
+
+    .steps { display: grid; gap: 8px; }
+    .step { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+    .step .num { width: 20px; height: 20px; border-radius: 50%; background: var(--primary); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+
+    .footer-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+    .two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--gap); }
+
+    .note { background: #fff7e6; border: 1px solid #ffe7ba; padding: 10px; border-radius: 4px; font-size: 13px; }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .toolbar .left { display: flex; gap: 8px; align-items: center; }
+    .toolbar .right { display: flex; gap: 8px; }
+
+    .modal-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal {
+      width: 720px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      max-height: 86vh;
+      overflow: auto;
+    }
+    .modal h3 { margin: 0 0 12px; font-size: 16px; }
+    .modal .actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 12px;
+      background: #f5f5f5; font-size: 12px; color: var(--text-secondary);
+    }
+
+    .banner {
+      background: #e6f7ff; border: 1px solid #91d5ff; color: #0050b3; padding: 8px 12px; border-radius: 4px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    @media (max-width: 1200px) {
+      .app { grid-template-columns: 64px 200px 1fr; }
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two-col { grid-template-columns: 1fr; }
+      .modal { width: 92vw; }
+    }
+    @media (max-width: 900px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar, .subnav { display: none; }
+      .cards { grid-template-columns: 1fr; }
+      .form { grid-template-columns: 1fr; }
+      .help { grid-column: 1 / 2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </aside>
+
+    <aside class="subnav">
+      <h3>系统设置</h3>
+      <div class="item">全局设置</div>
+      <div class="item active">密钥管理</div>
+      <div class="item">权限与审计</div>
+      <div class="item">告警与通知</div>
+    </aside>
+
+    <section class="content">
+      <div class="topbar">
+        <div class="title">F-KMS 集成 · Key Provider 管理</div>
+        <div class="actions">
+          <button class="btn">导出</button>
+          <button class="btn primary" id="btnAdd">添加 Key Provider</button>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="crumbs"><span>系统设置</span><span>密钥管理</span><span>Key Provider</span></div>
+
+        <div class="banner">
+          <div>当前默认 Key Provider：<strong>KMS-CTM-A</strong>。系统只允许一个默认 Provider。</div>
+          <button class="btn">查看说明</button>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h4>Key Provider 总数</h4>
+            <div class="big">3</div>
+          </div>
+          <div class="card">
+            <h4>已信任</h4>
+            <div class="big">2</div>
+          </div>
+          <div class="card">
+            <h4>异常/未信任</h4>
+            <div class="big">1</div>
+          </div>
+          <div class="card">
+            <h4>默认 Provider</h4>
+            <div class="big">KMS-CTM-A</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="tabs" id="tabs">
+            <div class="tab active" data-tab="kms">KMS Providers</div>
+            <div class="tab" data-tab="nkp">Native Key Provider (NKP)</div>
+          </div>
+
+          <div class="toolbar">
+            <div class="left">
+              <button class="btn">刷新</button>
+              <button class="btn" id="btnSetDefault">设为默认</button>
+              <button class="btn" id="btnRekey">ReKey</button>
+              <button class="btn" id="btnTrust">建立信任</button>
+            </div>
+            <div class="right">
+              <input class="input" placeholder="搜索名称/厂商" />
+              <button class="btn">筛选</button>
+            </div>
+          </div>
+
+          <div id="tab-kms">
+            <table>
+              <thead>
+                <tr>
+                  <th><input type="checkbox" /></th>
+                  <th>名称</th>
+                  <th>厂商</th>
+                  <th>连接</th>
+                  <th>信任</th>
+                  <th>默认</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>KMS-CTM-A</td>
+                  <td>Thales CipherTrust</td>
+                  <td><span class="badge"><span class="dot ok"></span>Connected</span></td>
+                  <td><span class="badge"><span class="dot ok"></span>已信任</span></td>
+                  <td><span class="pill">默认</span></td>
+                  <td><button class="btn" data-action="detail">详情</button> <button class="btn" data-action="rekey">ReKey</button> <button class="btn" data-action="more">更多</button></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>KMS-Vault-B</td>
+                  <td>HashiCorp Vault</td>
+                  <td><span class="badge"><span class="dot warn"></span>Degraded</span></td>
+                  <td><span class="badge"><span class="dot ok"></span>已信任</span></td>
+                  <td>否</td>
+                  <td><button class="btn" data-action="detail">详情</button> <button class="btn" data-action="rekey">ReKey</button> <button class="btn" data-action="more">更多</button></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>KMS-IBM-C</td>
+                  <td>IBM SKLM</td>
+                  <td><span class="badge"><span class="dot err"></span>Disconnected</span></td>
+                  <td><span class="badge"><span class="dot warn"></span>未信任</span></td>
+                  <td>否</td>
+                  <td><button class="btn" data-action="detail">详情</button> <button class="btn" data-action="retry">重试</button> <button class="btn" data-action="more">更多</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="note" style="margin-top:12px;">
+              提示：不同类型 Provider 之间名称必须全局唯一。删除 Provider 前请确认相关虚拟机已完成 ReKey。
+            </div>
+          </div>
+
+          <div id="tab-nkp" style="display:none;">
+            <div class="note">当前未创建 NKP。需要时可添加多个 NKP，但默认仅能设置一个。</div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3>添加 KMS Provider（简化流程）</h3>
+            <div class="form">
+              <label>名称</label><input class="input" placeholder="如 KMS-CTM-A" />
+              <label>厂商</label>
+              <select>
+                <option>Thales CipherTrust</option>
+                <option>HashiCorp Vault</option>
+                <option>IBM SKLM</option>
+                <option>Entrust HyTrust</option>
+              </select>
+              <label>地址</label><input class="input" placeholder="kms.company.local" />
+              <label>端口</label><input class="input" placeholder="5696" />
+              <label>信任建立</label>
+              <select>
+                <option>服务器端生成密钥对（简化）</option>
+                <option>CSR 方式（PKCS#10）</option>
+              </select>
+              <div class="help">简化模式由 KMS 生成 client cert + private key，下载后上传至 ZSphere。</div>
+              <label>证书包</label><input class="input" placeholder="上传 PKCS#12/PFX" />
+              <div class="help">包含 client cert + private key；下载后不可再次获取。</div>
+            </div>
+            <div class="footer-actions">
+              <button class="btn">取消</button>
+              <button class="btn primary">创建并信任</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>CSR 信任流程（标准）</h3>
+            <div class="steps">
+              <div class="step"><span class="num">1</span>生成 CSR（PKCS#10）</div>
+              <div class="step"><span class="num">2</span>下载 CSR 并上传到 KMS</div>
+              <div class="step"><span class="num">3</span>KMS 签发客户端证书</div>
+              <div class="step"><span class="num">4</span>上传签发证书到 ZSphere</div>
+              <div class="step"><span class="num">5</span>连接状态更新为“已信任”</div>
+            </div>
+            <div class="note" style="margin-top:12px;">
+              注意：ZSphere 仅能感知“单向信任”，KMS 对 MN 的信任需在 KMS 侧完成。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-mask" id="modalAdd">
+    <div class="modal">
+      <h3>添加 Key Provider</h3>
+      <div class="form">
+        <label>类型</label>
+        <select>
+          <option>KMS</option>
+          <option>Native Key Provider (NKP)</option>
+        </select>
+        <label>名称</label><input class="input" placeholder="全局唯一名称" />
+        <label>厂商</label>
+        <select>
+          <option>Thales CipherTrust</option>
+          <option>HashiCorp Vault</option>
+          <option>IBM SKLM</option>
+          <option>Entrust HyTrust</option>
+        </select>
+        <label>地址</label><input class="input" placeholder="kms.company.local" />
+        <label>端口</label><input class="input" placeholder="5696" />
+        <label>认证方式</label>
+        <select>
+          <option>服务器端生成密钥对（简化）</option>
+          <option>CSR（PKCS#10）</option>
+        </select>
+        <label>证书包</label><input class="input" placeholder="上传 PKCS#12/PFX" />
+        <div class="help">证书包含 client cert + private key。下载后不可再次获取。</div>
+        <label>备注</label><textarea placeholder="用途/区域/负责人"></textarea>
+      </div>
+      <div class="actions">
+        <button class="btn" data-close="#modalAdd">取消</button>
+        <button class="btn primary">创建并信任</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-mask" id="modalDefault">
+    <div class="modal">
+      <h3>设为默认 Key Provider</h3>
+      <div class="note">默认 Provider 影响所有新建加密/vTPM 操作。请确保目标 Provider 处于已信任状态。</div>
+      <div class="form" style="margin-top:12px;">
+        <label>目标 Provider</label><input class="input" value="KMS-Vault-B" />
+        <label>影响说明</label><textarea>将影响后续所有加密操作。已有 VM 仍使用旧 Provider，需 ReKey 才会切换。</textarea>
+      </div>
+      <div class="actions">
+        <button class="btn" data-close="#modalDefault">取消</button>
+        <button class="btn primary">确认切换</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-mask" id="modalRekey">
+    <div class="modal">
+      <h3>ReKey 重新加密</h3>
+      <div class="form">
+        <label>目标对象</label><input class="input" value="VM: app-prod-01" />
+        <label>方式</label>
+        <select>
+          <option>浅层 ReKey（仅 KEK）</option>
+          <option>深层 ReKey（KEK + DEK）</option>
+        </select>
+        <div class="help">浅层 ReKey 可在线执行，深层 ReKey 需要停机或涉及大量 IO。</div>
+        <label>计划时间</label><input class="input" placeholder="立即 / 指定时间" />
+        <label>备注</label><textarea placeholder="影响说明与回滚策略"></textarea>
+      </div>
+      <div class="actions">
+        <button class="btn" data-close="#modalRekey">取消</button>
+        <button class="btn danger">确认执行</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-mask" id="modalTrust">
+    <div class="modal">
+      <h3>建立信任（KMS）</h3>
+      <div class="steps">
+        <div class="step"><span class="num">1</span>生成 CSR（PKCS#10）</div>
+        <div class="step"><span class="num">2</span>下载 CSR 并上传到 KMS</div>
+        <div class="step"><span class="num">3</span>KMS 签发客户端证书</div>
+        <div class="step"><span class="num">4</span>上传签发证书到 ZSphere</div>
+        <div class="step"><span class="num">5</span>连接状态更新为“已信任”</div>
+      </div>
+      <div class="footer-actions">
+        <button class="btn">下载 CSR</button>
+        <button class="btn">上传证书</button>
+      </div>
+      <div class="actions">
+        <button class="btn" data-close="#modalTrust">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-mask" id="modalError">
+    <div class="modal">
+      <h3>连接异常</h3>
+      <div class="note">检测到 KMS-IBM-C 未信任或连接失败。请检查网络与证书配置。</div>
+      <div class="actions">
+        <button class="btn" data-close="#modalError">关闭</button>
+        <button class="btn primary">重试连接</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.getElementById('tabs');
+    const tabKms = document.getElementById('tab-kms');
+    const tabNkp = document.getElementById('tab-nkp');
+    tabs.addEventListener('click', (e) => {
+      const t = e.target.closest('.tab');
+      if (!t) return;
+      [...tabs.children].forEach(c => c.classList.remove('active'));
+      t.classList.add('active');
+      if (t.dataset.tab === 'kms') {
+        tabKms.style.display = '';
+        tabNkp.style.display = 'none';
+      } else {
+        tabKms.style.display = 'none';
+        tabNkp.style.display = '';
+      }
+    });
+
+    const openModal = (id) => {
+      const el = document.querySelector(id);
+      if (el) el.style.display = 'flex';
+    };
+    const closeModal = (id) => {
+      const el = document.querySelector(id);
+      if (el) el.style.display = 'none';
+    };
+
+    document.getElementById('btnAdd').addEventListener('click', () => openModal('#modalAdd'));
+    document.getElementById('btnSetDefault').addEventListener('click', () => openModal('#modalDefault'));
+    document.getElementById('btnRekey').addEventListener('click', () => openModal('#modalRekey'));
+    document.getElementById('btnTrust').addEventListener('click', () => openModal('#modalTrust'));
+
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close')));
+    });
+
+    document.querySelectorAll('[data-action="detail"]').forEach(btn => {
+      btn.addEventListener('click', () => openModal('#modalAdd'));
+    });
+    document.querySelectorAll('[data-action="rekey"]').forEach(btn => {
+      btn.addEventListener('click', () => openModal('#modalRekey'));
+    });
+    document.querySelectorAll('[data-action="retry"]').forEach(btn => {
+      btn.addEventListener('click', () => openModal('#modalError'));
+    });
+  </script>
+</body>
+</html>

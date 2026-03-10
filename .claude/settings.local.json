@@ -3,7 +3,16 @@
     "allow": [
       "Bash(grep '\"\"project\"\":\"\"E:\\\\\\\\\\\\\\\\coding\"\"')",
       "Bash(python3:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(export HTTPS_PROXY=http://127.0.0.1:7897)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{time_total}s\" https://api.openai.com/v1/models)"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": false,
+  "enabledMcpjsonServers": [
+    "playwright"
+  ],
+  "disabledMcpjsonServers": [
+    "mcp-atlassian-internal"
+  ]
 }

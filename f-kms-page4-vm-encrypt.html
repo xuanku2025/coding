@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>为 VM 配置加密 - ZSphere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>* { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+            <!-- Header -->
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900">配置虚拟机加密</h3>
+                        <p class="text-sm text-slate-500">选择 Key Provider 和加密选项</p>
+                    </div>
+                </div>
+                <button class="text-slate-400 hover:text-slate-600 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- VM Info -->
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-medium text-slate-900">WebServer-Prod-01</p>
+                            <p class="text-sm text-slate-500">Windows Server 2022 | 4 vCPU | 8GB 内存</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Provider Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-3">选择 Key Provider</label>
+                    <div class="space-y-2">
+                        <label class="block p-4 border-2 border-indigo-500 bg-indigo-50 rounded-lg cursor-pointer">
+                            <div class="flex items-start gap-3">
+                                <input type="radio" name="key-provider" class="mt-1 text-indigo-600" checked>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-medium text-slate-900">Thales-CipherTrust</span>
+                                        <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">默认</span>
+                                        <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">已连接</span>
+                                    </div>
+                                    <p class="text-sm text-slate-500 mt-1">外部 KMS | kms01.zsphere.local:5696</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="block p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                            <div class="flex items-start gap-3">
+                                <input type="radio" name="key-provider" class="mt-1 text-indigo-600">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-medium text-slate-900">Default-NKP</span>
+                                        <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">NKP</span>
+                                    </div>
+                                    <p class="text-sm text-slate-500 mt-1">原生密钥提供程序 | 高可用已启用</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">将使用所选 Key Provider 生成 KEK 来加密此虚拟机</p>
+                </div>
+
+                <!-- Encryption Options -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-3">加密选项</label>
+                    <div class="space-y-3">
+                        <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                            <input type="checkbox" class="mt-0.5 w-4 h-4 text-indigo-600 rounded border-slate-300" checked>
+                            <div>
+                                <p class="font-medium text-slate-900">加密虚拟机文件</p>
+                                <p class="text-sm text-slate-500">加密 VM 配置文件、NVRAM 文件和虚拟磁盘</p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                            <input type="checkbox" class="mt-0.5 w-4 h-4 text-indigo-600 rounded border-slate-300">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                    <p class="font-medium text-slate-900">启用 vTPM</p>
+                                    <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">推荐</span>
+                                </div>
+                                <p class="text-sm text-slate-500">添加虚拟可信平台模块，用于 Windows 11 和高级安全功能</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Warning -->
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+                    <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-medium text-amber-900">重要提示</p>
+                        <p class="text-sm text-amber-800 mt-1">加密后，虚拟机只能在能够访问所选 Key Provider 的环境中运行。如果 Key Provider 不可用，虚拟机将无法启动。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3 sticky bottom-0 bg-white">
+                <button class="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition-colors">取消</button>
+                <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">加密虚拟机</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>

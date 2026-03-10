@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReKey 重新加密 - ZSphere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>* { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-3xl mx-4 max-h-[90vh] overflow-y-auto">
+            <!-- Header -->
+            <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900">重新加密虚拟机</h3>
+                        <p class="text-sm text-slate-500">VM: WebServer-Prod-01</p>
+                    </div>
+                </div>
+                <button class="text-slate-400 hover:text-slate-600 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- Current Status -->
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                    <h4 class="text-sm font-medium text-slate-700 mb-3">当前加密状态</h4>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">当前 Key Provider</p>
+                            <p class="text-sm font-medium text-slate-900">Default-NKP</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">密钥 ID</p>
+                            <p class="text-sm font-medium text-slate-900 font-mono">key-7a3f9b2d...</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">创建时间</p>
+                            <p class="text-sm font-medium text-slate-900">2025-12-15</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ReKey Type Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-3">选择重新加密类型</label>
+                    <div class="space-y-3">
+                        <!-- Shallow Rekey -->
+                        <label class="block p-4 border-2 border-indigo-500 bg-indigo-50 rounded-lg cursor-pointer">
+                            <div class="flex items-start gap-3">
+                                <input type="radio" name="rekey-type" class="mt-1 text-indigo-600" checked>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="font-medium text-slate-900">浅层重新加密</span>
+                                        <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">在线操作</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600">仅重新包装 KEK，不重新加密 VM 数据。VM 可保持开机状态，操作快速完成。</p>
+                                    <div class="mt-2 flex items-center gap-4 text-xs text-slate-500">
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            预计时间: &lt; 1 分钟
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                            无需关机
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Deep Rekey -->
+                        <label class="block p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                            <div class="flex items-start gap-3">
+                                <input type="radio" name="rekey-type" class="mt-1 text-indigo-600">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="font-medium text-slate-900">深层重新加密</span>
+                                        <span class="px-2 py-0.5 bg-amber-100 text-amber-700 text-xs rounded-full">需要关机</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600">生成新的 KEK 和 DEK，重新加密所有 VM 数据。提供最高安全性，但操作耗时。</p>
+                                    <div class="mt-2 flex items-center gap-4 text-xs text-slate-500">
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            预计时间: 30-60 分钟
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            需要关机
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                            最高安全性
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Target Key Provider -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">目标 Key Provider</label>
+                    <select class="w-full px-3 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option>Thales-CipherTrust (当前默认)</option>
+                        <option>Default-NKP</option>
+                    </select>
+                    <p class="text-xs text-slate-500 mt-1.5">重新加密后将使用此 Key Provider 管理密钥</p>
+                </div>
+
+                <!-- Warning -->
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+                    <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-medium text-amber-900">注意事项</p>
+                        <ul class="text-sm text-amber-800 mt-1 space-y-1 list-disc list-inside">
+                            <li>建议在业务低峰期执行此操作</li>
+                            <li>确保目标 Key Provider 处于正常连接状态</li>
+                            <li>操作过程中请勿中断网络连接</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-4 border-t border-slate-200 flex justify-end gap-3 sticky bottom-0 bg-white">
+                <button class="px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition-colors">取消</button>
+                <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">开始重新加密</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
