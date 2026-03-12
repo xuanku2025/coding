@@ -206,7 +206,7 @@ echo "✅ 提取完成：tokens.json + components.json"
 > ⚠️ `getComputedStyle` 只能抓静态样式，hover / focus / active 状态需要通过 JS 主动触发后再提取。
 
 ```js
-(() => {
+(async () => {
   const componentSelectors = [
     'ant-btn','ant-input','ant-select','ant-table','ant-modal',
     'ant-form','ant-form-item','ant-menu','ant-tabs','ant-tag','ant-badge',
@@ -268,7 +268,8 @@ echo "✅ 提取完成：tokens.json + components.json"
     });
   });
 
-  return Promise.all(promises).then(() => JSON.stringify(result, null, 2));
+  await Promise.all(promises);
+  return JSON.stringify(result, null, 2);
 })();
 ```
 
@@ -765,6 +766,12 @@ outline → color/ring                       （focus 状态聚焦环）
 | `transform.js` | Token 完整映射（含所有 shadcn 变量）+ 暗色推导（含实现函数）+ 图标映射表生成 |
 | `dark-audit.js` | WCAG 对比度自动校验，输出通过/失败报告 |
 | `figma-upload.js` | 调用 Figma API 写入，含 Rate Limit 队列 + 幂等性（新增/更新自动区分） |
+
+> 💡 所有脚本已实现并存放在 `scripts/` 目录下，可直接使用。执行顺序：
+> 1. `bash scripts/extract.sh` → 提取样式
+> 2. `node scripts/transform.js` → Token 转换
+> 3. `node scripts/dark-audit.js` → WCAG 校验
+> 4. `node scripts/figma-upload.js` → 写入 Figma
 
 ---
 

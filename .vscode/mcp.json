@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "vibma": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@ufira/vibma-tunnel@latest"]
+    }
+  }
+}
