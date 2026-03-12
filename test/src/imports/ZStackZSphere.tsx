@@ -1,0 +1,8493 @@
+import { useEffect } from "react";
+import svgPaths from "./svg-pbch4mzkq2";
+import { imgGroup } from "./svg-h7te3";
+
+function ActionPopupItem({ label, disabled = false }: { label: string; disabled?: boolean }) {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="absolute h-[22px] left-[12px] overflow-clip top-[5px] w-[176.922px]" data-name="Text">
+        <p className={`absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap ${disabled ? 'text-[#96989b]' : 'text-[#4a4c4f]'}`}>{label}</p>
+      </div>
+    </div>
+  );
+}
+
+function ActionPopupDivider() {
+  return <div className="bg-[#dbdde0] h-px shrink-0 w-full" data-name="List Item" />;
+}
+
+function ActionPopup() {
+  return (
+    <div className="action-popup absolute bg-white content-stretch flex flex-col items-start pt-[4px] rounded-[2px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.12)] w-[200.922px] z-50 right-[17px] top-[36px]" data-name="Action Popup">
+      <ActionPopupItem label="启用" disabled />
+      <ActionPopupItem label="停用" />
+      <ActionPopupDivider />
+      <ActionPopupItem label="修改配置" />
+      <ActionPopupItem label="修改密码" />
+      <ActionPopupItem label="变更为管理员用户" />
+      <ActionPopupDivider />
+      <ActionPopupItem label="删除" />
+    </div>
+  );
+}
+
+function MaskGroup() {
+  return (
+    <div className="absolute inset-[72.25%_65.31%_1.63%_19.32%]" data-name="Mask group">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.46472 8.35725">
+        <g id="Mask group">
+          <mask height="9" id="mask0_1_1635" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="6" x="0" y="0">
+            <g id="Group">
+              <path d="M0 0H5.46472V8.35725H0V0Z" fill="var(--fill-0, white)" id="Vector" />
+            </g>
+          </mask>
+          <g mask="url(#mask0_1_1635)">
+            <path clipRule="evenodd" d={svgPaths.p2c92bf80} fill="var(--fill-0, #FEFEFE)" fillRule="evenodd" id="Fill-5" />
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Group1() {
+  return (
+    <div className="absolute contents inset-[72.25%_65.31%_1.63%_19.32%]" data-name="Group">
+      <MaskGroup />
+    </div>
+  );
+}
+
+function MaskGroup1() {
+  return (
+    <div className="absolute inset-[79.37%_35.04%_1.63%_48.69%]" data-name="Mask group">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.7849 6.07969">
+        <g id="Mask group">
+          <mask height="7" id="mask0_1_1614" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="6" x="0" y="0">
+            <g id="Group">
+              <path d="M0 0H5.7849V6.07969H0V0Z" fill="var(--fill-0, white)" id="Vector" />
+            </g>
+          </mask>
+          <g mask="url(#mask0_1_1614)">
+            <path clipRule="evenodd" d={svgPaths.p2a96a200} fill="var(--fill-0, #FEFEFE)" fillRule="evenodd" id="Fill-9" />
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Group2() {
+  return (
+    <div className="absolute contents inset-[79.37%_35.04%_1.63%_48.69%]" data-name="Group">
+      <MaskGroup1 />
+    </div>
+  );
+}
+
+function MaskGroup2() {
+  return (
+    <div className="absolute inset-[79.37%_17.68%_1.63%_66.59%]" data-name="Mask group">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.59154 6.07969">
+        <g id="Mask group">
+          <mask height="7" id="mask0_1_1644" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="6" x="0" y="0">
+            <g id="Group">
+              <path d="M0 0H5.59154V6.07969H0V0Z" fill="var(--fill-0, white)" id="Vector" />
+            </g>
+          </mask>
+          <g mask="url(#mask0_1_1644)">
+            <path clipRule="evenodd" d={svgPaths.p5872300} fill="var(--fill-0, #FEFEFE)" fillRule="evenodd" id="Fill-11" />
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Group3() {
+  return (
+    <div className="absolute contents inset-[79.37%_17.68%_1.63%_66.59%]" data-name="Group">
+      <MaskGroup2 />
+    </div>
+  );
+}
+
+function Group() {
+  return (
+    <div className="absolute contents inset-[72.25%_0_1.63%_0]" data-name="Group">
+      <div className="absolute inset-[72.68%_82.38%_2.06%_0]" data-name="Fill-3">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 6.26243 8.08435">
+          <path clipRule="evenodd" d={svgPaths.p3098bc0} fill="var(--fill-0, #FEFEFE)" fillRule="evenodd" id="Fill-3" />
+        </svg>
+      </div>
+      <Group1 />
+      <div className="absolute inset-[74.85%_53.36%_1.88%_36.48%]" data-name="Fill-7">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 3.60861 7.44634">
+          <path clipRule="evenodd" d={svgPaths.p1ea17b80} fill="var(--fill-0, #FEFEFE)" fillRule="evenodd" id="Fill-7" />
+        </svg>
+      </div>
+      <Group2 />
+      <Group3 />
+      <div className="absolute inset-[72.68%_0_2.06%_83.25%]" data-name="Fill-13">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 5.9553 8.08409">
+          <path clipRule="evenodd" d={svgPaths.p33a49500} fill="var(--fill-0, #FEFEFE)" fillRule="evenodd" id="Fill-13" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Component() {
+  return (
+    <div className="absolute contents inset-[1.62%_0_1.63%_0]" data-name="编组">
+      <div className="absolute inset-[1.62%_43.85%_39.18%_19.23%]" data-name="Fill-1">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.125 18.9433">
+          <path clipRule="evenodd" d={svgPaths.p1626cd00} fill="var(--fill-0, #FEFEFE)" fillRule="evenodd" id="Fill-1" />
+        </svg>
+      </div>
+      <div className="absolute inset-[17.41%_19.23%_39.18%_39.68%]" data-name="Fill-2">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 14.6072 13.892">
+          <path clipRule="evenodd" d={svgPaths.p2fe91000} fill="var(--fill-0, #FEFEFE)" fillRule="evenodd" id="Fill-2" />
+        </svg>
+      </div>
+      <Group />
+    </div>
+  );
+}
+
+function LogoZstackWhite() {
+  return (
+    <div className="absolute contents inset-[1.62%_0_1.63%_0]" data-name="logo/zstack/white">
+      <Component />
+    </div>
+  );
+}
+
+function ImageLogo() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-[35.547px]" data-name="Image (logo)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <LogoZstackWhite />
+      </div>
+    </div>
+  );
+}
+
+function Text() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[180.141px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <p className="absolute font-['PingFang_SC:Medium',sans-serif] leading-[22.001px] left-0 not-italic text-[14px] text-white top-0 tracking-[-0.1504px] whitespace-nowrap">ZStack ZSphere 虚拟化平台</p>
+      </div>
+    </div>
+  );
+}
+
+function Link() {
+  return (
+    <div className="flex-[1_0_0] h-[32px] min-h-px min-w-px relative" data-name="Link">
+      <div className="flex flex-row items-center size-full">
+        <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex gap-[8px] items-center pl-[24px] relative size-full">
+          <ImageLogo />
+          <Text />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Container1() {
+  return (
+    <div className="absolute content-stretch flex h-[32px] items-center left-0 top-[8px] w-[247.688px]" data-name="Container">
+      <Link />
+    </div>
+  );
+}
+
+function Text1() {
+  return (
+    <div className="absolute h-[22px] left-[15px] top-[5px] w-[21.625px]" data-name="Text">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-[11px] not-italic text-[14px] text-center text-white top-0 tracking-[-0.1504px] whitespace-nowrap">API</p>
+    </div>
+  );
+}
+
+function Button() {
+  return (
+    <div className="absolute h-[32px] left-0 rounded-[2px] top-0 w-[51.625px]" data-name="Button">
+      <Text1 />
+    </div>
+  );
+}
+
+function Container4() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-[51.625px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Button />
+      </div>
+    </div>
+  );
+}
+
+function Group5() {
+  return (
+    <div className="absolute inset-[11.42%_-3.68%_-21.87%_2.85%] mask-intersect mask-luminance mask-no-clip mask-no-repeat mask-position-[-0.685px_-2.74px] mask-size-[24px_24px]" data-name="Group" style={{ maskImage: `url('${imgGroup}')` }}>
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24.1972 26.5104">
+        <g id="Group">
+          <path clipRule="evenodd" d={svgPaths.p37ef8580} fill="url(#paint0_linear_1_1619)" fillRule="evenodd" id="Vector" />
+          <path clipRule="evenodd" d={svgPaths.p30b24300} fill="var(--fill-0, #005BD4)" fillRule="evenodd" id="Vector_2" />
+          <path clipRule="evenodd" d={svgPaths.p35ba9b00} fill="var(--fill-0, #E6F6FF)" fillRule="evenodd" id="Vector_3" />
+          <path d={svgPaths.p3295aec0} fill="var(--fill-0, #E9BE9A)" id="Vector_4" />
+          <path d={svgPaths.p2dcba500} fill="var(--fill-0, #FFE1C6)" id="Vector_5" />
+          <path clipRule="evenodd" d={svgPaths.pd521300} fill="var(--fill-0, #D4A681)" fillRule="evenodd" id="Vector_6" />
+          <path clipRule="evenodd" d={svgPaths.p2a298480} fill="var(--fill-0, #181A1D)" fillRule="evenodd" id="Vector_7" />
+          <path clipRule="evenodd" d={svgPaths.p3e757a80} fill="var(--fill-0, white)" fillOpacity="0.8" fillRule="evenodd" id="Vector_8" />
+          <path clipRule="evenodd" d={svgPaths.p315c8f00} fill="var(--fill-0, #181A1D)" fillRule="evenodd" id="Vector_9" />
+          <path clipRule="evenodd" d={svgPaths.p3221ea00} fill="var(--fill-0, white)" fillOpacity="0.8" fillRule="evenodd" id="Vector_10" />
+          <path clipRule="evenodd" d={svgPaths.p360925c0} fill="var(--fill-0, #181A1D)" fillRule="evenodd" id="Vector_11" />
+        </g>
+        <defs>
+          <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_1_1619" x1="308.315" x2="308.315" y1="13.0104" y2="613.01">
+            <stop stopColor="#DEAE88" />
+            <stop offset="1" stopColor="#E5C3A8" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+}
+
+function MaskGroup3() {
+  return (
+    <div className="absolute contents inset-0" data-name="Mask group">
+      <Group5 />
+    </div>
+  );
+}
+
+function Group4() {
+  return (
+    <div className="absolute contents inset-0" data-name="Group">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+        <path d={svgPaths.p1c665200} fill="var(--fill-0, #CEEFFF)" id="Vector" />
+      </svg>
+      <MaskGroup3 />
+    </div>
+  );
+}
+
+function ImageAdmin() {
+  return (
+    <div className="relative rounded-[12px] shrink-0 size-[24px]" data-name="Image (admin)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <Group4 />
+      </div>
+    </div>
+  );
+}
+
+function Text2() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[40px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[14px] text-white top-0 tracking-[-0.1504px] whitespace-nowrap">admin</p>
+      </div>
+    </div>
+  );
+}
+
+function Container5() {
+  return (
+    <div className="h-[32px] relative rounded-[2px] shrink-0 w-[104px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex gap-[8px] items-center pl-[8px] relative size-full">
+        <ImageAdmin />
+        <Text2 />
+      </div>
+    </div>
+  );
+}
+
+function Container3() {
+  return (
+    <div className="flex-[1_0_0] h-[32px] min-h-px min-w-px relative" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex gap-[8px] items-center relative size-full">
+        <Container4 />
+        <Container5 />
+      </div>
+    </div>
+  );
+}
+
+function Container2() {
+  return (
+    <div className="absolute content-stretch flex h-[32px] items-center left-[1752.38px] top-[8px] w-[167.625px]" data-name="Container">
+      <Container3 />
+    </div>
+  );
+}
+
+function Container7() {
+  return (
+    <div className="absolute content-stretch flex h-[32px] items-center left-0 pl-[34px] pr-[30px] top-0 w-[400px]" data-name="Container">
+      <p className="font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] not-italic relative shrink-0 text-[14px] text-[rgba(255,255,255,0.4)] tracking-[-0.1504px] whitespace-nowrap">搜索</p>
+    </div>
+  );
+}
+
+function Icon() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[12.5%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12.0001 12.0007">
+          <path clipRule="evenodd" d={svgPaths.p3251f800} fill="var(--fill-0, white)" fillOpacity="0.4" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text5() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[4px]" data-name="Text">
+      <Icon />
+    </div>
+  );
+}
+
+function Text4() {
+  return (
+    <div className="absolute h-[24px] left-[11px] top-[4px] w-[16px]" data-name="Text">
+      <Text5 />
+    </div>
+  );
+}
+
+function Button1() {
+  return (
+    <div className="relative shrink-0 size-[12px]" data-name="Button">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start size-full" />
+    </div>
+  );
+}
+
+function Container8() {
+  return (
+    <div className="bg-[#0043b1] h-[22px] opacity-50 relative rounded-[2px] shrink-0 w-[46.469px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-[8px] not-italic text-[14px] text-white top-0 tracking-[-0.1504px] whitespace-nowrap">⌘+K</p>
+      </div>
+    </div>
+  );
+}
+
+function Text6() {
+  return (
+    <div className="absolute content-stretch flex gap-[8px] h-[24px] items-center left-[324.53px] pl-[4px] top-[4px] w-[64.469px]" data-name="Text">
+      <Button1 />
+      <Container8 />
+    </div>
+  );
+}
+
+function TextInput() {
+  return <div className="absolute h-[24px] left-[35px] rounded-[2px] top-[4px] w-[285.531px]" data-name="Text Input" />;
+}
+
+function Text3() {
+  return (
+    <div className="absolute h-[32px] left-0 rounded-[2px] top-0 w-[400px]" data-name="Text">
+      <Text4 />
+      <Text6 />
+      <TextInput />
+    </div>
+  );
+}
+
+function Container6() {
+  return (
+    <div className="absolute bg-[#052e82] h-[32px] left-[760px] rounded-[2px] top-[8px] w-[400px]" data-name="Container">
+      <Container7 />
+      <Text3 />
+    </div>
+  );
+}
+
+function Container() {
+  return (
+    <div className="absolute bg-[#0043b1] h-[48px] left-0 top-0 w-[1920px]" data-name="Container">
+      <Container1 />
+      <Container2 />
+      <Container6 />
+    </div>
+  );
+}
+
+function Icon1() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[20.83%_20.83%_20.83%_20.84%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.33326 9.33339">
+          <path clipRule="evenodd" d={svgPaths.p124e6b80} fill="var(--fill-0, #707275)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text7() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[14px] size-[16px] top-[7.5px]" data-name="Text">
+      <Icon1 />
+    </div>
+  );
+}
+
+function Container11() {
+  return (
+    <div className="bg-[#f5f7fa] h-[32px] relative shrink-0 w-[44px]" data-name="Container">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-b border-solid inset-0 pointer-events-none" />
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Text7 />
+      </div>
+    </div>
+  );
+}
+
+function Group6() {
+  return (
+    <div className="absolute inset-[9.25%_8.33%_8.33%_8.33%]" data-name="Group">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16.6667 16.4829">
+        <g id="Group">
+          <path d={svgPaths.p10a5f510} fill="var(--fill-0, #DBDDE0)" id="Vector" />
+          <g id="Mask group">
+            <mask height="17" id="mask0_1_1436" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="14" x="1" y="0">
+              <g id="Group_2">
+                <path d={svgPaths.p10a5f510} fill="var(--fill-0, white)" id="Vector_2" />
+              </g>
+            </mask>
+            <g mask="url(#mask0_1_1436)">
+              <path clipRule="evenodd" d={svgPaths.p3cc93900} fill="var(--fill-0, #C8CACD)" fillRule="evenodd" id="Vector_3" />
+            </g>
+          </g>
+          <g id="Mask group_2">
+            <mask height="17" id="mask1_1_1436" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="14" x="1" y="0">
+              <g id="Group_3">
+                <path d={svgPaths.p10a5f510} fill="var(--fill-0, white)" id="Vector_4" />
+              </g>
+            </mask>
+            <g mask="url(#mask1_1_1436)">
+              <path clipRule="evenodd" d={svgPaths.p39657040} fill="var(--fill-0, #96989B)" fillRule="evenodd" id="Vector_5" />
+            </g>
+          </g>
+          <g id="Mask group_3">
+            <mask height="17" id="mask2_1_1436" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="14" x="1" y="0">
+              <g id="Group_4">
+                <path d={svgPaths.p10a5f510} fill="var(--fill-0, white)" id="Vector_6" />
+              </g>
+            </mask>
+            <g mask="url(#mask2_1_1436)">
+              <path clipRule="evenodd" d={svgPaths.p1a9c0f00} fill="var(--fill-0, #C8CACD)" fillRule="evenodd" id="Vector_7" />
+            </g>
+          </g>
+          <g id="Mask group_4">
+            <mask height="17" id="mask3_1_1436" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="14" x="1" y="0">
+              <g id="Group_5">
+                <path d={svgPaths.p10a5f510} fill="var(--fill-0, white)" id="Vector_8" />
+              </g>
+            </mask>
+            <g mask="url(#mask3_1_1436)">
+              <path clipRule="evenodd" d={svgPaths.p7f9aa00} fill="var(--fill-0, white)" fillRule="evenodd" id="Vector_9" />
+            </g>
+          </g>
+          <path d={svgPaths.pa943b80} fill="var(--fill-0, #65BBFC)" id="Vector_10" />
+          <g id="Mask group_5">
+            <mask height="9" id="mask4_1_1436" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="17" x="0" y="0">
+              <g id="Group_6">
+                <path d={svgPaths.pa943b80} fill="var(--fill-0, white)" id="Vector_11" />
+              </g>
+            </mask>
+            <g mask="url(#mask4_1_1436)">
+              <path clipRule="evenodd" d={svgPaths.pa9e5400} fill="var(--fill-0, #3EA1FA)" fillRule="evenodd" id="Vector_12" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function ImageMenuHome() {
+  return (
+    <div className="relative shrink-0 size-[20px]" data-name="Image (menu-home)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <Group6 />
+      </div>
+    </div>
+  );
+}
+
+function Link1() {
+  return (
+    <div className="relative rounded-[2px] shrink-0 size-[32px]" data-name="Link">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-center justify-center px-[6px] relative size-full">
+        <ImageMenuHome />
+      </div>
+    </div>
+  );
+}
+
+function ImageMenuInventory() {
+  return (
+    <div className="relative shrink-0 size-[20px]" data-name="Image (menu-inventory)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+          <g id="Group">
+            <g id="Vector" />
+            <path clipRule="evenodd" d={svgPaths.p1976b800} fill="var(--fill-0, #96989B)" fillRule="evenodd" id="Vector_2" />
+            <path clipRule="evenodd" d={svgPaths.pc887200} fill="var(--fill-0, #C8CACD)" fillRule="evenodd" id="Vector_3" />
+            <path clipRule="evenodd" d={svgPaths.p9169100} fill="var(--fill-0, #96989B)" fillOpacity="0.5" fillRule="evenodd" id="Vector_4" />
+            <path clipRule="evenodd" d={svgPaths.p963ee00} fill="var(--fill-0, #707275)" fillRule="evenodd" id="Vector_5" />
+            <path clipRule="evenodd" d={svgPaths.p2b759600} fill="var(--fill-0, #96989B)" fillRule="evenodd" id="Vector_6" />
+            <path clipRule="evenodd" d={svgPaths.p19cde400} fill="var(--fill-0, #707275)" fillRule="evenodd" id="Vector_7" />
+            <path clipRule="evenodd" d={svgPaths.p33ddf200} fill="var(--fill-0, white)" fillRule="evenodd" id="Vector_8" />
+            <path clipRule="evenodd" d={svgPaths.pdb08580} fill="var(--fill-0, #F0F2F5)" fillRule="evenodd" id="Vector_9" />
+            <path clipRule="evenodd" d={svgPaths.p3b879c00} fill="var(--fill-0, #FFB53F)" fillRule="evenodd" id="Vector_10" />
+            <path clipRule="evenodd" d={svgPaths.p1e007f70} fill="var(--fill-0, #FF9000)" fillRule="evenodd" id="Vector_11" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Link2() {
+  return (
+    <div className="relative rounded-[2px] shrink-0 size-[32px]" data-name="Link">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-center justify-center px-[6px] relative size-full">
+        <ImageMenuInventory />
+      </div>
+    </div>
+  );
+}
+
+function ImageMenuStorage() {
+  return (
+    <div className="relative shrink-0 size-[20px]" data-name="Image (menu-storage)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+          <g id="Group">
+            <g id="Vector" />
+            <g id="Group_2">
+              <path clipRule="evenodd" d={svgPaths.p1a35a6f0} fill="var(--fill-0, #707275)" fillRule="evenodd" id="Vector_2" />
+              <path clipRule="evenodd" d={svgPaths.p3301bc00} fill="var(--fill-0, #C8CACD)" fillRule="evenodd" id="Vector_3" />
+              <path clipRule="evenodd" d={svgPaths.p3301bc00} fill="var(--fill-0, #96989B)" fillRule="evenodd" id="Vector_4" opacity="0.5" />
+              <path clipRule="evenodd" d="M5 2.5H15V5.83333H5V2.5Z" fill="var(--fill-0, #DBDDE0)" fillRule="evenodd" id="Vector_5" />
+              <path d={svgPaths.p1aea0900} fill="var(--fill-0, #F4454C)" id="Vector_6" />
+              <path d={svgPaths.p2f624b80} fill="var(--fill-0, #FF9000)" id="Vector_7" />
+              <path clipRule="evenodd" d={svgPaths.p13cb3080} fill="var(--fill-0, #C8CACD)" fillRule="evenodd" id="Vector_8" />
+              <path clipRule="evenodd" d={svgPaths.p26c18d00} fill="var(--fill-0, #96989B)" fillRule="evenodd" id="Vector_9" opacity="0.5" />
+              <path clipRule="evenodd" d={svgPaths.p21b9580} fill="var(--fill-0, #DBDDE0)" fillRule="evenodd" id="Vector_10" />
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Link3() {
+  return (
+    <div className="relative rounded-[2px] shrink-0 size-[32px]" data-name="Link">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-center justify-center px-[6px] relative size-full">
+        <ImageMenuStorage />
+      </div>
+    </div>
+  );
+}
+
+function ImageMenuReliableService() {
+  return (
+    <div className="relative shrink-0 size-[20px]" data-name="Image (menu-reliable-service)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+          <g id="Group">
+            <g id="Vector" />
+            <g id="Group_2">
+              <path d={svgPaths.p7ac9c00} fill="var(--fill-0, #65BBFC)" id="Vector_2" />
+              <g id="Mask group">
+                <mask height="20" id="mask0_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_3">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_3" />
+                  </g>
+                </mask>
+                <g mask="url(#mask0_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p3ede8f80} fill="var(--fill-0, #98D7FE)" fillRule="evenodd" id="Vector_4" />
+                </g>
+              </g>
+              <g id="Mask group_2">
+                <mask height="20" id="mask1_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_4">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_5" />
+                  </g>
+                </mask>
+                <g mask="url(#mask1_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p28c1aa00} fill="var(--fill-0, #3EA1FA)" fillRule="evenodd" id="Vector_6" />
+                </g>
+              </g>
+              <g id="Mask group_3">
+                <mask height="20" id="mask2_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_5">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_7" />
+                  </g>
+                </mask>
+                <g mask="url(#mask2_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p1c8b6800} fill="var(--fill-0, #65BBFC)" fillRule="evenodd" id="Vector_8" />
+                </g>
+              </g>
+              <g id="Mask group_4">
+                <mask height="20" id="mask3_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_6">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_9" />
+                  </g>
+                </mask>
+                <g mask="url(#mask3_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p22eba370} fill="var(--fill-0, #0076F7)" fillRule="evenodd" id="Vector_10" />
+                </g>
+              </g>
+              <g id="Mask group_5">
+                <mask height="20" id="mask4_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_7">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_11" />
+                  </g>
+                </mask>
+                <g mask="url(#mask4_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p1b53c180} fill="var(--fill-0, #005BD4)" fillRule="evenodd" id="Vector_12" />
+                </g>
+              </g>
+              <g id="Mask group_6">
+                <mask height="20" id="mask5_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_8">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_13" />
+                  </g>
+                </mask>
+                <g mask="url(#mask5_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p3e81a80} fill="var(--fill-0, white)" fillRule="evenodd" id="Vector_14" />
+                </g>
+              </g>
+              <g id="Mask group_7">
+                <mask height="20" id="mask6_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_9">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_15" />
+                  </g>
+                </mask>
+                <g mask="url(#mask6_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p16707480} fill="var(--fill-0, #C8CACD)" fillRule="evenodd" id="Vector_16" />
+                </g>
+              </g>
+              <g id="Mask group_8">
+                <mask height="20" id="mask7_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_10">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_17" />
+                  </g>
+                </mask>
+                <g mask="url(#mask7_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p3044b280} fill="var(--fill-0, white)" fillRule="evenodd" id="Vector_18" />
+                </g>
+              </g>
+              <g id="Mask group_9">
+                <mask height="20" id="mask8_1_1501" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="16" x="2" y="0">
+                  <g id="Group_11">
+                    <path d={svgPaths.p7ac9c00} fill="var(--fill-0, white)" id="Vector_19" />
+                  </g>
+                </mask>
+                <g mask="url(#mask8_1_1501)">
+                  <path clipRule="evenodd" d={svgPaths.p307b5a00} fill="var(--fill-0, #C8CACD)" fillRule="evenodd" id="Vector_20" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Link4() {
+  return (
+    <div className="relative rounded-[2px] shrink-0 size-[32px]" data-name="Link">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-center justify-center px-[6px] relative size-full">
+        <ImageMenuReliableService />
+      </div>
+    </div>
+  );
+}
+
+function ImageMenuDataProtection() {
+  return (
+    <div className="relative shrink-0 size-[20px]" data-name="Image (menu-data-protection)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+          <g id="Group">
+            <g id="Vector" />
+            <g id="Group_2">
+              <path d={svgPaths.p3c8bfd40} fill="var(--fill-0, #DBDDE0)" id="Vector_2" />
+              <g id="Mask group">
+                <mask height="14" id="mask0_1_1581" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="13" x="6" y="1">
+                  <g id="Group_3">
+                    <path d={svgPaths.p3c8bfd40} fill="var(--fill-0, white)" id="Vector_3" />
+                  </g>
+                </mask>
+                <g mask="url(#mask0_1_1581)">
+                  <path clipRule="evenodd" d={svgPaths.p364f5f80} fill="var(--fill-0, #C8CACD)" fillRule="evenodd" id="Vector_4" />
+                </g>
+              </g>
+            </g>
+            <g id="Group_4">
+              <path d={svgPaths.p3c194780} fill="var(--fill-0, #96989B)" id="Vector_5" />
+              <g id="Mask group_2">
+                <mask height="14" id="mask1_1_1581" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="12" x="4" y="3">
+                  <g id="Group_5">
+                    <path d={svgPaths.p3c194780} fill="var(--fill-0, white)" id="Vector_6" />
+                  </g>
+                </mask>
+                <g mask="url(#mask1_1_1581)">
+                  <path clipRule="evenodd" d={svgPaths.p4cb4200} fill="var(--fill-0, #707275)" fillRule="evenodd" id="Vector_7" />
+                </g>
+              </g>
+            </g>
+            <g id="Group_6">
+              <path d={svgPaths.p2f133180} fill="var(--fill-0, #8AE173)" id="Vector_8" />
+              <g id="Mask group_3">
+                <mask height="14" id="mask2_1_1581" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="13" x="1" y="5">
+                  <g id="Group_7">
+                    <path d={svgPaths.p2f133180} fill="var(--fill-0, white)" id="Vector_9" />
+                  </g>
+                </mask>
+                <g mask="url(#mask2_1_1581)">
+                  <path clipRule="evenodd" d={svgPaths.p394ed600} fill="var(--fill-0, #3FAF38)" fillRule="evenodd" id="Vector_10" />
+                </g>
+              </g>
+              <g id="Mask group_4">
+                <mask height="14" id="mask3_1_1581" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="13" x="1" y="5">
+                  <g id="Group_8">
+                    <path d={svgPaths.p2f133180} fill="var(--fill-0, white)" id="Vector_11" />
+                  </g>
+                </mask>
+                <g mask="url(#mask3_1_1581)">
+                  <path clipRule="evenodd" d={svgPaths.pa3e6b00} fill="var(--fill-0, #5ACA49)" fillRule="evenodd" id="Vector_12" />
+                </g>
+              </g>
+            </g>
+            <path clipRule="evenodd" d={svgPaths.p33108d00} fill="var(--fill-0, white)" fillRule="evenodd" id="Vector_13" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Link5() {
+  return (
+    <div className="relative rounded-[2px] shrink-0 size-[32px]" data-name="Link">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-center justify-center px-[6px] relative size-full">
+        <ImageMenuDataProtection />
+      </div>
+    </div>
+  );
+}
+
+function ImageMenuOM() {
+  return (
+    <div className="relative shrink-0 size-[20px]" data-name="Image (menu-O&M)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+          <g id="Group">
+            <g id="Vector" />
+            <path clipRule="evenodd" d={svgPaths.p25f69080} fill="var(--fill-0, #707275)" fillRule="evenodd" id="Vector_2" />
+            <path clipRule="evenodd" d={svgPaths.p1e3b6480} fill="var(--fill-0, #DBDDE0)" fillRule="evenodd" id="Vector_3" />
+            <path clipRule="evenodd" d={svgPaths.p2d89d9f0} fill="var(--fill-0, #96989B)" fillRule="evenodd" id="Vector_4" />
+            <path clipRule="evenodd" d={svgPaths.p36907c00} fill="var(--fill-0, white)" fillRule="evenodd" id="Vector_5" />
+            <path clipRule="evenodd" d={svgPaths.p3d628360} fill="var(--fill-0, #FFB53F)" fillRule="evenodd" id="Vector_6" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Link6() {
+  return (
+    <div className="relative rounded-[2px] shrink-0 size-[32px]" data-name="Link">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-center justify-center px-[6px] relative size-full">
+        <ImageMenuOM />
+      </div>
+    </div>
+  );
+}
+
+function Container12() {
+  return (
+    <div className="h-px relative shrink-0 w-[44px]" data-name="Container">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-solid border-t inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function ImageMenuSystemSettings() {
+  return (
+    <div className="relative shrink-0 size-[20px]" data-name="Image (menu-system-settings)">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+          <g id="Group">
+            <g id="Vector" />
+            <g id="Group_2">
+              <path d={svgPaths.p100e7280} fill="var(--fill-0, #C8CACD)" id="Vector_2" />
+              <g id="Mask group">
+                <mask height="18" id="mask0_1_1651" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="18" x="1" y="1">
+                  <g id="Group_3">
+                    <path d={svgPaths.p100e7280} fill="var(--fill-0, white)" id="Vector_3" />
+                  </g>
+                </mask>
+                <g mask="url(#mask0_1_1651)">
+                  <path clipRule="evenodd" d={svgPaths.p27e9db40} fill="var(--fill-0, #96989B)" fillRule="evenodd" id="Vector_4" opacity="0.5" />
+                </g>
+              </g>
+              <g id="Mask group_2">
+                <mask height="18" id="mask1_1_1651" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="18" x="1" y="1">
+                  <g id="Group_4">
+                    <path d={svgPaths.p100e7280} fill="var(--fill-0, white)" id="Vector_5" />
+                  </g>
+                </mask>
+                <g mask="url(#mask1_1_1651)">
+                  <path d={svgPaths.p1245ba00} fill="var(--fill-0, #65BBFC)" id="Vector_6" />
+                </g>
+              </g>
+              <path d={svgPaths.p15f2bb40} fill="var(--fill-0, #96989B)" id="Vector_7" />
+              <g id="Mask group_3">
+                <mask height="12" id="mask2_1_1651" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="12" x="4" y="4">
+                  <g id="Group_5">
+                    <path d={svgPaths.p15f2bb40} fill="var(--fill-0, white)" id="Vector_8" />
+                  </g>
+                </mask>
+                <g mask="url(#mask2_1_1651)">
+                  <path clipRule="evenodd" d={svgPaths.p17df8400} fill="var(--fill-0, #707275)" fillRule="evenodd" id="Vector_9" />
+                </g>
+              </g>
+              <path d={svgPaths.p5d7b010} fill="var(--fill-0, white)" id="Vector_10" />
+              <g id="Mask group_4">
+                <mask height="8" id="mask3_1_1651" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="8" x="6" y="6">
+                  <g id="Group_6">
+                    <path d={svgPaths.p5d7b010} fill="var(--fill-0, white)" id="Vector_11" />
+                  </g>
+                </mask>
+                <g mask="url(#mask3_1_1651)">
+                  <path clipRule="evenodd" d="M10 5H15.8333V15H10V5Z" fill="var(--fill-0, #F0F2F5)" fillRule="evenodd" id="Vector_12" />
+                </g>
+              </g>
+              <path d={svgPaths.p1ae07500} fill="var(--fill-0, #3EA1FA)" id="Vector_13" />
+              <g id="Mask group_5">
+                <mask height="6" id="mask4_1_1651" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="6" x="7" y="7">
+                  <g id="Group_7">
+                    <path d={svgPaths.p1ae07500} fill="var(--fill-0, white)" id="Vector_14" />
+                  </g>
+                </mask>
+                <g mask="url(#mask4_1_1651)">
+                  <path clipRule="evenodd" d={svgPaths.p64ef780} fill="var(--fill-0, #0076F7)" fillRule="evenodd" id="Vector_15" />
+                </g>
+              </g>
+              <g id="Mask group_6">
+                <mask height="6" id="mask5_1_1651" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }} width="6" x="7" y="7">
+                  <g id="Group_8">
+                    <path d={svgPaths.p1ae07500} fill="var(--fill-0, white)" id="Vector_16" />
+                  </g>
+                </mask>
+                <g mask="url(#mask5_1_1651)">
+                  <path d={svgPaths.p2e7c74f0} fill="var(--fill-0, white)" id="Vector_17" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Link7() {
+  return (
+    <div className="bg-[#005bd4] relative rounded-[2px] shrink-0 size-[32px]" data-name="Link">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-center justify-center px-[6px] relative size-full">
+        <ImageMenuSystemSettings />
+      </div>
+    </div>
+  );
+}
+
+function Container10() {
+  return (
+    <div className="absolute bg-white content-stretch flex flex-col gap-[4px] h-[798px] items-center left-0 pr-[2px] top-0 w-[46px]" data-name="Container">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-r-2 border-solid inset-0 pointer-events-none" />
+      <Container11 />
+      <Link1 />
+      <Link2 />
+      <Link3 />
+      <Link4 />
+      <Link5 />
+      <Link6 />
+      <Container12 />
+      <Link7 />
+    </div>
+  );
+}
+
+function Container17() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">系统管理</p>
+      </div>
+    </div>
+  );
+}
+
+function Container16() {
+  return (
+    <div className="bg-[#f5f7fa] h-[32px] relative shrink-0 w-full" data-name="Container">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-b border-solid inset-0 pointer-events-none" />
+      <div className="flex flex-row items-center size-full">
+        <div className="content-stretch flex items-center pb-px pl-[12px] relative size-full">
+          <Container17 />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Container18() {
+  return (
+    <div className="absolute content-stretch flex h-[32px] items-center left-0 px-[12px] top-[4px] w-[198px]" data-name="Container">
+      <p className="font-['PingFang_SC:Regular',sans-serif] leading-[20px] not-italic relative shrink-0 text-[#707275] text-[12px] whitespace-nowrap">身份与访问管理</p>
+    </div>
+  );
+}
+
+function Icon2() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p36c16b00} fill="var(--fill-0, #005BD4)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text8() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon2 />
+    </div>
+  );
+}
+
+function MenuItem() {
+  return (
+    <div className="bg-[#e6f6ff] h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">用户管理</p>
+        <Text8 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[#3ea1fa] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon3() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p12ceb400} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text9() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon3 />
+    </div>
+  );
+}
+
+function MenuItem1() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">角色</p>
+        <Text9 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon4() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p3fbdd100} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text10() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon4 />
+    </div>
+  );
+}
+
+function MenuItem2() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">统一认证SSO</p>
+        <Text10 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function List() {
+  return (
+    <div className="absolute content-stretch flex flex-col h-[96px] items-start left-0 top-[36px] w-[198px]" data-name="List">
+      <MenuItem />
+      <MenuItem1 />
+      <MenuItem2 />
+    </div>
+  );
+}
+
+function ListItem() {
+  return (
+    <div className="h-[136px] relative shrink-0 w-full" data-name="List Item">
+      <Container18 />
+      <List />
+    </div>
+  );
+}
+
+function Container19() {
+  return (
+    <div className="absolute content-stretch flex h-[32px] items-center left-0 px-[12px] top-[5px] w-[198px]" data-name="Container">
+      <p className="font-['PingFang_SC:Regular',sans-serif] leading-[20px] not-italic relative shrink-0 text-[#707275] text-[12px] whitespace-nowrap">平台安全</p>
+    </div>
+  );
+}
+
+function Icon5() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p3f8f9b00} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text11() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon5 />
+    </div>
+  );
+}
+
+function MenuItem3() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">IP黑白名单</p>
+        <Text11 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon6() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p3ab83180} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text12() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon6 />
+    </div>
+  );
+}
+
+function MenuItem4() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">证书管理</p>
+        <Text12 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon7() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p3f79bb00} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text13() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon7 />
+    </div>
+  );
+}
+
+function MenuItem5() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">安全设置</p>
+        <Text13 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function List1() {
+  return (
+    <div className="absolute content-stretch flex flex-col h-[96px] items-start left-0 top-[37px] w-[198px]" data-name="List">
+      <MenuItem3 />
+      <MenuItem4 />
+      <MenuItem5 />
+    </div>
+  );
+}
+
+function ListItem1() {
+  return (
+    <div className="h-[137px] relative shrink-0 w-full" data-name="List Item">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-solid border-t inset-0 pointer-events-none" />
+      <Container19 />
+      <List1 />
+    </div>
+  );
+}
+
+function Container20() {
+  return (
+    <div className="absolute content-stretch flex h-[32px] items-center left-0 px-[12px] top-[5px] w-[198px]" data-name="Container">
+      <p className="font-['PingFang_SC:Regular',sans-serif] leading-[20px] not-italic relative shrink-0 text-[#707275] text-[12px] whitespace-nowrap">平台设置</p>
+    </div>
+  );
+}
+
+function Icon8() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p1d9bd600} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text14() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon8 />
+    </div>
+  );
+}
+
+function MenuItem6() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">AccessKey 管理</p>
+        <Text14 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon9() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p2e529800} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text15() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon9 />
+    </div>
+  );
+}
+
+function MenuItem7() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">控制台代理</p>
+        <Text15 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Component1IconMonitorLinkZHhIe0Oy() {
+  return (
+    <div className="absolute inset-[12.5%_5.56%_12.5%_8.33%]" data-name="1.-通用/icon-图标/物品设备建筑/monitor-link__ZHhIE0oy">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.7771 12">
+        <g id="1.-éç¨/icon-å¾æ /ç©åè®¾å¤å»ºç­/monitor-link__ZHhIE0oy">
+          <path clipRule="evenodd" d={svgPaths.p39aef880} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="ð¨-Icon-Ð¡olor__ZHhIE0oy" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function ZHhIe0Oy() {
+  return (
+    <div className="absolute contents inset-[12.5%_5.56%_12.5%_8.33%]" data-name="切图__ZHhIE0oy">
+      <Component1IconMonitorLinkZHhIe0Oy />
+    </div>
+  );
+}
+
+function snmp7358666ZHhIe0Oy() {
+  return (
+    <div className="absolute contents inset-[12.5%_5.56%_12.5%_8.33%]" data-name="🔍-✅-支持SNMP协议-7.3（58666）__ZHhIE0oy">
+      <ZHhIe0Oy />
+    </div>
+  );
+}
+
+function Icon10() {
+  return (
+    <div className="absolute left-0 overflow-clip size-[16px] top-0" data-name="Icon">
+      <snmp7358666ZHhIe0Oy />
+    </div>
+  );
+}
+
+function Text16() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon10 />
+    </div>
+  );
+}
+
+function MenuItem8() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">SNMP管理</p>
+        <Text16 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon11() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p3863c000} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text17() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon11 />
+    </div>
+  );
+}
+
+function MenuItem9() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">时间管理</p>
+        <Text17 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon12() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p1f5bfa72} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text18() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon12 />
+    </div>
+  );
+}
+
+function MenuItem10() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">日志服务器</p>
+        <Text18 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon13() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p2c65f100} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text19() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon13 />
+    </div>
+  );
+}
+
+function MenuItem11() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">邮箱服务器</p>
+        <Text19 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon14() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p22fc8600} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text20() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon14 />
+    </div>
+  );
+}
+
+function MenuItem12() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">主题外观</p>
+        <Text20 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Icon15() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p3a9a4a70} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text21() {
+  return (
+    <div className="absolute left-[12px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon15 />
+    </div>
+  );
+}
+
+function MenuItem13() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <div className="overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[32px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">系统参数</p>
+        <Text21 />
+      </div>
+      <div aria-hidden="true" className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function List2() {
+  return (
+    <div className="absolute content-stretch flex flex-col h-[256px] items-start left-0 top-[37px] w-[198px]" data-name="List">
+      <MenuItem6 />
+      <MenuItem7 />
+      <MenuItem8 />
+      <MenuItem9 />
+      <MenuItem10 />
+      <MenuItem11 />
+      <MenuItem12 />
+      <MenuItem13 />
+    </div>
+  );
+}
+
+function ListItem2() {
+  return (
+    <div className="h-[297px] relative shrink-0 w-full" data-name="List Item">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-solid border-t inset-0 pointer-events-none" />
+      <Container20 />
+      <List2 />
+    </div>
+  );
+}
+
+function Container21() {
+  return (
+    <div className="absolute content-stretch flex h-[32px] items-center left-0 px-[12px] top-[5px] w-[198px]" data-name="Container">
+      <p className="font-['PingFang_SC:Regular',sans-serif] leading-[20px] not-italic relative shrink-0 text-[#707275] text-[12px] whitespace-nowrap">许可证管理</p>
+    </div>
+  );
+}
+
+function Icon16() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p38b10480} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text22() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[7.75px]" data-name="Text">
+      <Icon16 />
+    </div>
+  );
+}
+
+function MenuItem14() {
+  return (
+    <div className="absolute border-[rgba(0,0,0,0)] border-l-4 border-solid h-[32px] left-0 overflow-clip top-[37px] w-[198px]" data-name="Menu Item">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[28px] not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">许可证</p>
+      <Text22 />
+    </div>
+  );
+}
+
+function ListItem3() {
+  return (
+    <div className="h-[73px] relative shrink-0 w-full" data-name="List Item">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-solid border-t inset-0 pointer-events-none" />
+      <Container21 />
+      <MenuItem14 />
+    </div>
+  );
+}
+
+function Menu() {
+  return (
+    <div className="bg-white content-stretch flex flex-col h-[643px] items-start overflow-clip relative shrink-0 w-full" data-name="Menu">
+      <ListItem />
+      <ListItem1 />
+      <ListItem2 />
+      <ListItem3 />
+    </div>
+  );
+}
+
+function Container15() {
+  return (
+    <div className="absolute bg-white content-stretch flex flex-col h-[798px] items-start left-0 pr-[2px] top-0 w-[200px]" data-name="Container">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-r-2 border-solid inset-0 pointer-events-none" />
+      <Container16 />
+      <Menu />
+    </div>
+  );
+}
+
+function Container25() {
+  return (
+    <div className="h-[28px] relative shrink-0 w-[80px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[28px] left-0 not-italic text-[#181a1d] text-[20px] top-0 tracking-[-0.4492px] whitespace-nowrap">用户管理</p>
+      </div>
+    </div>
+  );
+}
+
+function Container26() {
+  return <div className="h-[28px] shrink-0 w-0" data-name="Container" />;
+}
+
+function Container24() {
+  return (
+    <div className="h-[56px] relative shrink-0 w-[1674px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start justify-between pt-[20px] px-[24px] relative size-full">
+        <Container25 />
+        <Container26 />
+      </div>
+    </div>
+  );
+}
+
+function Icon17() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[12.5%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12.0005 12.0002">
+          <path clipRule="evenodd" d={svgPaths.p3ff1240} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text23() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[15px] size-[16px] top-[8px]" data-name="Text">
+      <Icon17 />
+    </div>
+  );
+}
+
+function Button2() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[32px] left-0 rounded-[2px] top-0 w-[46px]" data-name="Button">
+      <Text23 />
+    </div>
+  );
+}
+
+function Container33() {
+  return (
+    <div className="absolute h-[36px] left-0 top-0 w-[46px]" data-name="Container">
+      <Button2 />
+    </div>
+  );
+}
+
+function Text24() {
+  return (
+    <div className="absolute h-[22px] left-[33px] top-[5px] w-[56px]" data-name="Text">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-[28px] not-italic text-[14px] text-center text-white top-0 tracking-[-0.1504px] whitespace-nowrap">新建用户</p>
+    </div>
+  );
+}
+
+function Icon18() {
+  return (
+    <div className="h-[14px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[16.67%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.33333 9.33333">
+          <path clipRule="evenodd" d={svgPaths.pce3cf80} fill="var(--fill-0, white)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text25() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[15px] size-[14px] top-[9px]" data-name="Text">
+      <Icon18 />
+    </div>
+  );
+}
+
+function Button3() {
+  return (
+    <div className="absolute bg-[#005bd4] h-[32px] left-0 rounded-[2px] top-0 w-[104px]" data-name="Button">
+      <Text24 />
+      <Text25 />
+    </div>
+  );
+}
+
+function Container36() {
+  return (
+    <div className="flex-[1_0_0] h-[32px] min-h-px min-w-px relative" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Button3 />
+      </div>
+    </div>
+  );
+}
+
+function Text26() {
+  return (
+    <div className="absolute h-[22px] left-[33px] top-[5px] w-[28px]" data-name="Text">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-[14px] not-italic text-[#4a4c4f] text-[14px] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon19() {
+  return (
+    <div className="h-[14px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 11.6667 11.6672">
+          <path clipRule="evenodd" d={svgPaths.p3f34f8c0} fill="var(--fill-0, #5ACA49)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text27() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[15px] size-[14px] top-[9px]" data-name="Text">
+      <Icon19 />
+    </div>
+  );
+}
+
+function Button4() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[32px] left-0 opacity-50 rounded-[2px] top-0 w-[76px]" data-name="Button">
+      <Text26 />
+      <Text27 />
+    </div>
+  );
+}
+
+function Container37() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-[76px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Button4 />
+      </div>
+    </div>
+  );
+}
+
+function Text28() {
+  return (
+    <div className="absolute h-[22px] left-[33px] top-[5px] w-[28px]" data-name="Text">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-[14px] not-italic text-[#4a4c4f] text-[14px] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">停用</p>
+    </div>
+  );
+}
+
+function Icon20() {
+  return (
+    <div className="h-[14px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 11.6667 11.6667">
+          <path clipRule="evenodd" d={svgPaths.p17415880} fill="var(--fill-0, #F4454C)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text29() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[15px] size-[14px] top-[9px]" data-name="Text">
+      <Icon20 />
+    </div>
+  );
+}
+
+function Button5() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[32px] left-0 opacity-50 rounded-[2px] top-0 w-[76px]" data-name="Button">
+      <Text28 />
+      <Text29 />
+    </div>
+  );
+}
+
+function Container38() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-[76px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Button5 />
+      </div>
+    </div>
+  );
+}
+
+function Container35() {
+  return (
+    <div className="absolute content-stretch flex gap-[4px] h-[32px] items-center left-0 top-0 w-[264px]" data-name="Container">
+      <Container36 />
+      <Container37 />
+      <Container38 />
+    </div>
+  );
+}
+
+function Text30() {
+  return (
+    <div className="absolute h-[22px] left-[15px] top-[5px] w-[56px]" data-name="Text">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-[28px] not-italic text-[#4a4c4f] text-[14px] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">批量操作</p>
+    </div>
+  );
+}
+
+function Icon21() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[37.44%_20.85%_33.33%_20.76%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.34278 4.67691">
+          <path clipRule="evenodd" d={svgPaths.p48e9072} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text31() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[75px] size-[16px] top-[8px]" data-name="Text">
+      <Icon21 />
+    </div>
+  );
+}
+
+function Button6() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[32px] left-[268px] rounded-[2px] top-0 w-[106px]" data-name="Button">
+      <Text30 />
+      <Text31 />
+    </div>
+  );
+}
+
+function Container34() {
+  return (
+    <div className="absolute h-[36px] left-[50px] top-0 w-[374px]" data-name="Container">
+      <Container35 />
+      <Button6 />
+    </div>
+  );
+}
+
+function IconBarChart2NsExpLgkGABsXiBu() {
+  return (
+    <div className="absolute contents inset-[18.75%_14.58%_14.58%_14.58%]" data-name="通用/icon-图标/系统&操作/bar-chart-2__NsEXPLgk__gABsXiBu">
+      <div className="absolute flex inset-[18.75%_14.58%_14.58%_14.58%] items-center justify-center">
+        <div className="-rotate-90 -scale-y-100 flex-none h-[11.333px] w-[10.667px]">
+          <div className="relative size-full" data-name="path-bar-chart-2__NsEXPLgk__gABsXiBu">
+            <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10.6667 11.3333">
+              <path clipRule="evenodd" d={svgPaths.p2eecf180} fill="var(--fill-0, #707275)" fillRule="evenodd" id="path-bar-chart-2__NsEXPLgk__gABsXiBu" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Icon22() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <IconBarChart2NsExpLgkGABsXiBu />
+    </div>
+  );
+}
+
+function Text32() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-0" data-name="Text">
+      <Icon22 />
+    </div>
+  );
+}
+
+function Container43() {
+  return (
+    <div className="absolute left-0 size-[16px] top-[7px]" data-name="Container">
+      <Text32 />
+    </div>
+  );
+}
+
+function Text34() {
+  return (
+    <div className="flex-[1_0_0] h-[30px] min-h-px min-w-px relative" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[30px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">自动识别</p>
+      </div>
+    </div>
+  );
+}
+
+function Text33() {
+  return (
+    <div className="flex-[1_0_0] h-[30px] min-h-px min-w-px relative" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start relative size-full">
+        <Text34 />
+      </div>
+    </div>
+  );
+}
+
+function Container44() {
+  return (
+    <div className="absolute content-stretch flex h-[30px] items-start left-[20px] top-0 w-[56px]" data-name="Container">
+      <Text33 />
+    </div>
+  );
+}
+
+function Container42() {
+  return (
+    <div className="absolute h-[30px] left-[12px] top-0 w-[76px]" data-name="Container">
+      <Container43 />
+      <Container44 />
+    </div>
+  );
+}
+
+function Text37() {
+  return <div className="absolute content-stretch flex h-[30px] items-center left-[166px] pl-[4px] top-0 w-[16px]" data-name="Text" />;
+}
+
+function TextInput1() {
+  return <div className="absolute bg-white h-[30px] left-0 rounded-bl-[2px] rounded-tl-[2px] top-0 w-[162px]" data-name="Text Input" />;
+}
+
+function Text36() {
+  return (
+    <div className="absolute bg-white h-[30px] left-0 rounded-bl-[2px] rounded-tl-[2px] top-0 w-[186px]" data-name="Text">
+      <Text37 />
+      <TextInput1 />
+    </div>
+  );
+}
+
+function Icon23() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p39341740} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text39() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[6px]" data-name="Text">
+      <Icon23 />
+    </div>
+  );
+}
+
+function Text38() {
+  return (
+    <div className="absolute h-[30px] left-[186px] rounded-br-[2px] rounded-tr-[2px] top-0 w-[36px]" data-name="Text">
+      <Text39 />
+    </div>
+  );
+}
+
+function Text35() {
+  return (
+    <div className="absolute h-[30px] left-[96px] top-0 w-[222px]" data-name="Text">
+      <Text36 />
+      <Text38 />
+    </div>
+  );
+}
+
+function Container41() {
+  return (
+    <div className="absolute border border-[#c8cacd] border-solid h-[32px] left-0 rounded-[2px] top-0 w-[320px]" data-name="Container">
+      <Container42 />
+      <Text35 />
+    </div>
+  );
+}
+
+function Container40() {
+  return (
+    <div className="absolute h-[32px] left-0 top-0 w-[320px]" data-name="Container">
+      <Container41 />
+    </div>
+  );
+}
+
+function Container39() {
+  return (
+    <div className="absolute h-[36px] left-[428px] top-0 w-[320px]" data-name="Container">
+      <Container40 />
+    </div>
+  );
+}
+
+function Container32() {
+  return (
+    <div className="absolute h-[36px] left-[4px] top-0 w-[748px]" data-name="Container">
+      <Container33 />
+      <Container34 />
+      <Container39 />
+    </div>
+  );
+}
+
+function Container47() {
+  return <div className="flex-[1_0_0] h-0 min-h-px min-w-px" data-name="Container" />;
+}
+
+function Container46() {
+  return (
+    <div className="absolute content-stretch flex items-start left-0 size-0 top-0" data-name="Container">
+      <Container47 />
+    </div>
+  );
+}
+
+function Container45() {
+  return (
+    <div className="absolute left-[1624px] size-0 top-[16px]" data-name="Container">
+      <Container46 />
+    </div>
+  );
+}
+
+function Container31() {
+  return (
+    <div className="absolute h-[32px] left-[-4px] top-0 w-[1628px]" data-name="Container">
+      <Container32 />
+      <Container45 />
+    </div>
+  );
+}
+
+function Column() {
+  return <div className="absolute h-[756px] left-0 top-0 w-[40.047px]" data-name="Column" />;
+}
+
+function Column1() {
+  return <div className="absolute h-[756px] left-[40.05px] top-0 w-[236.281px]" data-name="Column" />;
+}
+
+function Column2() {
+  return <div className="absolute h-[756px] left-[276.33px] top-0 w-[236.281px]" data-name="Column" />;
+}
+
+function Column3() {
+  return <div className="absolute h-[756px] left-[512.61px] top-0 w-[165.203px]" data-name="Column" />;
+}
+
+function Column4() {
+  return <div className="absolute h-[756px] left-[677.81px] top-0 w-[165.203px]" data-name="Column" />;
+}
+
+function Column5() {
+  return <div className="absolute h-[756px] left-[843.02px] top-0 w-[236.281px]" data-name="Column" />;
+}
+
+function Column6() {
+  return <div className="absolute h-[756px] left-[1079.3px] top-0 w-[236.281px]" data-name="Column" />;
+}
+
+function Column7() {
+  return <div className="absolute h-[756px] left-[1315.58px] top-0 w-[236.281px]" data-name="Column" />;
+}
+
+function Column8() {
+  return <div className="absolute h-[756px] left-[1551.86px] top-0 w-[66.141px]" data-name="Column" />;
+}
+
+function ColumnGroup() {
+  return (
+    <div className="absolute h-[756px] left-0 top-0 w-[1618px]" data-name="Column Group">
+      <Column />
+      <Column1 />
+      <Column2 />
+      <Column3 />
+      <Column4 />
+      <Column5 />
+      <Column6 />
+      <Column7 />
+      <Column8 />
+    </div>
+  );
+}
+
+function Text40() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">Robin</p>
+    </div>
+  );
+}
+
+function TableCell() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text40 />
+    </div>
+  );
+}
+
+function Text42() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon24() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text43() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon24 />
+    </div>
+  );
+}
+
+function Text41() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text42 />
+      <Text43 />
+    </div>
+  );
+}
+
+function TableCell1() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text41 />
+    </div>
+  );
+}
+
+function Text45() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">管理员用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text44() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text45 />
+    </div>
+  );
+}
+
+function TableCell2() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text44 />
+    </div>
+  );
+}
+
+function Text47() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text46() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text47 />
+    </div>
+  );
+}
+
+function TableCell3() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text46 />
+    </div>
+  );
+}
+
+function Text48() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell4() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text48 />
+    </div>
+  );
+}
+
+function Text49() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell5() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text49 />
+    </div>
+  );
+}
+
+function Text51() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-03-10 21:48:58</p>
+      </div>
+    </div>
+  );
+}
+
+function Text50() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text51 />
+    </div>
+  );
+}
+
+function TableCell6() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text50 />
+    </div>
+  );
+}
+
+function TableRow() {
+  return (
+    <div className="absolute h-[36px] left-0 top-0 w-[1618px]" data-name="Table Row">
+      <TableCell />
+      <TableCell1 />
+      <TableCell2 />
+      <TableCell3 />
+      <TableCell4 />
+      <TableCell5 />
+      <TableCell6 />
+    </div>
+  );
+}
+
+function Text52() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">sl11111111111111</p>
+    </div>
+  );
+}
+
+function TableCell7() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text52 />
+    </div>
+  );
+}
+
+function Text54() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon25() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text55() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon25 />
+    </div>
+  );
+}
+
+function Text53() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text54 />
+      <Text55 />
+    </div>
+  );
+}
+
+function TableCell8() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text53 />
+    </div>
+  );
+}
+
+function Text57() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text56() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text57 />
+    </div>
+  );
+}
+
+function TableCell9() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text56 />
+    </div>
+  );
+}
+
+function Text59() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text58() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text59 />
+    </div>
+  );
+}
+
+function TableCell10() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text58 />
+    </div>
+  );
+}
+
+function Text60() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell11() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text60 />
+    </div>
+  );
+}
+
+function Text61() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell12() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text61 />
+    </div>
+  );
+}
+
+function Text63() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-03-04 11:25:59</p>
+      </div>
+    </div>
+  );
+}
+
+function Text62() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text63 />
+    </div>
+  );
+}
+
+function TableCell13() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text62 />
+    </div>
+  );
+}
+
+function TableRow1() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[36px] w-[1618px]" data-name="Table Row">
+      <TableCell7 />
+      <TableCell8 />
+      <TableCell9 />
+      <TableCell10 />
+      <TableCell11 />
+      <TableCell12 />
+      <TableCell13 />
+    </div>
+  );
+}
+
+function Text64() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">adminq</p>
+    </div>
+  );
+}
+
+function TableCell14() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text64 />
+    </div>
+  );
+}
+
+function Text66() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon26() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text67() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon26 />
+    </div>
+  );
+}
+
+function Text65() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text66 />
+      <Text67 />
+    </div>
+  );
+}
+
+function TableCell15() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text65 />
+    </div>
+  );
+}
+
+function Text69() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">管理员用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text68() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text69 />
+    </div>
+  );
+}
+
+function TableCell16() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text68 />
+    </div>
+  );
+}
+
+function Text71() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text70() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text71 />
+    </div>
+  );
+}
+
+function TableCell17() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text70 />
+    </div>
+  );
+}
+
+function Text72() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell18() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text72 />
+    </div>
+  );
+}
+
+function Text73() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell19() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text73 />
+    </div>
+  );
+}
+
+function Text75() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-10 13:23:24</p>
+      </div>
+    </div>
+  );
+}
+
+function Text74() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text75 />
+    </div>
+  );
+}
+
+function TableCell20() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text74 />
+    </div>
+  );
+}
+
+function TableRow2() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[72px] w-[1618px]" data-name="Table Row">
+      <TableCell14 />
+      <TableCell15 />
+      <TableCell16 />
+      <TableCell17 />
+      <TableCell18 />
+      <TableCell19 />
+      <TableCell20 />
+    </div>
+  );
+}
+
+function Text76() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">admin_mini</p>
+    </div>
+  );
+}
+
+function TableCell21() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text76 />
+    </div>
+  );
+}
+
+function Text78() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon27() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text79() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon27 />
+    </div>
+  );
+}
+
+function Text77() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text78 />
+      <Text79 />
+    </div>
+  );
+}
+
+function TableCell22() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text77 />
+    </div>
+  );
+}
+
+function Text81() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">管理员用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text80() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text81 />
+    </div>
+  );
+}
+
+function TableCell23() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text80 />
+    </div>
+  );
+}
+
+function Text83() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text82() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text83 />
+    </div>
+  );
+}
+
+function TableCell24() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text82 />
+    </div>
+  );
+}
+
+function Text84() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell25() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text84 />
+    </div>
+  );
+}
+
+function Text85() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell26() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text85 />
+    </div>
+  );
+}
+
+function Text87() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-10 13:22:01</p>
+      </div>
+    </div>
+  );
+}
+
+function Text86() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text87 />
+    </div>
+  );
+}
+
+function TableCell27() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text86 />
+    </div>
+  );
+}
+
+function TableRow3() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[108px] w-[1618px]" data-name="Table Row">
+      <TableCell21 />
+      <TableCell22 />
+      <TableCell23 />
+      <TableCell24 />
+      <TableCell25 />
+      <TableCell26 />
+      <TableCell27 />
+    </div>
+  );
+}
+
+function Text88() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">lzd2</p>
+    </div>
+  );
+}
+
+function TableCell28() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text88 />
+    </div>
+  );
+}
+
+function Text90() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon28() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text91() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon28 />
+    </div>
+  );
+}
+
+function Text89() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text90 />
+      <Text91 />
+    </div>
+  );
+}
+
+function TableCell29() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text89 />
+    </div>
+  );
+}
+
+function Text93() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">管理员用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text92() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text93 />
+    </div>
+  );
+}
+
+function TableCell30() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text92 />
+    </div>
+  );
+}
+
+function Text95() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text94() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text95 />
+    </div>
+  );
+}
+
+function TableCell31() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text94 />
+    </div>
+  );
+}
+
+function Text96() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell32() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text96 />
+    </div>
+  );
+}
+
+function Text97() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell33() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text97 />
+    </div>
+  );
+}
+
+function Text99() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-09 10:41:07</p>
+      </div>
+    </div>
+  );
+}
+
+function Text98() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text99 />
+    </div>
+  );
+}
+
+function TableCell34() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text98 />
+    </div>
+  );
+}
+
+function TableRow4() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[144px] w-[1618px]" data-name="Table Row">
+      <TableCell28 />
+      <TableCell29 />
+      <TableCell30 />
+      <TableCell31 />
+      <TableCell32 />
+      <TableCell33 />
+      <TableCell34 />
+    </div>
+  );
+}
+
+function Text100() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">lzd1</p>
+    </div>
+  );
+}
+
+function TableCell35() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text100 />
+    </div>
+  );
+}
+
+function Text102() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon29() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text103() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon29 />
+    </div>
+  );
+}
+
+function Text101() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text102 />
+      <Text103 />
+    </div>
+  );
+}
+
+function TableCell36() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text101 />
+    </div>
+  );
+}
+
+function Text105() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text104() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text105 />
+    </div>
+  );
+}
+
+function TableCell37() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text104 />
+    </div>
+  );
+}
+
+function Text107() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text106() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text107 />
+    </div>
+  );
+}
+
+function TableCell38() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text106 />
+    </div>
+  );
+}
+
+function Text108() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">1</p>
+    </div>
+  );
+}
+
+function TableCell39() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text108 />
+    </div>
+  );
+}
+
+function Text109() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell40() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text109 />
+    </div>
+  );
+}
+
+function Text111() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-09 10:19:28</p>
+      </div>
+    </div>
+  );
+}
+
+function Text110() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text111 />
+    </div>
+  );
+}
+
+function TableCell41() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text110 />
+    </div>
+  );
+}
+
+function TableRow5() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[180px] w-[1618px]" data-name="Table Row">
+      <TableCell35 />
+      <TableCell36 />
+      <TableCell37 />
+      <TableCell38 />
+      <TableCell39 />
+      <TableCell40 />
+      <TableCell41 />
+    </div>
+  );
+}
+
+function Text112() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">lzd</p>
+    </div>
+  );
+}
+
+function TableCell42() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text112 />
+    </div>
+  );
+}
+
+function Text114() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon30() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text115() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon30 />
+    </div>
+  );
+}
+
+function Text113() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text114 />
+      <Text115 />
+    </div>
+  );
+}
+
+function TableCell43() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text113 />
+    </div>
+  );
+}
+
+function Text117() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">管理员用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text116() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text117 />
+    </div>
+  );
+}
+
+function TableCell44() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text116 />
+    </div>
+  );
+}
+
+function Text119() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text118() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text119 />
+    </div>
+  );
+}
+
+function TableCell45() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text118 />
+    </div>
+  );
+}
+
+function Text120() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">1</p>
+    </div>
+  );
+}
+
+function TableCell46() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text120 />
+    </div>
+  );
+}
+
+function Text121() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell47() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text121 />
+    </div>
+  );
+}
+
+function Text123() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-09 10:14:06</p>
+      </div>
+    </div>
+  );
+}
+
+function Text122() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text123 />
+    </div>
+  );
+}
+
+function TableCell48() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text122 />
+    </div>
+  );
+}
+
+function TableRow6() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[216px] w-[1618px]" data-name="Table Row">
+      <TableCell42 />
+      <TableCell43 />
+      <TableCell44 />
+      <TableCell45 />
+      <TableCell46 />
+      <TableCell47 />
+      <TableCell48 />
+    </div>
+  );
+}
+
+function Text124() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">testtest</p>
+    </div>
+  );
+}
+
+function TableCell49() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text124 />
+    </div>
+  );
+}
+
+function Text126() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon31() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text127() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon31 />
+    </div>
+  );
+}
+
+function Text125() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text126 />
+      <Text127 />
+    </div>
+  );
+}
+
+function TableCell50() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text125 />
+    </div>
+  );
+}
+
+function Text129() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text128() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text129 />
+    </div>
+  );
+}
+
+function TableCell51() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text128 />
+    </div>
+  );
+}
+
+function Text131() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text130() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text131 />
+    </div>
+  );
+}
+
+function TableCell52() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text130 />
+    </div>
+  );
+}
+
+function Text132() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell53() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text132 />
+    </div>
+  );
+}
+
+function Text133() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell54() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text133 />
+    </div>
+  );
+}
+
+function Text135() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-06 14:55:33</p>
+      </div>
+    </div>
+  );
+}
+
+function Text134() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text135 />
+    </div>
+  );
+}
+
+function TableCell55() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text134 />
+    </div>
+  );
+}
+
+function TableRow7() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[252px] w-[1618px]" data-name="Table Row">
+      <TableCell49 />
+      <TableCell50 />
+      <TableCell51 />
+      <TableCell52 />
+      <TableCell53 />
+      <TableCell54 />
+      <TableCell55 />
+    </div>
+  );
+}
+
+function Text136() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">huatest</p>
+    </div>
+  );
+}
+
+function TableCell56() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text136 />
+    </div>
+  );
+}
+
+function Text138() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon32() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text139() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon32 />
+    </div>
+  );
+}
+
+function Text137() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text138 />
+      <Text139 />
+    </div>
+  );
+}
+
+function TableCell57() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text137 />
+    </div>
+  );
+}
+
+function Text141() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">管理员用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text140() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text141 />
+    </div>
+  );
+}
+
+function TableCell58() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text140 />
+    </div>
+  );
+}
+
+function Text143() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text142() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text143 />
+    </div>
+  );
+}
+
+function TableCell59() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text142 />
+    </div>
+  );
+}
+
+function Text144() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell60() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text144 />
+    </div>
+  );
+}
+
+function Text145() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell61() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text145 />
+    </div>
+  );
+}
+
+function Text147() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-04 18:20:01</p>
+      </div>
+    </div>
+  );
+}
+
+function Text146() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text147 />
+    </div>
+  );
+}
+
+function TableCell62() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text146 />
+    </div>
+  );
+}
+
+function TableRow8() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[288px] w-[1618px]" data-name="Table Row">
+      <TableCell56 />
+      <TableCell57 />
+      <TableCell58 />
+      <TableCell59 />
+      <TableCell60 />
+      <TableCell61 />
+      <TableCell62 />
+    </div>
+  );
+}
+
+function Text148() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">huawei</p>
+    </div>
+  );
+}
+
+function TableCell63() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text148 />
+    </div>
+  );
+}
+
+function Text150() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon33() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text151() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon33 />
+    </div>
+  );
+}
+
+function Text149() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text150 />
+      <Text151 />
+    </div>
+  );
+}
+
+function TableCell64() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text149 />
+    </div>
+  );
+}
+
+function Text153() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text152() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text153 />
+    </div>
+  );
+}
+
+function TableCell65() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text152 />
+    </div>
+  );
+}
+
+function Text155() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text154() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text155 />
+    </div>
+  );
+}
+
+function TableCell66() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text154 />
+    </div>
+  );
+}
+
+function Text156() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell67() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text156 />
+    </div>
+  );
+}
+
+function Text157() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell68() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text157 />
+    </div>
+  );
+}
+
+function Text159() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-04 18:18:34</p>
+      </div>
+    </div>
+  );
+}
+
+function Text158() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text159 />
+    </div>
+  );
+}
+
+function TableCell69() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text158 />
+    </div>
+  );
+}
+
+function TableRow9() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[324px] w-[1618px]" data-name="Table Row">
+      <TableCell63 />
+      <TableCell64 />
+      <TableCell65 />
+      <TableCell66 />
+      <TableCell67 />
+      <TableCell68 />
+      <TableCell69 />
+    </div>
+  );
+}
+
+function Text160() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">bmwtest</p>
+    </div>
+  );
+}
+
+function TableCell70() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text160 />
+    </div>
+  );
+}
+
+function Text162() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon34() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text163() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon34 />
+    </div>
+  );
+}
+
+function Text161() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text162 />
+      <Text163 />
+    </div>
+  );
+}
+
+function TableCell71() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text161 />
+    </div>
+  );
+}
+
+function Text165() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text164() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text165 />
+    </div>
+  );
+}
+
+function TableCell72() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text164 />
+    </div>
+  );
+}
+
+function Text167() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text166() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text167 />
+    </div>
+  );
+}
+
+function TableCell73() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text166 />
+    </div>
+  );
+}
+
+function Text168() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell74() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text168 />
+    </div>
+  );
+}
+
+function Text169() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell75() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text169 />
+    </div>
+  );
+}
+
+function Text171() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-02-04 10:56:25</p>
+      </div>
+    </div>
+  );
+}
+
+function Text170() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text171 />
+    </div>
+  );
+}
+
+function TableCell76() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text170 />
+    </div>
+  );
+}
+
+function TableRow10() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[360px] w-[1618px]" data-name="Table Row">
+      <TableCell70 />
+      <TableCell71 />
+      <TableCell72 />
+      <TableCell73 />
+      <TableCell74 />
+      <TableCell75 />
+      <TableCell76 />
+    </div>
+  );
+}
+
+function Text172() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">Averis</p>
+    </div>
+  );
+}
+
+function TableCell77() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text172 />
+    </div>
+  );
+}
+
+function Text174() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon35() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text175() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon35 />
+    </div>
+  );
+}
+
+function Text173() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text174 />
+      <Text175 />
+    </div>
+  );
+}
+
+function TableCell78() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text173 />
+    </div>
+  );
+}
+
+function Text177() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text176() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text177 />
+    </div>
+  );
+}
+
+function TableCell79() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text176 />
+    </div>
+  );
+}
+
+function Text179() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text178() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text179 />
+    </div>
+  );
+}
+
+function TableCell80() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text178 />
+    </div>
+  );
+}
+
+function Text180() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell81() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text180 />
+    </div>
+  );
+}
+
+function Text181() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell82() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text181 />
+    </div>
+  );
+}
+
+function Text183() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-30 23:09:33</p>
+      </div>
+    </div>
+  );
+}
+
+function Text182() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text183 />
+    </div>
+  );
+}
+
+function TableCell83() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text182 />
+    </div>
+  );
+}
+
+function TableRow11() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[396px] w-[1618px]" data-name="Table Row">
+      <TableCell77 />
+      <TableCell78 />
+      <TableCell79 />
+      <TableCell80 />
+      <TableCell81 />
+      <TableCell82 />
+      <TableCell83 />
+    </div>
+  );
+}
+
+function Text184() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">chunli-test</p>
+    </div>
+  );
+}
+
+function TableCell84() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text184 />
+    </div>
+  );
+}
+
+function Text186() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">停用</p>
+    </div>
+  );
+}
+
+function Icon36() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.3333">
+          <path clipRule="evenodd" d={svgPaths.pdae9100} fill="var(--fill-0, #F93940)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text187() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon36 />
+    </div>
+  );
+}
+
+function Text185() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text186 />
+      <Text187 />
+    </div>
+  );
+}
+
+function TableCell85() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text185 />
+    </div>
+  );
+}
+
+function Text189() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text188() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text189 />
+    </div>
+  );
+}
+
+function TableCell86() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text188 />
+    </div>
+  );
+}
+
+function Text191() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text190() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text191 />
+    </div>
+  );
+}
+
+function TableCell87() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text190 />
+    </div>
+  );
+}
+
+function Text192() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell88() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text192 />
+    </div>
+  );
+}
+
+function Text193() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell89() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text193 />
+    </div>
+  );
+}
+
+function Text195() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-20 16:19:26</p>
+      </div>
+    </div>
+  );
+}
+
+function Text194() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text195 />
+    </div>
+  );
+}
+
+function TableCell90() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text194 />
+    </div>
+  );
+}
+
+function TableRow12() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[432px] w-[1618px]" data-name="Table Row">
+      <TableCell84 />
+      <TableCell85 />
+      <TableCell86 />
+      <TableCell87 />
+      <TableCell88 />
+      <TableCell89 />
+      <TableCell90 />
+    </div>
+  );
+}
+
+function Text196() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">vm_user</p>
+    </div>
+  );
+}
+
+function TableCell91() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text196 />
+    </div>
+  );
+}
+
+function Text198() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon37() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text199() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon37 />
+    </div>
+  );
+}
+
+function Text197() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text198 />
+      <Text199 />
+    </div>
+  );
+}
+
+function TableCell92() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text197 />
+    </div>
+  );
+}
+
+function Text201() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text200() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text201 />
+    </div>
+  );
+}
+
+function TableCell93() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text200 />
+    </div>
+  );
+}
+
+function Text203() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text202() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text203 />
+    </div>
+  );
+}
+
+function TableCell94() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text202 />
+    </div>
+  );
+}
+
+function Text204() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell95() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text204 />
+    </div>
+  );
+}
+
+function Text205() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell96() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text205 />
+    </div>
+  );
+}
+
+function Text207() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-20 13:30:27</p>
+      </div>
+    </div>
+  );
+}
+
+function Text206() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text207 />
+    </div>
+  );
+}
+
+function TableCell97() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text206 />
+    </div>
+  );
+}
+
+function TableRow13() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[468px] w-[1618px]" data-name="Table Row">
+      <TableCell91 />
+      <TableCell92 />
+      <TableCell93 />
+      <TableCell94 />
+      <TableCell95 />
+      <TableCell96 />
+      <TableCell97 />
+    </div>
+  );
+}
+
+function Text208() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">DESK</p>
+    </div>
+  );
+}
+
+function TableCell98() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text208 />
+    </div>
+  );
+}
+
+function Text210() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon38() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text211() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon38 />
+    </div>
+  );
+}
+
+function Text209() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text210 />
+      <Text211 />
+    </div>
+  );
+}
+
+function TableCell99() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text209 />
+    </div>
+  );
+}
+
+function Text213() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text212() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text213 />
+    </div>
+  );
+}
+
+function TableCell100() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text212 />
+    </div>
+  );
+}
+
+function Text215() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text214() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text215 />
+    </div>
+  );
+}
+
+function TableCell101() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text214 />
+    </div>
+  );
+}
+
+function Text216() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell102() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text216 />
+    </div>
+  );
+}
+
+function Text217() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell103() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text217 />
+    </div>
+  );
+}
+
+function Text219() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-19 15:46:21</p>
+      </div>
+    </div>
+  );
+}
+
+function Text218() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text219 />
+    </div>
+  );
+}
+
+function TableCell104() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text218 />
+    </div>
+  );
+}
+
+function TableRow14() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[504px] w-[1618px]" data-name="Table Row">
+      <TableCell98 />
+      <TableCell99 />
+      <TableCell100 />
+      <TableCell101 />
+      <TableCell102 />
+      <TableCell103 />
+      <TableCell104 />
+    </div>
+  );
+}
+
+function Text220() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">zsphere01</p>
+    </div>
+  );
+}
+
+function TableCell105() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text220 />
+    </div>
+  );
+}
+
+function Text222() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon39() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text223() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon39 />
+    </div>
+  );
+}
+
+function Text221() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text222 />
+      <Text223 />
+    </div>
+  );
+}
+
+function TableCell106() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text221 />
+    </div>
+  );
+}
+
+function Text225() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">管理员用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text224() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text225 />
+    </div>
+  );
+}
+
+function TableCell107() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text224 />
+    </div>
+  );
+}
+
+function Text227() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text226() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text227 />
+    </div>
+  );
+}
+
+function TableCell108() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text226 />
+    </div>
+  );
+}
+
+function Text228() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">1</p>
+    </div>
+  );
+}
+
+function TableCell109() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text228 />
+    </div>
+  );
+}
+
+function Text229() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell110() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text229 />
+    </div>
+  );
+}
+
+function Text231() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-19 08:48:35</p>
+      </div>
+    </div>
+  );
+}
+
+function Text230() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text231 />
+    </div>
+  );
+}
+
+function TableCell111() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text230 />
+    </div>
+  );
+}
+
+function TableRow15() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[540px] w-[1618px]" data-name="Table Row">
+      <TableCell105 />
+      <TableCell106 />
+      <TableCell107 />
+      <TableCell108 />
+      <TableCell109 />
+      <TableCell110 />
+      <TableCell111 />
+    </div>
+  );
+}
+
+function Text232() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">admin_user</p>
+    </div>
+  );
+}
+
+function TableCell112() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text232 />
+    </div>
+  );
+}
+
+function Text234() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon40() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text235() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon40 />
+    </div>
+  );
+}
+
+function Text233() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text234 />
+      <Text235 />
+    </div>
+  );
+}
+
+function TableCell113() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text233 />
+    </div>
+  );
+}
+
+function Text237() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">管理员用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text236() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text237 />
+    </div>
+  );
+}
+
+function TableCell114() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text236 />
+    </div>
+  );
+}
+
+function Text239() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text238() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text239 />
+    </div>
+  );
+}
+
+function TableCell115() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text238 />
+    </div>
+  );
+}
+
+function Text240() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell116() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text240 />
+    </div>
+  );
+}
+
+function Text241() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell117() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text241 />
+    </div>
+  );
+}
+
+function Text243() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-13 16:59:32</p>
+      </div>
+    </div>
+  );
+}
+
+function Text242() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text243 />
+    </div>
+  );
+}
+
+function TableCell118() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text242 />
+    </div>
+  );
+}
+
+function TableRow16() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[576px] w-[1618px]" data-name="Table Row">
+      <TableCell112 />
+      <TableCell113 />
+      <TableCell114 />
+      <TableCell115 />
+      <TableCell116 />
+      <TableCell117 />
+      <TableCell118 />
+    </div>
+  );
+}
+
+function Text244() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">FSS01</p>
+    </div>
+  );
+}
+
+function TableCell119() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text244 />
+    </div>
+  );
+}
+
+function Text246() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon41() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text247() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon41 />
+    </div>
+  );
+}
+
+function Text245() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text246 />
+      <Text247 />
+    </div>
+  );
+}
+
+function TableCell120() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text245 />
+    </div>
+  );
+}
+
+function Text249() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text248() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text249 />
+    </div>
+  );
+}
+
+function TableCell121() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text248 />
+    </div>
+  );
+}
+
+function Text251() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text250() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text251 />
+    </div>
+  );
+}
+
+function TableCell122() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text250 />
+    </div>
+  );
+}
+
+function Text252() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell123() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text252 />
+    </div>
+  );
+}
+
+function Text253() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell124() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text253 />
+    </div>
+  );
+}
+
+function Text255() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-12 08:53:00</p>
+      </div>
+    </div>
+  );
+}
+
+function Text254() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text255 />
+    </div>
+  );
+}
+
+function TableCell125() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text254 />
+    </div>
+  );
+}
+
+function TableRow17() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[612px] w-[1618px]" data-name="Table Row">
+      <TableCell119 />
+      <TableCell120 />
+      <TableCell121 />
+      <TableCell122 />
+      <TableCell123 />
+      <TableCell124 />
+      <TableCell125 />
+    </div>
+  );
+}
+
+function Text256() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">lhd</p>
+    </div>
+  );
+}
+
+function TableCell126() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text256 />
+    </div>
+  );
+}
+
+function Text258() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon42() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text259() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon42 />
+    </div>
+  );
+}
+
+function Text257() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text258 />
+      <Text259 />
+    </div>
+  );
+}
+
+function TableCell127() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text257 />
+    </div>
+  );
+}
+
+function Text261() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text260() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text261 />
+    </div>
+  );
+}
+
+function TableCell128() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text260 />
+    </div>
+  );
+}
+
+function Text263() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text262() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text263 />
+    </div>
+  );
+}
+
+function TableCell129() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text262 />
+    </div>
+  );
+}
+
+function Text264() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell130() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text264 />
+    </div>
+  );
+}
+
+function Text265() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell131() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text265 />
+    </div>
+  );
+}
+
+function Text267() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-09 15:43:08</p>
+      </div>
+    </div>
+  );
+}
+
+function Text266() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text267 />
+    </div>
+  );
+}
+
+function TableCell132() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text266 />
+    </div>
+  );
+}
+
+function TableRow18() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[648px] w-[1618px]" data-name="Table Row">
+      <TableCell126 />
+      <TableCell127 />
+      <TableCell128 />
+      <TableCell129 />
+      <TableCell130 />
+      <TableCell131 />
+      <TableCell132 />
+    </div>
+  );
+}
+
+function Text268() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">wangyang2</p>
+    </div>
+  );
+}
+
+function TableCell133() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text268 />
+    </div>
+  );
+}
+
+function Text270() {
+  return (
+    <div className="absolute h-[22px] left-[20px] overflow-clip top-0 w-[28px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function Icon43() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[8.33%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 13.334">
+          <path clipRule="evenodd" d={svgPaths.p280a3780} fill="var(--fill-0, #57D344)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text271() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[3px]" data-name="Text">
+      <Icon43 />
+    </div>
+  );
+}
+
+function Text269() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text270 />
+      <Text271 />
+    </div>
+  );
+}
+
+function TableCell134() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text269 />
+    </div>
+  );
+}
+
+function Text273() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">普通用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Text272() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text273 />
+    </div>
+  );
+}
+
+function TableCell135() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text272 />
+    </div>
+  );
+}
+
+function Text275() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">本地</p>
+      </div>
+    </div>
+  );
+}
+
+function Text274() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[141.203px]" data-name="Text">
+      <Text275 />
+    </div>
+  );
+}
+
+function TableCell136() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Table Cell">
+      <Text274 />
+    </div>
+  );
+}
+
+function Text276() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell137() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text276 />
+    </div>
+  );
+}
+
+function Text277() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[6.5px] w-[212.281px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">0</p>
+    </div>
+  );
+}
+
+function TableCell138() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text277 />
+    </div>
+  );
+}
+
+function Text279() {
+  return (
+    <div className="h-[22px] relative shrink-0 w-[146.063px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">2026-01-09 10:59:55</p>
+      </div>
+    </div>
+  );
+}
+
+function Text278() {
+  return (
+    <div className="absolute content-stretch flex h-[22px] items-start left-[12px] top-[6.5px] w-[212.281px]" data-name="Text">
+      <Text279 />
+    </div>
+  );
+}
+
+function TableCell139() {
+  return (
+    <div className="absolute border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Table Cell">
+      <Text278 />
+    </div>
+  );
+}
+
+function TableRow19() {
+  return (
+    <div className="absolute h-[36px] left-0 top-[684px] w-[1618px]" data-name="Table Row">
+      <TableCell133 />
+      <TableCell134 />
+      <TableCell135 />
+      <TableCell136 />
+      <TableCell137 />
+      <TableCell138 />
+      <TableCell139 />
+    </div>
+  );
+}
+
+function TableBody() {
+  return (
+    <div className="absolute h-[720px] left-0 top-[36px] w-[1618px]" data-name="Table Body">
+      <TableRow />
+      <TableRow1 />
+      <TableRow2 />
+      <TableRow3 />
+      <TableRow4 />
+      <TableRow5 />
+      <TableRow6 />
+      <TableRow7 />
+      <TableRow8 />
+      <TableRow9 />
+      <TableRow10 />
+      <TableRow11 />
+      <TableRow12 />
+      <TableRow13 />
+      <TableRow14 />
+      <TableRow15 />
+      <TableRow16 />
+      <TableRow17 />
+      <TableRow18 />
+      <TableRow19 />
+    </div>
+  );
+}
+
+function Table() {
+  return (
+    <div className="absolute h-[756px] left-0 rounded-tl-[2px] rounded-tr-[2px] top-0 w-[1618px]" data-name="Table">
+      <ColumnGroup />
+      <TableBody />
+    </div>
+  );
+}
+
+function Text280() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text280 />
+    </div>
+  );
+}
+
+function TableCell140() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[36px] w-[40.047px]" data-name="Table Cell">
+      <Label />
+    </div>
+  );
+}
+
+function Icon44() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text281() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon44 />
+    </div>
+  );
+}
+
+function Button7() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text281 />
+    </div>
+  );
+}
+
+function TableCell141() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[36px] w-[66.141px]" data-name="Action Cell">
+      <Button7 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text282() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label1() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text282 />
+    </div>
+  );
+}
+
+function TableCell142() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[72px] w-[40.047px]" data-name="Table Cell">
+      <Label1 />
+    </div>
+  );
+}
+
+function Icon45() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text283() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon45 />
+    </div>
+  );
+}
+
+function Button8() {
+  return (
+    <div className="absolute bg-[#dbdde0] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text283 />
+    </div>
+  );
+}
+
+function TableCell143() {
+  return (
+    <div className="absolute bg-[#f5f7fa] border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[72px] w-[66.141px]" data-name="Action Cell">
+      <Button8 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text284() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label2() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text284 />
+    </div>
+  );
+}
+
+function TableCell144() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[108px] w-[40.047px]" data-name="Table Cell">
+      <Label2 />
+    </div>
+  );
+}
+
+function Icon46() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text285() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon46 />
+    </div>
+  );
+}
+
+function Button9() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text285 />
+    </div>
+  );
+}
+
+function TableCell145() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[108px] w-[66.141px]" data-name="Action Cell">
+      <Button9 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text286() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label3() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text286 />
+    </div>
+  );
+}
+
+function TableCell146() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[144px] w-[40.047px]" data-name="Table Cell">
+      <Label3 />
+    </div>
+  );
+}
+
+function Icon47() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text287() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon47 />
+    </div>
+  );
+}
+
+function Button10() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text287 />
+    </div>
+  );
+}
+
+function TableCell147() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[144px] w-[66.141px]" data-name="Action Cell">
+      <Button10 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text288() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label4() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text288 />
+    </div>
+  );
+}
+
+function TableCell148() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[180px] w-[40.047px]" data-name="Table Cell">
+      <Label4 />
+    </div>
+  );
+}
+
+function Icon48() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text289() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon48 />
+    </div>
+  );
+}
+
+function Button11() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text289 />
+    </div>
+  );
+}
+
+function TableCell149() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[180px] w-[66.141px]" data-name="Action Cell">
+      <Button11 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text290() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label5() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text290 />
+    </div>
+  );
+}
+
+function TableCell150() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[216px] w-[40.047px]" data-name="Table Cell">
+      <Label5 />
+    </div>
+  );
+}
+
+function Icon49() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text291() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon49 />
+    </div>
+  );
+}
+
+function Button12() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text291 />
+    </div>
+  );
+}
+
+function TableCell151() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[216px] w-[66.141px]" data-name="Action Cell">
+      <Button12 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text292() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label6() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text292 />
+    </div>
+  );
+}
+
+function TableCell152() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[252px] w-[40.047px]" data-name="Table Cell">
+      <Label6 />
+    </div>
+  );
+}
+
+function Icon50() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text293() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon50 />
+    </div>
+  );
+}
+
+function Button13() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text293 />
+    </div>
+  );
+}
+
+function TableCell153() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[252px] w-[66.141px]" data-name="Action Cell">
+      <Button13 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text294() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label7() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text294 />
+    </div>
+  );
+}
+
+function TableCell154() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[288px] w-[40.047px]" data-name="Table Cell">
+      <Label7 />
+    </div>
+  );
+}
+
+function Icon51() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text295() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon51 />
+    </div>
+  );
+}
+
+function Button14() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text295 />
+    </div>
+  );
+}
+
+function TableCell155() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[288px] w-[66.141px]" data-name="Action Cell">
+      <Button14 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text296() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label8() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text296 />
+    </div>
+  );
+}
+
+function TableCell156() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[324px] w-[40.047px]" data-name="Table Cell">
+      <Label8 />
+    </div>
+  );
+}
+
+function Icon52() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text297() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon52 />
+    </div>
+  );
+}
+
+function Button15() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text297 />
+    </div>
+  );
+}
+
+function TableCell157() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[324px] w-[66.141px]" data-name="Action Cell">
+      <Button15 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text298() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label9() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text298 />
+    </div>
+  );
+}
+
+function TableCell158() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[360px] w-[40.047px]" data-name="Table Cell">
+      <Label9 />
+    </div>
+  );
+}
+
+function Icon53() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text299() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon53 />
+    </div>
+  );
+}
+
+function Button16() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text299 />
+    </div>
+  );
+}
+
+function TableCell159() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[360px] w-[66.141px]" data-name="Action Cell">
+      <Button16 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text300() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label10() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text300 />
+    </div>
+  );
+}
+
+function TableCell160() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[396px] w-[40.047px]" data-name="Table Cell">
+      <Label10 />
+    </div>
+  );
+}
+
+function Icon54() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text301() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon54 />
+    </div>
+  );
+}
+
+function Button17() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text301 />
+    </div>
+  );
+}
+
+function TableCell161() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[396px] w-[66.141px]" data-name="Action Cell">
+      <Button17 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text302() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label11() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text302 />
+    </div>
+  );
+}
+
+function TableCell162() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[432px] w-[40.047px]" data-name="Table Cell">
+      <Label11 />
+    </div>
+  );
+}
+
+function Icon55() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text303() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon55 />
+    </div>
+  );
+}
+
+function Button18() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text303 />
+    </div>
+  );
+}
+
+function TableCell163() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[432px] w-[66.141px]" data-name="Action Cell">
+      <Button18 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text304() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label12() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text304 />
+    </div>
+  );
+}
+
+function TableCell164() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[468px] w-[40.047px]" data-name="Table Cell">
+      <Label12 />
+    </div>
+  );
+}
+
+function Icon56() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text305() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon56 />
+    </div>
+  );
+}
+
+function Button19() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text305 />
+    </div>
+  );
+}
+
+function TableCell165() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[468px] w-[66.141px]" data-name="Action Cell">
+      <Button19 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text306() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label13() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text306 />
+    </div>
+  );
+}
+
+function TableCell166() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[504px] w-[40.047px]" data-name="Table Cell">
+      <Label13 />
+    </div>
+  );
+}
+
+function Icon57() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text307() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon57 />
+    </div>
+  );
+}
+
+function Button20() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text307 />
+    </div>
+  );
+}
+
+function TableCell167() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[504px] w-[66.141px]" data-name="Action Cell">
+      <Button20 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text308() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label14() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text308 />
+    </div>
+  );
+}
+
+function TableCell168() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[540px] w-[40.047px]" data-name="Table Cell">
+      <Label14 />
+    </div>
+  );
+}
+
+function Icon58() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text309() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon58 />
+    </div>
+  );
+}
+
+function Button21() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text309 />
+    </div>
+  );
+}
+
+function TableCell169() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[540px] w-[66.141px]" data-name="Action Cell">
+      <Button21 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text310() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label15() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text310 />
+    </div>
+  );
+}
+
+function TableCell170() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[576px] w-[40.047px]" data-name="Table Cell">
+      <Label15 />
+    </div>
+  );
+}
+
+function Icon59() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text311() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon59 />
+    </div>
+  );
+}
+
+function Button22() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text311 />
+    </div>
+  );
+}
+
+function TableCell171() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[576px] w-[66.141px]" data-name="Action Cell">
+      <Button22 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text312() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label16() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text312 />
+    </div>
+  );
+}
+
+function TableCell172() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[612px] w-[40.047px]" data-name="Table Cell">
+      <Label16 />
+    </div>
+  );
+}
+
+function Icon60() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text313() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon60 />
+    </div>
+  );
+}
+
+function Button23() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text313 />
+    </div>
+  );
+}
+
+function TableCell173() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[612px] w-[66.141px]" data-name="Action Cell">
+      <Button23 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text314() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label17() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text314 />
+    </div>
+  );
+}
+
+function TableCell174() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[648px] w-[40.047px]" data-name="Table Cell">
+      <Label17 />
+    </div>
+  );
+}
+
+function Icon61() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text315() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon61 />
+    </div>
+  );
+}
+
+function Button24() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text315 />
+    </div>
+  );
+}
+
+function TableCell175() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[648px] w-[66.141px]" data-name="Action Cell">
+      <Button24 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text316() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label18() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text316 />
+    </div>
+  );
+}
+
+function TableCell176() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[684px] w-[40.047px]" data-name="Table Cell">
+      <Label18 />
+    </div>
+  );
+}
+
+function Icon62() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text317() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon62 />
+    </div>
+  );
+}
+
+function Button25() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text317 />
+    </div>
+  );
+}
+
+function TableCell177() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[684px] w-[66.141px]" data-name="Action Cell">
+      <Button25 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text318() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[0.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label19() {
+  return (
+    <div className="absolute h-[16px] left-[12px] top-[9.5px] w-[16.047px]" data-name="Label">
+      <Text318 />
+    </div>
+  );
+}
+
+function TableCell178() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 top-[720px] w-[40.047px]" data-name="Table Cell">
+      <Label19 />
+    </div>
+  );
+}
+
+function Icon63() {
+  return (
+    <div className="absolute left-0 size-[16px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p6211f80} fill="var(--fill-0, #4A4C4F)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text319() {
+  return (
+    <div className="absolute left-[8px] size-[16px] top-[3px]" data-name="Text">
+      <Icon63 />
+    </div>
+  );
+}
+
+function Button26() {
+  return (
+    <div className="absolute bg-[#f0f2f5] h-[24px] left-[17.06px] rounded-[2px] top-[5.5px] w-[32px]" data-name="Button">
+      <Text319 />
+    </div>
+  );
+}
+
+function TableCell179() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] top-[720px] w-[66.141px]" data-name="Action Cell">
+      <Button26 />
+      <ActionPopup />
+    </div>
+  );
+}
+
+function Text321() {
+  return (
+    <div className="flex-[1_0_0] h-[20px] min-h-px min-w-px relative" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[20px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">用户名</p>
+      </div>
+    </div>
+  );
+}
+
+function Text320() {
+  return (
+    <div className="h-[20px] relative shrink-0 w-[42px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start relative size-full">
+        <Text321 />
+      </div>
+    </div>
+  );
+}
+
+function Icon64() {
+  return (
+    <div className="h-[11px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[29.3%_15.62%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 7.56281 4.55442">
+          <path d={svgPaths.p4d7ab00} fill="var(--fill-0, #BFBFBF)" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Image() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[2.5px] size-[11px] top-0" data-name="Image">
+      <Icon64 />
+    </div>
+  );
+}
+
+function Icon65() {
+  return (
+    <div className="h-[11px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[29.3%_15.62%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 7.56281 4.55442">
+          <path d={svgPaths.p39e46d00} fill="var(--fill-0, #BFBFBF)" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Image1() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[2.5px] size-[11px] top-[7.7px]" data-name="Image">
+      <Icon65 />
+    </div>
+  );
+}
+
+function Text322() {
+  return (
+    <div className="h-[18.703px] relative shrink-0 w-[16px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Image />
+        <Image1 />
+      </div>
+    </div>
+  );
+}
+
+function Container52() {
+  return (
+    <div className="absolute content-stretch flex gap-[4px] h-[35px] items-center left-0 pl-[8px] top-0 w-[236.281px]" data-name="Container">
+      <Text320 />
+      <Text322 />
+    </div>
+  );
+}
+
+function HeaderCell() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[40.05px] top-0 w-[236.281px]" data-name="Header Cell">
+      <Container52 />
+    </div>
+  );
+}
+
+function Text324() {
+  return (
+    <div className="flex-[1_0_0] h-[20px] min-h-px min-w-px relative" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[20px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用状态</p>
+      </div>
+    </div>
+  );
+}
+
+function Text323() {
+  return (
+    <div className="h-[20px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start relative size-full">
+        <Text324 />
+      </div>
+    </div>
+  );
+}
+
+function Icon66() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[16.67%_16.66%_8.33%_16.66%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10.6682 12">
+          <path clipRule="evenodd" d={svgPaths.p15bcad00} fill="var(--fill-0, #BFBFBF)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text326() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[10.5px]" data-name="Text">
+      <Icon66 />
+    </div>
+  );
+}
+
+function Text325() {
+  return (
+    <div className="h-full relative shrink-0 w-[16px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Text326 />
+      </div>
+    </div>
+  );
+}
+
+function Container53() {
+  return (
+    <div className="absolute content-stretch flex gap-[4px] h-[37px] items-center left-[-8px] pl-[16px] top-[-1px] w-[252.281px]" data-name="Container">
+      <Text323 />
+      <Text325 />
+    </div>
+  );
+}
+
+function HeaderCell1() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[276.33px] top-0 w-[236.281px]" data-name="Header Cell">
+      <Container53 />
+    </div>
+  );
+}
+
+function Text328() {
+  return (
+    <div className="flex-[1_0_0] h-[20px] min-h-px min-w-px relative" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[20px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">类型</p>
+      </div>
+    </div>
+  );
+}
+
+function Text327() {
+  return (
+    <div className="h-[20px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start relative size-full">
+        <Text328 />
+      </div>
+    </div>
+  );
+}
+
+function Icon67() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[16.67%_16.66%_8.33%_16.66%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10.6682 12">
+          <path clipRule="evenodd" d={svgPaths.p15bcad00} fill="var(--fill-0, #BFBFBF)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text330() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[10.5px]" data-name="Text">
+      <Icon67 />
+    </div>
+  );
+}
+
+function Text329() {
+  return (
+    <div className="h-full relative shrink-0 w-[16px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Text330 />
+      </div>
+    </div>
+  );
+}
+
+function Container54() {
+  return (
+    <div className="absolute content-stretch flex gap-[4px] h-[37px] items-center left-[-8px] pl-[16px] top-[-1px] w-[181.203px]" data-name="Container">
+      <Text327 />
+      <Text329 />
+    </div>
+  );
+}
+
+function HeaderCell2() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[512.61px] top-0 w-[165.203px]" data-name="Header Cell">
+      <Container54 />
+    </div>
+  );
+}
+
+function Text332() {
+  return (
+    <div className="flex-[1_0_0] h-[20px] min-h-px min-w-px relative" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[20px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">来源</p>
+      </div>
+    </div>
+  );
+}
+
+function Text331() {
+  return (
+    <div className="h-[20px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start relative size-full">
+        <Text332 />
+      </div>
+    </div>
+  );
+}
+
+function Icon68() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[16.67%_16.66%_8.33%_16.66%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 10.6682 12">
+          <path clipRule="evenodd" d={svgPaths.p15bcad00} fill="var(--fill-0, #BFBFBF)" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text334() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 size-[16px] top-[10.5px]" data-name="Text">
+      <Icon68 />
+    </div>
+  );
+}
+
+function Text333() {
+  return (
+    <div className="h-full relative shrink-0 w-[16px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Text334 />
+      </div>
+    </div>
+  );
+}
+
+function Container55() {
+  return (
+    <div className="absolute content-stretch flex gap-[4px] h-[37px] items-center left-[-8px] pl-[16px] top-[-1px] w-[181.203px]" data-name="Container">
+      <Text331 />
+      <Text333 />
+    </div>
+  );
+}
+
+function HeaderCell3() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[677.81px] top-0 w-[165.203px]" data-name="Header Cell">
+      <Container55 />
+    </div>
+  );
+}
+
+function Text336() {
+  return (
+    <div className="h-[20px] relative shrink-0 w-[70px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[20px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">虚拟机数量</p>
+      </div>
+    </div>
+  );
+}
+
+function Text335() {
+  return (
+    <div className="absolute content-stretch flex h-[20px] items-start left-[8px] top-[7.5px] w-[220.281px]" data-name="Text">
+      <Text336 />
+    </div>
+  );
+}
+
+function HeaderCell4() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[843.02px] top-0 w-[236.281px]" data-name="Header Cell">
+      <Text335 />
+    </div>
+  );
+}
+
+function Text338() {
+  return (
+    <div className="h-[20px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[20px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">硬盘数量</p>
+      </div>
+    </div>
+  );
+}
+
+function Text337() {
+  return (
+    <div className="absolute content-stretch flex h-[20px] items-start left-[8px] top-[7.5px] w-[220.281px]" data-name="Text">
+      <Text338 />
+    </div>
+  );
+}
+
+function HeaderCell5() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1079.3px] top-0 w-[236.281px]" data-name="Header Cell">
+      <Text337 />
+    </div>
+  );
+}
+
+function Text340() {
+  return (
+    <div className="flex-[1_0_0] h-[20px] min-h-px min-w-px relative" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[20px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">创建时间</p>
+      </div>
+    </div>
+  );
+}
+
+function Text339() {
+  return (
+    <div className="h-[20px] relative shrink-0 w-[56px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex items-start relative size-full">
+        <Text340 />
+      </div>
+    </div>
+  );
+}
+
+function Icon69() {
+  return (
+    <div className="h-[11px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[29.3%_15.62%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 7.56281 4.55442">
+          <path d={svgPaths.p4d7ab00} fill="var(--fill-0, #BFBFBF)" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Image2() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[2.5px] size-[11px] top-0" data-name="Image">
+      <Icon69 />
+    </div>
+  );
+}
+
+function Icon70() {
+  return (
+    <div className="h-[11px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[29.3%_15.62%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 7.56281 4.55442">
+          <path d={svgPaths.p39e46d00} fill="var(--fill-0, #BFBFBF)" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Image3() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[2.5px] size-[11px] top-[7.7px]" data-name="Image">
+      <Icon70 />
+    </div>
+  );
+}
+
+function Text341() {
+  return (
+    <div className="h-[18.703px] relative shrink-0 w-[16px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Image2 />
+        <Image3 />
+      </div>
+    </div>
+  );
+}
+
+function Container56() {
+  return (
+    <div className="absolute content-stretch flex gap-[4px] h-[35px] items-center left-0 pl-[8px] top-0 w-[236.281px]" data-name="Container">
+      <Text339 />
+      <Text341 />
+    </div>
+  );
+}
+
+function HeaderCell6() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1315.58px] top-0 w-[236.281px]" data-name="Header Cell">
+      <Container56 />
+    </div>
+  );
+}
+
+function TableRow20() {
+  return (
+    <div className="absolute h-[36px] left-0 top-0 w-[1618px]" data-name="Table Row">
+      <HeaderCell />
+      <HeaderCell1 />
+      <HeaderCell2 />
+      <HeaderCell3 />
+      <HeaderCell4 />
+      <HeaderCell5 />
+      <HeaderCell6 />
+    </div>
+  );
+}
+
+function Text342() {
+  return <div className="absolute bg-white border border-[#c8cacd] border-solid left-[4.02px] rounded-[2px] size-[16px] top-0" data-name="Text" />;
+}
+
+function Label20() {
+  return (
+    <div className="absolute h-[16px] left-[8px] top-[9.5px] w-[24.047px]" data-name="Label">
+      <Text342 />
+    </div>
+  );
+}
+
+function HeaderCell7() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-0 rounded-tl-[2px] top-0 w-[40.047px]" data-name="Header Cell">
+      <Label20 />
+    </div>
+  );
+}
+
+function Text344() {
+  return (
+    <div className="h-[20px] relative shrink-0 w-[28px]" data-name="Text">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid overflow-clip relative rounded-[inherit] size-full">
+        <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[20px] left-[14px] not-italic text-[#707275] text-[14px] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">操作</p>
+      </div>
+    </div>
+  );
+}
+
+function Text343() {
+  return (
+    <div className="absolute content-stretch flex h-[20px] items-start justify-center left-[8px] pl-[11.063px] pr-[11.078px] top-[7.5px] w-[50.141px]" data-name="Text">
+      <Text344 />
+    </div>
+  );
+}
+
+function HeaderCell8() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-b border-solid h-[36px] left-[1551.86px] rounded-tr-[2px] top-0 w-[66.141px]" data-name="Header Cell">
+      <Text343 />
+    </div>
+  );
+}
+
+function TableHeader() {
+  return (
+    <div className="absolute h-[36px] left-0 overflow-clip top-0 w-[1618px]" data-name="Table Header">
+      <TableRow20 />
+      <HeaderCell7 />
+      <HeaderCell8 />
+    </div>
+  );
+}
+
+function Container51() {
+  return (
+    <div className="h-[756px] overflow-clip relative rounded-tl-[2px] rounded-tr-[2px] shrink-0 w-full" data-name="Container">
+      <Table />
+      <TableCell140 />
+      <TableCell141 />
+      <TableCell142 />
+      <TableCell143 />
+      <TableCell144 />
+      <TableCell145 />
+      <TableCell146 />
+      <TableCell147 />
+      <TableCell148 />
+      <TableCell149 />
+      <TableCell150 />
+      <TableCell151 />
+      <TableCell152 />
+      <TableCell153 />
+      <TableCell154 />
+      <TableCell155 />
+      <TableCell156 />
+      <TableCell157 />
+      <TableCell158 />
+      <TableCell159 />
+      <TableCell160 />
+      <TableCell161 />
+      <TableCell162 />
+      <TableCell163 />
+      <TableCell164 />
+      <TableCell165 />
+      <TableCell166 />
+      <TableCell167 />
+      <TableCell168 />
+      <TableCell169 />
+      <TableCell170 />
+      <TableCell171 />
+      <TableCell172 />
+      <TableCell173 />
+      <TableCell174 />
+      <TableCell175 />
+      <TableCell176 />
+      <TableCell177 />
+      <TableCell178 />
+      <TableCell179 />
+      <TableHeader />
+    </div>
+  );
+}
+
+function Container50() {
+  return (
+    <div className="bg-white content-stretch flex flex-col h-[756px] items-start relative rounded-[2px] shrink-0 w-full" data-name="Container">
+      <Container51 />
+    </div>
+  );
+}
+
+function Container49() {
+  return (
+    <div className="h-[758px] relative rounded-[2px] shrink-0 w-full" data-name="Container">
+      <div aria-hidden="true" className="absolute border border-[#dbdde0] border-solid inset-0 pointer-events-none rounded-[2px]" />
+      <div className="content-stretch flex flex-col items-start p-px relative size-full">
+        <Container50 />
+      </div>
+    </div>
+  );
+}
+
+function Container58() {
+  return (
+    <div className="absolute h-[22px] left-0 top-[5px] w-[152.281px]" data-name="Container">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#707275] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">第 1-20 项，共 9969 项</p>
+    </div>
+  );
+}
+
+function Icon71() {
+  return (
+    <div className="absolute left-0 size-[12px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12">
+        <g id="Icon">
+          <path d={svgPaths.p34973b30} fill="var(--fill-0, black)" fillOpacity="0.25" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Image4() {
+  return (
+    <div className="h-[12px] relative shrink-0 w-full" data-name="Image">
+      <Icon71 />
+    </div>
+  );
+}
+
+function Button27() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 pb-px pt-[6.5px] px-[6px] rounded-[2px] size-[24px] top-0" data-name="Button">
+      <div aria-hidden="true" className="absolute border border-[rgba(0,0,0,0)] border-solid inset-0 pointer-events-none rounded-[2px]" />
+      <Image4 />
+    </div>
+  );
+}
+
+function ListItem4() {
+  return (
+    <div className="absolute left-0 rounded-[2px] size-[24px] top-[4px]" data-name="List Item">
+      <Button27 />
+    </div>
+  );
+}
+
+function Link8() {
+  return (
+    <div className="absolute h-[32px] left-0 top-0 w-[24px]" data-name="Link">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Medium',sans-serif] leading-[32px] left-[11.56px] not-italic text-[#005bd4] text-[14px] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">1</p>
+    </div>
+  );
+}
+
+function ListItem5() {
+  return (
+    <div className="absolute bg-white h-[32px] left-[24px] rounded-[2px] top-0 w-[24px]" data-name="List Item">
+      <Link8 />
+    </div>
+  );
+}
+
+function Link9() {
+  return (
+    <div className="absolute h-[32px] left-0 top-0 w-[24px]" data-name="Link">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[12.16px] not-italic text-[14px] text-[rgba(0,0,0,0.85)] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">2</p>
+    </div>
+  );
+}
+
+function ListItem6() {
+  return (
+    <div className="absolute h-[32px] left-[48px] rounded-[2px] top-0 w-[24px]" data-name="List Item">
+      <Link9 />
+    </div>
+  );
+}
+
+function Link10() {
+  return (
+    <div className="absolute h-[32px] left-0 top-0 w-[24px]" data-name="Link">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[12.16px] not-italic text-[14px] text-[rgba(0,0,0,0.85)] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">3</p>
+    </div>
+  );
+}
+
+function ListItem7() {
+  return (
+    <div className="absolute h-[32px] left-[72px] rounded-[2px] top-0 w-[24px]" data-name="List Item">
+      <Link10 />
+    </div>
+  );
+}
+
+function Link11() {
+  return (
+    <div className="absolute h-[32px] left-0 top-0 w-[24px]" data-name="Link">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[12.16px] not-italic text-[14px] text-[rgba(0,0,0,0.85)] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">4</p>
+    </div>
+  );
+}
+
+function ListItem8() {
+  return (
+    <div className="absolute h-[32px] left-[96px] rounded-[2px] top-0 w-[24px]" data-name="List Item">
+      <Link11 />
+    </div>
+  );
+}
+
+function Link12() {
+  return (
+    <div className="absolute h-[32px] left-0 top-0 w-[24px]" data-name="Link">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[12.16px] not-italic text-[14px] text-[rgba(0,0,0,0.85)] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">5</p>
+    </div>
+  );
+}
+
+function ListItem9() {
+  return (
+    <div className="absolute h-[32px] left-[120px] rounded-[2px] top-0 w-[24px]" data-name="List Item">
+      <Link12 />
+    </div>
+  );
+}
+
+function Link13() {
+  return (
+    <div className="absolute h-[24px] left-0 top-0 w-[32px]" data-name="Link">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[24px] left-[17.05px] not-italic text-[14px] text-[rgba(0,0,0,0.25)] text-center top-0 tracking-[2px] whitespace-nowrap">•••</p>
+    </div>
+  );
+}
+
+function ListItem10() {
+  return (
+    <div className="absolute h-[24px] left-[144px] rounded-[2px] top-[4px] w-[32px]" data-name="List Item">
+      <Link13 />
+    </div>
+  );
+}
+
+function Link14() {
+  return (
+    <div className="absolute h-[32px] left-0 top-0 w-[38.016px]" data-name="Link">
+      <p className="-translate-x-1/2 absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[19.5px] not-italic text-[14px] text-[rgba(0,0,0,0.85)] text-center top-0 tracking-[-0.1504px] whitespace-nowrap">499</p>
+    </div>
+  );
+}
+
+function ListItem11() {
+  return (
+    <div className="absolute h-[32px] left-[176px] rounded-[2px] top-0 w-[38.016px]" data-name="List Item">
+      <Link14 />
+    </div>
+  );
+}
+
+function Icon72() {
+  return (
+    <div className="absolute left-0 size-[12px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12">
+        <g id="Icon">
+          <path d={svgPaths.p26bc2372} fill="var(--fill-0, black)" fillOpacity="0.85" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Image5() {
+  return (
+    <div className="h-[12px] relative shrink-0 w-full" data-name="Image">
+      <Icon72 />
+    </div>
+  );
+}
+
+function Button28() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-0 pb-px pt-[6.5px] px-[6px] rounded-[2px] size-[24px] top-0" data-name="Button">
+      <div aria-hidden="true" className="absolute border border-[rgba(0,0,0,0)] border-solid inset-0 pointer-events-none rounded-[2px]" />
+      <Image5 />
+    </div>
+  );
+}
+
+function ListItem12() {
+  return (
+    <div className="absolute left-[214.02px] rounded-[2px] size-[24px] top-[4px]" data-name="List Item">
+      <Button28 />
+    </div>
+  );
+}
+
+function TextInput2() {
+  return <div className="absolute bg-white border border-[#dbdde0] border-solid h-[30px] left-[36px] rounded-[2px] top-[0.5px] w-[44px]" data-name="Text Input" />;
+}
+
+function Container59() {
+  return (
+    <div className="absolute h-[32px] left-[102.25px] top-0 w-[102px]" data-name="Container">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-0 not-italic text-[14px] text-[rgba(0,0,0,0.85)] top-0 tracking-[-0.1504px] whitespace-nowrap">跳至</p>
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[32px] left-[88px] not-italic text-[14px] text-[rgba(0,0,0,0.85)] top-0 tracking-[-0.1504px] whitespace-nowrap">页</p>
+      <TextInput2 />
+    </div>
+  );
+}
+
+function Text345() {
+  return (
+    <div className="absolute h-[22px] left-[7px] overflow-clip top-[4px] w-[74.25px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[14px] text-[rgba(0,0,0,0.85)] top-0 tracking-[-0.1504px] whitespace-nowrap">20 项/页</p>
+    </div>
+  );
+}
+
+function Container61() {
+  return (
+    <div className="absolute bg-white border border-[#c8cacd] border-solid h-[32px] left-0 rounded-[2px] top-0 w-[90.25px]" data-name="Container">
+      <Text345 />
+    </div>
+  );
+}
+
+function Icon73() {
+  return (
+    <div className="absolute left-0 size-[12px] top-0" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 12 12">
+        <g id="Icon">
+          <path d={svgPaths.pc04cd00} fill="var(--fill-0, #4A4C4F)" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Image6() {
+  return (
+    <div className="absolute left-[65.25px] size-[12px] top-[8.95px]" data-name="Image">
+      <Icon73 />
+    </div>
+  );
+}
+
+function Container60() {
+  return (
+    <div className="absolute h-[32px] left-0 top-0 w-[90.25px]" data-name="Container">
+      <Container61 />
+      <Image6 />
+    </div>
+  );
+}
+
+function ListItem13() {
+  return (
+    <div className="absolute h-[32px] left-[242.02px] top-0 w-[204.25px]" data-name="List Item">
+      <Container59 />
+      <Container60 />
+    </div>
+  );
+}
+
+function List3() {
+  return (
+    <div className="absolute h-[32px] left-[1173.73px] top-0 w-[446.266px]" data-name="List">
+      <ListItem4 />
+      <ListItem5 />
+      <ListItem6 />
+      <ListItem7 />
+      <ListItem8 />
+      <ListItem9 />
+      <ListItem10 />
+      <ListItem11 />
+      <ListItem12 />
+      <ListItem13 />
+    </div>
+  );
+}
+
+function Container57() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Container">
+      <Container58 />
+      <List3 />
+    </div>
+  );
+}
+
+function Container48() {
+  return (
+    <div className="absolute content-stretch flex flex-col gap-[8px] h-[798px] items-start left-0 top-[40px] w-[1620px]" data-name="Container">
+      <Container49 />
+      <Container57 />
+    </div>
+  );
+}
+
+function Container63() {
+  return <div className="absolute h-0 left-0 top-0 w-[1620px]" data-name="Container" />;
+}
+
+function Container65() {
+  return (
+    <div className="absolute h-[22px] left-0 top-0 w-[28px]" data-name="Container">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">操作</p>
+    </div>
+  );
+}
+
+function Container66() {
+  return (
+    <div className="absolute h-[22px] left-[45px] overflow-clip top-0 w-[131.922px]" data-name="Container">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">sl11111111111111</p>
+    </div>
+  );
+}
+
+function Container67() {
+  return <div className="absolute bg-[#dbdde0] border-[#dbdde0] border-l border-solid h-[12.594px] left-[36px] top-[5.17px] w-px" data-name="Container" />;
+}
+
+function Container64() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[5px] w-[176.922px]" data-name="Container">
+      <Container65 />
+      <Container66 />
+      <Container67 />
+    </div>
+  );
+}
+
+function MenuItem15() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <Container64 />
+    </div>
+  );
+}
+
+function Container68() {
+  return (
+    <div className="absolute h-[22px] left-[12px] top-[5px] w-[176.922px]" data-name="Container">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[#96989b] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">启用</p>
+    </div>
+  );
+}
+
+function MenuItem16() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <Container68 />
+    </div>
+  );
+}
+
+function Text346() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[5px] w-[176.922px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">停用</p>
+    </div>
+  );
+}
+
+function MenuItem17() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <Text346 />
+    </div>
+  );
+}
+
+function ListItem14() {
+  return <div className="bg-[#dbdde0] h-px shrink-0 w-full" data-name="List Item" />;
+}
+
+function Text347() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[5px] w-[176.922px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">修改配置</p>
+    </div>
+  );
+}
+
+function MenuItem18() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <Text347 />
+    </div>
+  );
+}
+
+function Text348() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[5px] w-[176.922px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">修改密码</p>
+    </div>
+  );
+}
+
+function MenuItem19() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <Text348 />
+    </div>
+  );
+}
+
+function TextChangeToAdmin() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[5px] w-[176.922px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">变更为管理员用户</p>
+    </div>
+  );
+}
+
+function MenuItemChangeToAdmin() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <TextChangeToAdmin />
+    </div>
+  );
+}
+
+function ListItem15() {
+  return <div className="bg-[#dbdde0] h-px shrink-0 w-full" data-name="List Item" />;
+}
+
+function Text349() {
+  return (
+    <div className="absolute h-[22px] left-[12px] overflow-clip top-[5px] w-[176.922px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">删除</p>
+    </div>
+  );
+}
+
+function MenuItem20() {
+  return (
+    <div className="h-[32px] relative shrink-0 w-full" data-name="Menu Item">
+      <Text349 />
+    </div>
+  );
+}
+
+function Menu1() {
+  return null;
+}
+
+function Container62() {
+  return (
+    <div className="absolute h-0 left-0 top-0 w-[1620px]" data-name="Container">
+      <Container63 />
+      <Menu1 />
+    </div>
+  );
+}
+
+function Container30() {
+  return (
+    <div className="absolute h-[838px] left-[24px] top-[20px] w-[1620px]" data-name="Container">
+      <Container31 />
+      <Container48 />
+      <Container62 />
+    </div>
+  );
+}
+
+function Container29() {
+  return (
+    <div className="h-[702px] relative shrink-0 w-full" data-name="Container">
+      <Container30 />
+    </div>
+  );
+}
+
+function Container28() {
+  return (
+    <div className="absolute content-stretch flex flex-col h-[702px] items-start left-0 overflow-clip pr-[6px] top-[40px] w-[1674px]" data-name="Container">
+      <Container29 />
+    </div>
+  );
+}
+
+function Tab() {
+  return (
+    <div className="flex-[1_0_0] h-[22px] min-h-px min-w-px relative" data-name="Tab">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">用户</p>
+      </div>
+    </div>
+  );
+}
+
+function Container71() {
+  return (
+    <div className="absolute content-stretch flex h-[40px] items-center left-0 top-0 w-[28px]" data-name="Container">
+      <Tab />
+    </div>
+  );
+}
+
+function Tab1() {
+  return (
+    <div className="flex-[1_0_0] h-[22px] min-h-px min-w-px relative" data-name="Tab">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">用户组</p>
+      </div>
+    </div>
+  );
+}
+
+function Container72() {
+  return (
+    <div className="absolute content-stretch flex h-[40px] items-center left-[52px] top-0 w-[42px]" data-name="Container">
+      <Tab1 />
+    </div>
+  );
+}
+
+function Container73() {
+  return <div className="absolute bg-[#005bd4] h-[2px] left-0 top-[38px] w-[28px]" data-name="Container" />;
+}
+
+function Container70() {
+  return (
+    <div className="absolute h-[40px] left-[24px] top-0 w-[106px]" data-name="Container">
+      <Container71 />
+      <Container72 />
+      <Container73 />
+    </div>
+  );
+}
+
+function Container69() {
+  return (
+    <div className="absolute h-[40px] left-0 overflow-clip top-0 w-[1674px]" data-name="Container">
+      <Container70 />
+    </div>
+  );
+}
+
+function TabList() {
+  return (
+    <div className="absolute h-[40px] left-0 top-0 w-[1674px]" data-name="Tab List">
+      <Container69 />
+    </div>
+  );
+}
+
+function Container27() {
+  return (
+    <div className="flex-[1_0_0] min-h-px min-w-px relative w-[1674px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Container28 />
+        <TabList />
+      </div>
+    </div>
+  );
+}
+
+function Container23() {
+  return (
+    <div className="flex-[1_0_0] min-h-px min-w-px relative w-[1674px]" data-name="Container">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
+        <Container24 />
+        <Container27 />
+      </div>
+    </div>
+  );
+}
+
+function Container22() {
+  return (
+    <div className="absolute bg-white content-stretch flex flex-col h-[798px] items-start left-[200px] overflow-clip top-0 w-[1674px]" data-name="Container">
+      <Container23 />
+    </div>
+  );
+}
+
+function Container14() {
+  return (
+    <div className="h-[798px] overflow-clip relative shrink-0 w-full" data-name="Container">
+      <Container15 />
+      <Container22 />
+    </div>
+  );
+}
+
+function Container13() {
+  return (
+    <div className="absolute content-stretch flex flex-col h-[798px] items-start left-[46px] overflow-clip top-0 w-[1874px]" data-name="Container">
+      <Container14 />
+    </div>
+  );
+}
+
+function Container9() {
+  return (
+    <div className="absolute h-[798px] left-0 overflow-clip top-[48px] w-[1920px]" data-name="Container">
+      <Container10 />
+      <Container13 />
+    </div>
+  );
+}
+
+function Container81() {
+  return <div className="h-0 rounded-tl-[2px] rounded-tr-[2px] shrink-0 w-full" data-name="Container" />;
+}
+
+function Container80() {
+  return (
+    <div className="absolute bg-white content-stretch flex flex-col h-0 items-start left-0 rounded-[2px] top-0 w-[1920px]" data-name="Container">
+      <Container81 />
+    </div>
+  );
+}
+
+function Container79() {
+  return (
+    <div className="absolute h-0 left-0 rounded-[2px] top-0 w-[1920px]" data-name="Container">
+      <Container80 />
+    </div>
+  );
+}
+
+function Container78() {
+  return (
+    <div className="absolute h-0 left-0 top-0 w-[1920px]" data-name="Container">
+      <Container79 />
+    </div>
+  );
+}
+
+function Container77() {
+  return (
+    <div className="absolute h-0 left-0 top-0 w-[1920px]" data-name="Container">
+      <Container78 />
+    </div>
+  );
+}
+
+function Container76() {
+  return (
+    <div className="absolute h-0 left-0 top-[40px] w-[1920px]" data-name="Container">
+      <Container77 />
+    </div>
+  );
+}
+
+function Icon74() {
+  return (
+    <div className="h-[16px] overflow-clip relative shrink-0 w-full" data-name="Icon">
+      <div className="absolute inset-[20.83%_20.82%_20.9%_20.83%]" data-name="Vector">
+        <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9.33566 9.32369">
+          <path clipRule="evenodd" d={svgPaths.p2f1bf700} fill="var(--fill-0, black)" fillOpacity="0.85" fillRule="evenodd" id="Vector" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Text351() {
+  return (
+    <div className="absolute content-stretch flex flex-col items-start left-[16px] size-[16px] top-[12px]" data-name="Text">
+      <Icon74 />
+    </div>
+  );
+}
+
+function Text350() {
+  return (
+    <div className="flex-[1_0_0] h-full min-h-px min-w-px relative rounded-[6px]" data-name="Text">
+      <div aria-hidden="true" className="absolute border-4 border-[rgba(0,0,0,0)] border-solid inset-0 pointer-events-none rounded-[6px]" />
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <Text351 />
+      </div>
+    </div>
+  );
+}
+
+function Text352() {
+  return (
+    <div className="h-[24px] relative shrink-0 w-px" data-name="Text">
+      <div aria-hidden="true" className="absolute border-[#dbdde0] border-l border-solid inset-0 pointer-events-none" />
+    </div>
+  );
+}
+
+function Container83() {
+  return (
+    <div className="absolute content-stretch flex h-[40px] items-center left-0 top-0 w-[49px]" data-name="Container">
+      <Text350 />
+      <Text352 />
+    </div>
+  );
+}
+
+function Container82() {
+  return (
+    <div className="absolute h-[40px] left-0 top-0 w-[49px]" data-name="Container">
+      <Container83 />
+    </div>
+  );
+}
+
+function Container84() {
+  return <div className="absolute left-[1920px] size-0 top-[20px]" data-name="Container" />;
+}
+
+function Icon75() {
+  return (
+    <div className="relative size-[15px]" data-name="Icon">
+      <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 15 15">
+        <g id="Icon">
+          <path clipRule="evenodd" d={svgPaths.p157f7780} fill="var(--fill-0, white)" fillRule="evenodd" id="Vector" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function Text354() {
+  return (
+    <div className="absolute left-[15.56px] size-[15px] top-px" data-name="Text">
+      <div className="absolute flex items-center justify-center left-[-3.1px] size-[21.192px] top-[-3.1px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "19" } as React.CSSProperties}>
+        <div className="flex-none rotate-[132.46deg]">
+          <Icon75 />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Text353() {
+  return (
+    <div className="absolute bg-[#0076f7] h-[17.125px] left-[32px] rounded-[10px] top-[2.88px] w-[36.563px]" data-name="Text">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[16px] left-[6px] not-italic text-[12px] text-white top-[1.13px] whitespace-nowrap">2</p>
+      <Text354 />
+    </div>
+  );
+}
+
+function Tab2() {
+  return (
+    <div className="flex-[1_0_0] h-[22px] min-h-px min-w-px relative" data-name="Tab">
+      <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
+        <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#005bd4] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">任务</p>
+        <Text353 />
+      </div>
+    </div>
+  );
+}
+
+function Container87() {
+  return (
+    <div className="absolute content-stretch flex h-[40px] items-center left-0 top-0 w-[68.563px]" data-name="Container">
+      <Tab2 />
+    </div>
+  );
+}
+
+function Container90() {
+  return (
+    <div className="absolute h-[22px] left-0 top-0 w-[88px]" data-name="Container">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">平台实时报警</p>
+    </div>
+  );
+}
+
+function Text355() {
+  return (
+    <div className="absolute bg-[#f4454c] content-stretch flex h-[19px] items-start left-[88px] px-[6px] py-[2px] rounded-[10px] top-[2px] w-[27.453px]" data-name="Text">
+      <p className="flex-[1_0_0] font-['PingFang_SC:Medium',sans-serif] leading-[20px] min-h-px min-w-px not-italic relative text-[12px] text-white">16</p>
+    </div>
+  );
+}
+
+function Text356() {
+  return (
+    <div className="absolute bg-[#ff9000] content-stretch flex h-[19px] items-start left-[117.45px] px-[6px] py-[2px] rounded-[10px] top-[2px] w-[27.453px]" data-name="Text">
+      <p className="font-['PingFang_SC:Medium',sans-serif] leading-[20px] not-italic relative shrink-0 text-[12px] text-white whitespace-nowrap">45</p>
+    </div>
+  );
+}
+
+function Text357() {
+  return (
+    <div className="absolute bg-[#0076f7] content-stretch flex h-[19px] items-start left-[146.91px] px-[6px] py-[2px] rounded-[10px] top-[2px] w-[27.453px]" data-name="Text">
+      <p className="font-['PingFang_SC:Medium',sans-serif] leading-[20px] not-italic relative shrink-0 text-[12px] text-white whitespace-nowrap">47</p>
+    </div>
+  );
+}
+
+function Container89() {
+  return (
+    <div className="absolute h-[22px] left-0 top-[9px] w-[176.359px]" data-name="Container">
+      <Container90 />
+      <Text355 />
+      <Text356 />
+      <Text357 />
+    </div>
+  );
+}
+
+function Container88() {
+  return (
+    <div className="absolute h-[40px] left-[92.56px] top-0 w-[176.359px]" data-name="Container">
+      <Container89 />
+    </div>
+  );
+}
+
+function Container93() {
+  return (
+    <div className="absolute h-[22px] left-0 top-0 w-[88px]" data-name="Container">
+      <p className="absolute font-['PingFang_SC:Regular',sans-serif] leading-[22.001px] left-0 not-italic text-[#4a4c4f] text-[14px] top-0 tracking-[-0.1504px] whitespace-nowrap">存储实时报警</p>
+    </div>
+  );
+}
+
+function Text358() {
+  return (
+    <div className="absolute bg-[#f4454c] content-stretch flex h-[19px] items-start left-[88px] px-[6px] py-[2px] rounded-[10px] top-[2px] w-[35.172px]" data-name="Text">
+      <p className="font-['PingFang_SC:Medium',sans-serif] leading-[20px] not-italic relative shrink-0 text-[12px] text-white whitespace-nowrap">423</p>
+    </div>
+  );
+}
+
+function Text359() {
+  return (
+    <div className="absolute bg-[#ff9000] content-stretch flex h-[19px] items-start left-[125.17px] px-[6px] py-[2px] rounded-[10px] top-[2px] w-[35.172px]" data-name="Text">
+      <p className="flex-[1_0_0] font-['PingFang_SC:Medium',sans-serif] leading-[20px] min-h-px min-w-px not-italic relative text-[12px] text-white">795</p>
+    </div>
+  );
+}
+
+function Text360() {
+  return (
+    <div className="absolute bg-[#0076f7] content-stretch flex h-[19px] items-start left-[162.34px] px-[6px] py-[2px] rounded-[10px] top-[2px] w-[42.891px]" data-name="Text">
+      <p className="flex-[1_0_0] font-['PingFang_SC:Medium',sans-serif] leading-[20px] min-h-px min-w-px not-italic relative text-[12px] text-white">1174</p>
+    </div>
+  );
+}
+
+function Container92() {
+  return (
+    <div className="absolute h-[22px] left-0 top-[9px] w-[207.234px]" data-name="Container">
+      <Container93 />
+      <Text358 />
+      <Text359 />
+      <Text360 />
+    </div>
+  );
+}
+
+function Container91() {
+  return (
+    <div className="absolute h-[40px] left-[292.92px] top-0 w-[207.234px]" data-name="Container">
+      <Container92 />
+    </div>
+  );
+}
+
+function Container94() {
+  return <div className="absolute bg-[#005bd4] h-[2px] left-0 rounded-[999px] top-[38px] w-[69px]" data-name="Container" />;
+}
+
+function Container86() {
+  return (
+    <div className="absolute h-[40px] left-[24px] top-0 w-[512px]" data-name="Container">
+      <Container87 />
+      <Container88 />
+      <Container91 />
+      <Container94 />
+    </div>
+  );
+}
+
+function Container85() {
+  return (
+    <div className="absolute h-[40px] left-[49px] top-0 w-[1871px]" data-name="Container">
+      <Container86 />
+    </div>
+  );
+}
+
+function TabList1() {
+  return (
+    <div className="absolute h-[40px] left-0 top-0 w-[1920px]" data-name="Tab List">
+      <Container82 />
+      <Container84 />
+      <Container85 />
+    </div>
+  );
+}
+
+function Container75() {
+  return (
+    <div className="absolute bg-white border-[#dbdde0] border-solid border-t-2 h-[40px] left-0 top-0 w-[1920px]" data-name="Container">
+      <Container76 />
+      <TabList1 />
+    </div>
+  );
+}
+
+function Container95() {
+  return <div className="absolute h-0 left-0 top-[40px] w-[1920px]" data-name="Container" />;
+}
+
+function Container96() {
+  return <div className="absolute bg-[#c8cacd] h-[2px] left-[960px] top-0 w-[60px]" data-name="Container" />;
+}
+
+function Container74() {
+  return (
+    <div className="absolute h-[40px] left-0 top-[846px] w-[1920px]" data-name="Container">
+      <Container75 />
+      <Container95 />
+      <Container96 />
+    </div>
+  );
+}
+
+export default function ZStackZSphere() {
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      const target = e.target as HTMLElement;
+      const actionCell = target.closest('[data-name="Action Cell"]');
+      const btn = target.closest('[data-name="Button"]');
+
+      // Close all other open cells
+      document.querySelectorAll('[data-name="Action Cell"].action-cell-open').forEach((el) => {
+        if (el !== actionCell) el.classList.remove('action-cell-open');
+      });
+
+      // Toggle the clicked cell (only if clicked on the button)
+      if (actionCell && btn) {
+        actionCell.classList.toggle('action-cell-open');
+      }
+    }
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, []);
+
+  return (
+    <div className="bg-white relative w-[1920px] h-[886px]" data-name="ZStack ZSphere">
+      <Container />
+      <Container9 />
+      <Container74 />
+    </div>
+  );
+}

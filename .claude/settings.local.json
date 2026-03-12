@@ -5,7 +5,17 @@
       "Bash(python3:*)",
       "Bash(grep:*)",
       "Bash(export HTTPS_PROXY=http://127.0.0.1:7897)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code} %{time_total}s\" https://api.openai.com/v1/models)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{time_total}s\" https://api.openai.com/v1/models)",
+      "mcp__vibma__styles",
+      "mcp__vibma__get_current_page",
+      "mcp__vibma__create_frame",
+      "mcp__vibma__export_node_as_image",
+      "mcp__vibma__insert_child",
+      "Bash(timeout 15 npx -y @ufira/vibma --edit --version)",
+      "Bash(echo \"EXIT_CODE: $?\")",
+      "mcp__vibma__get_node_info",
+      "mcp__vibma__create_text",
+      "mcp__vibma__delete_node"
     ]
   },
   "enableAllProjectMcpServers": false,

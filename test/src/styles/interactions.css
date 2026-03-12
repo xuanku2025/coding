@@ -1,0 +1,80 @@
+/* ==========================================
+   Interactive Hover Effects
+   ========================================== */
+
+/* --- All Buttons --- */
+[data-name="Button"] {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+[data-name="Button"]:hover {
+  filter: brightness(0.92);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+[data-name="Button"]:active {
+  filter: brightness(0.85);
+}
+
+/* --- Table Rows --- */
+[data-name="Table Row"] {
+  cursor: pointer;
+}
+[data-name="Table Row"]:hover [data-name="Table Cell"] {
+  background-color: #e6f6ff !important;
+  transition: background-color 0.15s ease;
+}
+
+/* --- Left Sidebar Icon Links --- */
+[data-name="Link"] {
+  transition: background-color 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+[data-name="Link"]:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* --- Menu Items (sub-menu) --- */
+[data-name="Menu Item"] {
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+[data-name="Menu Item"]:hover {
+  background-color: #edf0f3 !important;
+}
+
+/* --- Table Cell blue link text --- */
+[data-name="Table Cell"] p {
+  transition: color 0.15s ease;
+}
+[data-name="Table Cell"]:hover p {
+  cursor: pointer;
+}
+
+/* --- General interactive feedback --- */
+[data-name="Button"],
+[data-name="Link"],
+[data-name="Menu Item"] {
+  user-select: none;
+}
+
+/* --- Action Cell Popup (操作列 点击弹出菜单) --- */
+[data-name="Action Cell"] {
+  position: absolute;
+  overflow: visible !important;
+}
+[data-name="Action Cell"] .action-popup {
+  display: none;
+  pointer-events: none;
+}
+[data-name="Action Cell"].action-cell-open .action-popup {
+  display: flex;
+  pointer-events: auto;
+}
+[data-name="Action Popup"] [data-name="Menu Item"] {
+  transition: background-color 0.12s ease;
+  cursor: pointer;
+}
+[data-name="Action Popup"] [data-name="Menu Item"]:hover {
+  background-color: #e6f6ff !important;
+}
+
